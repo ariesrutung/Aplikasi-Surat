@@ -15,9 +15,9 @@ class Pegawai extends CI_Controller
         ];
 
         $data['data'] = $this->db->get('pegawai')->result_array();
-        $this->load->view('templates/header', $judul);
-        $this->load->view('pegawai/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/pegawai/index', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function hapus($id)
@@ -30,7 +30,7 @@ class Pegawai extends CI_Controller
         $this->db->where(['id_pegawai' => $id]);
         $this->db->delete('pegawai');
         $this->session->set_flashdata('success', 'Berhasil Dihapus!');
-        redirect(base_url('pegawai'));
+        redirect(base_url('admin/pegawai'));
     }
 
     public function tambah()
@@ -51,9 +51,9 @@ class Pegawai extends CI_Controller
                 'title' => 'Management User',
                 'sub_title' => 'Surat Masuk'
             ];
-            $this->load->view('templates/header', $judul);
-            $this->load->view('pegawai/tambah');
-            $this->load->view('templates/footer');
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/pegawai/tambah_data_pegawai');
+            $this->load->view('new_ui/template/footer');
         } else {
             $nama =  $this->input->post("nama", TRUE);
             $nip =  $this->input->post("nip", TRUE);
@@ -88,7 +88,7 @@ class Pegawai extends CI_Controller
 
                 $this->db->insert('pegawai', $save);
                 $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("pegawai"));
+                redirect(base_url("admin/pegawai"));
             }
         }
     }
@@ -113,9 +113,9 @@ class Pegawai extends CI_Controller
             ];
 
             $data['pegawai'] = $this->db->get_where('pegawai', ['id_pegawai' => $id])->row_array();
-            $this->load->view('templates/header', $judul);
-            $this->load->view('pegawai/edit', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/pegawai/edit_data_pegawai', $data);
+            $this->load->view('new_ui/template/footer');
         } else {
             // $data = $this->db->get_where('pegawai', ['id_pegawai' => $id])->row_array();
             // unlink("./uploads/foto/" . $data['foto']);
@@ -157,7 +157,7 @@ class Pegawai extends CI_Controller
                 $this->db->update('pegawai', $update);
 
                 $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("pegawai"));
+                redirect(base_url("admin/pegawai"));
             } else {
                 $update = [
                     'nama' => $nama,
@@ -175,7 +175,7 @@ class Pegawai extends CI_Controller
                 $this->db->update('pegawai', $update);
 
                 $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("pegawai"));
+                redirect(base_url("admin/pegawai"));
             }
         }
     }
