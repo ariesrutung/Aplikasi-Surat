@@ -19,9 +19,9 @@ class User extends CI_Controller
         ];
 
         $data['data'] = $this->db->get('user')->result_array();
-        $this->load->view('templates/header', $judul);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/user/index', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function hapus($id)
@@ -29,7 +29,7 @@ class User extends CI_Controller
         $this->db->where(['id_user' => $id]);
         $this->db->delete('user');
         $this->session->set_flashdata('success', 'Berhasil Dihapus!');
-        redirect(base_url('user'));
+        redirect(base_url('admin/user'));
     }
 
     public function tambah()
@@ -46,9 +46,9 @@ class User extends CI_Controller
                 'title' => 'Management User',
                 'sub_title' => 'Surat Masuk'
             ];
-            $this->load->view('templates/header', $judul);
-            $this->load->view('user/tambah');
-            $this->load->view('templates/footer');
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/user/tambah_user');
+            $this->load->view('new_ui/template/footer');
         } else {
             $username =  $this->input->post("username", TRUE);
             $password =  $this->input->post("password", TRUE);
@@ -64,13 +64,12 @@ class User extends CI_Controller
             $this->db->insert('user', $save);
 
             $this->session->set_flashdata('success', 'User Berhasil Ditambah!');
-            redirect(base_url('user'));
+            redirect(base_url('admin/user'));
         }
     }
 
     public function edit($id)
     {
-
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[8]|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password2', 'required|trim|min_length[8]|matches[password]');
@@ -84,10 +83,9 @@ class User extends CI_Controller
             ];
             $data['user'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
 
-
-            $this->load->view('templates/header', $judul);
-            $this->load->view('user/edit', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/user/edit_user', $data);
+            $this->load->view('new_ui/template/footer');
         } else {
             $username =  $this->input->post("username", TRUE);
             $password =  $this->input->post("password", TRUE);
@@ -105,7 +103,7 @@ class User extends CI_Controller
             $this->db->update('user', $update);
 
             $this->session->set_flashdata('success', 'User Berhasil Update!');
-            redirect(base_url('user'));
+            redirect(base_url('admin/user'));
         }
     }
 }

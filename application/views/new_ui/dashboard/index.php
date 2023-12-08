@@ -1,5 +1,5 @@
 <style>
-    i.bi {
+    .card i.bi {
         font-size: 30px;
     }
 </style>
