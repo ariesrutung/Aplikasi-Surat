@@ -109,8 +109,8 @@ class Suratonline extends CI_Controller
         if ($_FILES['file']['name'] == null) {
             $file = '-';
         } else {
-            $namafile = substr($_FILES['file']['name'],-7);
-            $file = $jenis_surat.uniqid().$namafile;
+            $namafile = substr($_FILES['file']['name'], -7);
+            $file = $jenis_surat . uniqid() . $namafile;
             $config['upload_path']          = './uploads/berkas';
             $config['allowed_types']        = '*';
             $config['max_size']             = 5120; // 5MB

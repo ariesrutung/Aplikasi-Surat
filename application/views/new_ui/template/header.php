@@ -107,31 +107,31 @@
                     <div class="collapse" id="pagesExamples" style="">
                         <ul class="nav ms-4">
                             <li class="nav-item">
-                                <a class="nav-link " href="../../pages/pages/users/reports.html">
+                                <a class="nav-link " href="<?= base_url('admin/galery/profil_kelurahan') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur Kelurahan </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../../pages/pages/users/reports.html">
+                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur LPM </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../../pages/pages/users/reports.html">
+                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur Linmas </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../../pages/pages/users/reports.html">
+                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Pemuda Kelurahan </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../../pages/pages/users/reports.html">
+                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Ketua RT/RW </span>
                                 </a>
