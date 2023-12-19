@@ -422,8 +422,8 @@ class Surat extends CI_Controller
     public function pengajuan()
     {
         $judul = [
-            'title' => 'Management Surat',
-            'sub_title' => 'Pengajuan Surat'
+            'title' => 'Pengajuan Surat',
+            // 'sub_title' => 'Pengajuan S0urat'
         ];
 
         $data['status'] = [

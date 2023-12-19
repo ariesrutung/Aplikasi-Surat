@@ -1,3 +1,11 @@
+<style>
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: #e9ecef;
+        opacity: 1;
+        cursor: not-allowed !important;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
@@ -9,7 +17,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="nik" class="form-control-label">NIK</label>
-                        <input class="form-control" name="nik" id="nik" type="text" value="<?= $penduduk['nik']; ?>" />
+                        <input class="form-control" name="nik" id="nik" type="text" value="<?= $penduduk['nik']; ?>" readonly />
                         <?= form_error('nik', '<div class="text-danger text-sm">', '</div>'); ?>
                     </div>
 

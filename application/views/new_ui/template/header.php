@@ -20,9 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url() ?>assets/argon/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?= base_url() ?>assets/argon/assets/img/favicon.png">
-    <title>
-        Argon Dashboard 2 by Creative Tim
-    </title>
+    <title><?= $title; ?></title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -35,34 +33,63 @@
     <link id="pagestyle" href="<?= base_url() ?>assets/argon/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        .col-2 {
+            flex: 0 0 auto;
+            width: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
 
+        .col-2 img {
+            border-radius: 100%;
+            height: auto;
+            width: 50%;
+        }
+
+        .col-10 {
+            flex: 0 0 auto;
+            width: 90%;
+            display: flex;
+            align-items: self-start;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0;
+        }
+    </style>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="<?= base_url('admin/dashboard') ?>">
-                <span class="ms-1 font-weight-bold">PANEL ADMIN</span>
+                <span class="font-weight-bold d-flex justify-content-center">PANEL ADMIN</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+
+        <!-- Bagian yang menampilkan gambar profil di header panel admin -->
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="<?= base_url('admin/dashboard') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'dashboard') ? 'active' : ''; ?>" href="<?= base_url('admin/dashboard') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Surat</h6>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/surat/pengajuan') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(3) == 'pengajuan') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/pengajuan') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
                         </div>
@@ -70,7 +97,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/surat/surat_masuk') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_masuk' || $this->uri->segment(3) == 'editSuratMasuk' || $this->uri->segment(3) == 'tambah_surat_masuk') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_masuk') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
                         </div>
@@ -78,7 +105,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/surat/surat_keluar') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_keluar' || $this->uri->segment(3) == 'editSuratKeluar' || $this->uri->segment(3) == 'tambah_surat_keluar') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_keluar') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-app text-info text-sm opacity-10"></i>
                         </div>
@@ -86,7 +113,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/surat/surat_keterangan') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_keterangan' || $this->uri->segment(3) == 'editSuratKeterangan' || $this->uri->segment(3) == 'tambah_surat_keterangan') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_keterangan') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                         </div>
@@ -98,40 +125,46 @@
                 </li>
 
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link collapsed" aria-controls="pagesExamples" role="button" aria-expanded="false">
+                    <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link <?php echo ($this->uri->segment(2) == 'profil' || $this->uri->segment(3) == 's_kelurahan' || $this->uri->segment(3) == 's_lpm' || $this->uri->segment(3) == 's_linmas' || $this->uri->segment(3) == 's_pemuda' || $this->uri->segment(3) == 'rt_rw') ? 'active' : ''; ?>" aria-controls="pagesExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
                             <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Konten</span>
                     </a>
-                    <div class="collapse" id="pagesExamples" style="">
+                    <div class="collapse <?php echo ($this->uri->segment(2) == 'profil' || $this->uri->segment(3) == 's_kelurahan' || $this->uri->segment(3) == 's_lpm' || $this->uri->segment(3) == 's_linmas' || $this->uri->segment(3) == 's_pemuda' || $this->uri->segment(3) == 'rt_rw') ? 'show' : ''; ?>" id="pagesExamples">
                         <ul class="nav ms-4">
                             <li class="nav-item">
-                                <a class="nav-link " href="<?= base_url('admin/galery/profil_kelurahan') ?>">
+                                <a class="nav-link <?php echo ($this->uri->segment(2) == 'profil') ? 'active' : ''; ?>" href="<?= base_url('admin/profil') ?>">
+                                    <span class="sidenav-mini-icon text-xs"> R </span>
+                                    <span class="sidenav-normal"> Profil Kelurahan </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 's_kelurahan') ? 'active' : ''; ?>" href="<?= base_url('admin/galery/s_kelurahan') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur Kelurahan </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 's_lpm') ? 'active' : ''; ?>" href="<?= base_url('admin/galery/s_lpm') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur LPM </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 's_linmas') ? 'active' : ''; ?>" href="<?= base_url('admin/galery/s_linmas') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Struktur Linmas </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 's_pemuda') ? 'active' : ''; ?>" href="<?= base_url('admin/galery/s_pemuda') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Pemuda Kelurahan </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="<?= base_url('admin/galeri/') ?>">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 'rt_rw') ? 'active' : ''; ?>" href="<?= base_url('admin/galery/rt_rw') ?>">
                                     <span class="sidenav-mini-icon text-xs"> R </span>
                                     <span class="sidenav-normal"> Ketua RT/RW </span>
                                 </a>
@@ -140,30 +173,31 @@
                     </div>
                 </li>
 
+
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Users</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/penduduk') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'penduduk') ? 'active' : ''; ?>" href="<?= base_url('admin/penduduk') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people text-success"></i>
+                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Penduduk</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="<?= base_url('admin/pegawai') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'pegawai') ? 'active' : ''; ?>" href="<?= base_url('admin/pegawai') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-people text-info"></i>
+                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Aparat Desa</span>
                     </a>
                 </li>
                 <?php if ($this->session->userdata('level') == 'administrator') : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= base_url('admin/user') ?>">
+                        <a class="nav-link <?php echo ($this->uri->segment(2) == 'user') ? 'active' : ''; ?>" href="<?= base_url('admin/user') ?>">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people text-danger"></i>
+                                <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Pengelola Website</span>
                         </a>
@@ -177,26 +211,48 @@
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
-                    </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+                    <div class="row">
+                        <div class="col-2">
+                            <?php
+                            $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array();
+                            $gambarPath = 'uploads/profil_pengelola/' . $data['gambar'];
+
+                            // Periksa apakah gambar tersedia
+                            if (!empty($data['gambar']) && file_exists($gambarPath)) :
+                            ?>
+                                <img class="text-center" src="<?= base_url($gambarPath); ?>" alt="Profil Pengguna">
+                            <?php else : ?>
+                                <img class="text-center" src="<?= base_url('assets/img/default-avatar.png') ?>" alt="Profil Pengguna Default">
+                            <?php endif; ?>
+                        </div>
+
+
+                        <div class="col-10">
+                            <h5 class="m-0 text-white">Hi,<span>
+                                    <?php
+
+                                    $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array();
+
+                                    ?>
+                                    <?= ucfirst($data['username']); ?>
+                                </span></h5><span class="text-sm text-white">Selamat Datang</span>
+                        </div>
+                    </div>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                             <input type="text" class="form-control" placeholder="Type here...">
-                        </div>
+                        </div> -->
                     </div>
                     <ul class="navbar-nav  justify-content-end">
-                        <li class="nav-item d-flex align-items-center">
+                        <!-- <li class="nav-item d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
                                 <span class="d-sm-inline d-none">Sign In</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">

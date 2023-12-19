@@ -8,9 +8,9 @@
                     </div>
                     <div class="card-content">
                         <h4 class="card-title">Edit Profil Kelurahan</h4>
-                        <form action="<?= base_url('galery/edit_profil/')?><?= $profil[0]['id']?>" method="post">
+                        <form action="<?= base_url('galery/edit_profil/'); ?>" method="post">
                             <label for="profil">Masukkan Profil Kelurahan</label>
-                            <textarea name="profil" id="profil" cols="10" rows="10" class="form-control"><?= $profil[0]['profile']?></textarea>
+                            <textarea name="profil" id="profil" cols="10" rows="10" class="form-control"><?= $profil[0]['profile'] ?></textarea>
                             <button class="btn btn-primary pull-right" type="submit">Update</button>
                         </form>
                     </div>

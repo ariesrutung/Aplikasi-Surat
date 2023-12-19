@@ -1,10 +1,9 @@
-<!--   Core JS Files   -->
 <script src="<?= base_url() ?>assets/argon/assets/js/core/popper.min.js"></script>
 <script src="<?= base_url() ?>assets/argon/assets/js/core/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/argon/assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="<?= base_url() ?>assets/argon/assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="<?= base_url() ?>assets/argon/assets/js/plugins/chartjs.min.js"></script>
-<!-- <script>
+<script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
@@ -86,7 +85,7 @@
             },
         },
     });
-</script> -->
+</script>
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -96,9 +95,157 @@
         Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 </script>
-<!-- Github buttons -->
+
+<script>
+    var ctx = document.getElementById('myCharts').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+            datasets: [{
+                label: 'Grafik Surat Masuk',
+                backgroundColor: 'rgb(255, 229, 25)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [<?php foreach ($masuk as $key) {
+                            echo $key . ',';
+                        } ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('myCharts1').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+            datasets: [{
+                label: 'Grafik Surat Keluar',
+                backgroundColor: 'rgb(255, 229, 25)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [<?php foreach ($keluar as $key) {
+                            echo $key . ',';
+                        } ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('myCharts2').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+            datasets: [{
+                label: 'Grafik Surat Keterangan',
+                backgroundColor: 'rgb(255, 229, 25)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [<?php foreach ($keterangan as $key) {
+                            echo $key . ',';
+                        } ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url() ?>assets/argon/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 

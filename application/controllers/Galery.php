@@ -7,11 +7,11 @@ class Galery extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model','galery');
+        $this->load->model('galery_model', 'galery');
 
-        $this->load->helper(array('form', 'url','Cookie', 'String'));
+        $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
-        
+
         if ($this->session->userdata('id_user') == FALSE) {
             redirect(base_url("auth/login"));
         }
@@ -28,9 +28,9 @@ class Galery extends CI_Controller
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data['profil'][0]['profile']);
         // die;
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/profil_kelurahan',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/profil_kelurahan', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function edit_profil()
@@ -44,14 +44,14 @@ class Galery extends CI_Controller
                 'sub_title' => 'Profil Kelurahan'
             ];
 
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_profil',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_profil', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $this->galery->UpdateProfil($id);
             $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/profil_kelurahan');
+            redirect('admin/galery/profil_kelurahan');
         }
     }
 
@@ -65,9 +65,9 @@ class Galery extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/s_kelurahan',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/s_kelurahan', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function edit_s_kelurahan()
@@ -83,13 +83,13 @@ class Galery extends CI_Controller
 
             // $data['sm'] = $this->db->get('surat_masuk')->row_array();
             // var_dump($data);
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_s_kelurahan',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_s_kelurahan', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $upload_sk = $_FILES['s_kelurahan']['name'];
-            
+
             $data['galery'] = $this->db->get_where('gallery', ['id' => $id])->row_array();
 
             if ($upload_sk) {
@@ -98,10 +98,10 @@ class Galery extends CI_Controller
                 $config['max_size']             = 2048; // 1MB
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
-    
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-    
+
                 if ($this->upload->do_upload('s_kelurahan')) {
                     $old_sk = $data['galery']['s_kelurahan'];
                     unlink(FCPATH . 'assets/galery/' . $old_sk);
@@ -110,17 +110,16 @@ class Galery extends CI_Controller
                 } else {
                     echo $this->upload->display_errors();
                 }
-            }else {
+            } else {
                 $s_kelurahan = $this->input->post('s_kelurahan_old');
             }
             // var_dump($s_kelurahan);
             // die;
-            
-            $this->galery->UpdateSKelurahan($s_kelurahan,$id);
+
+            $this->galery->UpdateSKelurahan($s_kelurahan, $id);
             $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/s_kelurahan');
+            redirect('admin/galery/s_kelurahan');
         }
-        
     }
 
     public function s_lpm()
@@ -133,9 +132,9 @@ class Galery extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/s_lpm',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/s_lpm', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function edit_s_lpm()
@@ -151,13 +150,13 @@ class Galery extends CI_Controller
 
             // $data['sm'] = $this->db->get('surat_masuk')->row_array();
             // var_dump($data);
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_s_lpm',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_s_lpm', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $upload_lpm = $_FILES['s_lpm']['name'];
-            
+
             $data['galery'] = $this->db->get_where('gallery', ['id' => $id])->row_array();
 
             if ($upload_lpm) {
@@ -166,10 +165,10 @@ class Galery extends CI_Controller
                 $config['max_size']             = 2048; // 1MB
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
-    
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-    
+
                 if ($this->upload->do_upload('s_lpm')) {
                     $old_lpm = $data['galery']['s_lpm'];
                     unlink(FCPATH . 'assets/galery/' . $old_lpm);
@@ -178,17 +177,16 @@ class Galery extends CI_Controller
                 } else {
                     echo $this->upload->display_errors();
                 }
-            }else {
+            } else {
                 $s_lpm = $this->input->post('s_lpm_old');
             }
             // var_dump($s_lpm);
             // die;
-            
-            $this->galery->UpdateSLpm($s_lpm,$id);
+
+            $this->galery->UpdateSLpm($s_lpm, $id);
             $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/s_lpm');
+            redirect('admin/galery/s_lpm');
         }
-        
     }
 
     public function s_linmas()
@@ -201,9 +199,9 @@ class Galery extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/s_linmas',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/s_linmas', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function edit_s_linmas()
@@ -219,13 +217,13 @@ class Galery extends CI_Controller
 
             // $data['sm'] = $this->db->get('surat_masuk')->row_array();
             // var_dump($data);
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_s_linmas',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_s_linmas', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $upload_linmas = $_FILES['s_linmas']['name'];
-            
+
             $data['galery'] = $this->db->get_where('gallery', ['id' => $id])->row_array();
 
             if ($upload_linmas) {
@@ -234,10 +232,10 @@ class Galery extends CI_Controller
                 $config['max_size']             = 2048; // 1MB
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
-    
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-    
+
                 if ($this->upload->do_upload('s_linmas')) {
                     $old_linmas = $data['galery']['s_linmas'];
                     unlink(FCPATH . 'assets/galery/' . $old_linmas);
@@ -246,17 +244,16 @@ class Galery extends CI_Controller
                 } else {
                     echo $this->upload->display_errors();
                 }
-            }else {
+            } else {
                 $s_linmas = $this->input->post('s_linmas_old');
             }
             // var_dump($s_linmas);
             // die;
-            
-            $this->galery->UpdateSlinmas($s_linmas,$id);
+
+            $this->galery->UpdateSlinmas($s_linmas, $id);
             $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/s_linmas');
+            redirect('admin/galery/s_linmas');
         }
-        
     }
 
     public function s_pemuda()
@@ -269,9 +266,9 @@ class Galery extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/s_pemuda',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/s_pemuda', $data);
+        $this->load->view('new_ui/template/footer');
     }
 
     public function edit_s_pemuda()
@@ -287,13 +284,13 @@ class Galery extends CI_Controller
 
             // $data['sm'] = $this->db->get('surat_masuk')->row_array();
             // var_dump($data);
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_s_pemuda',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_s_pemuda', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $upload_pemuda = $_FILES['s_pemuda']['name'];
-            
+
             $data['galery'] = $this->db->get_where('gallery', ['id' => $id])->row_array();
 
             if ($upload_pemuda) {
@@ -302,10 +299,10 @@ class Galery extends CI_Controller
                 $config['max_size']             = 2048; // 1MB
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
-    
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-    
+
                 if ($this->upload->do_upload('s_pemuda')) {
                     $old_pemuda = $data['galery']['s_pemuda'];
                     unlink(FCPATH . 'assets/galery/' . $old_pemuda);
@@ -314,17 +311,16 @@ class Galery extends CI_Controller
                 } else {
                     echo $this->upload->display_errors();
                 }
-            }else {
+            } else {
                 $s_pemuda = $this->input->post('s_pemuda_old');
             }
             // var_dump($s_pemuda);
             // die;
-            
-            $this->galery->UpdateSPemuda($s_pemuda,$id);
+
+            $this->galery->UpdateSPemuda($s_pemuda, $id);
             $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/s_pemuda');
+            redirect('admin/galery/s_pemuda');
         }
-        
     }
 
     public function rt_rw()
@@ -337,9 +333,9 @@ class Galery extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('templates/header', $judul);
-        $this->load->view('galery/rt_rw',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('new_ui/template/header', $judul);
+        $this->load->view('new_ui/galery/rt_rw', $data);
+        $this->load->view('new_ui/template/footer');
     }
     public function edit_k_rtrw()
     {
@@ -354,13 +350,13 @@ class Galery extends CI_Controller
 
             // $data['sm'] = $this->db->get('surat_masuk')->row_array();
             // var_dump($data);
-            $this->load->view('templates/header', $judul);
-            $this->load->view('galery/edit_k_rtrw',$data);
-            $this->load->view('templates/footer');
-        }else{
+            $this->load->view('new_ui/template/header', $judul);
+            $this->load->view('new_ui/galery/edit_k_rtrw', $data);
+            $this->load->view('new_ui/template/footer');
+        } else {
             $id = $this->uri->segment(3);
             $upload_rtrw = $_FILES['k_rtrw']['name'];
-            
+
             $data['galery'] = $this->db->get_where('gallery', ['id' => $id])->row_array();
 
             if ($upload_rtrw) {
@@ -369,10 +365,10 @@ class Galery extends CI_Controller
                 $config['max_size']             = 2048; // 1MB
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
-    
+
                 $this->load->library('upload');
                 $this->upload->initialize($config);
-    
+
                 if ($this->upload->do_upload('k_rtrw')) {
                     $old_rtrw = $data['galery']['k_rtrw'];
                     unlink(FCPATH . 'assets/galery/' . $old_rtrw);
@@ -381,17 +377,15 @@ class Galery extends CI_Controller
                 } else {
                     echo $this->upload->display_errors();
                 }
-            }else {
+            } else {
                 $k_rtrw = $this->input->post('k_rtrw_old');
             }
             // var_dump($k_rtrw);
             // die;
-            
-            $this->galery->UpdateSrtrw($k_rtrw,$id);
-            $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('galery/rt_rw');
-        }
-        
-    }
 
+            $this->galery->UpdateSrtrw($k_rtrw, $id);
+            $this->session->set_flashdata('success', 'Berhasil Di Update!');
+            redirect('admin/galery/rt_rw');
+        }
+    }
 }

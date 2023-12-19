@@ -50,9 +50,12 @@ class Suratonline extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('frontend/header2', $judul);
-        $this->load->view('frontend/s_online', $data);
-        $this->load->view('frontend/footer2', $data);
+        $this->load->view('frontend/new_ui/header', $judul);
+        $this->load->view('frontend/new_ui/s_online', $data);
+        $this->load->view('frontend/new_ui/footer', $data);
+        // $this->load->view('frontend/header2', $judul);
+        // $this->load->view('frontend/s_online', $data);
+        // $this->load->view('frontend/footer2', $data);
     }
 
     public function ajukan()
@@ -79,8 +82,6 @@ class Suratonline extends CI_Controller
             ];
 
             $this->db->insert('penduduk', $save);
-            // $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-cross"></i> Maaf!</h5> NIK Anda tidak Terdaftar!</div>');
-            // redirect(base_url("suratonline"));
         }
 
         //Output a v4 UUID 
@@ -109,8 +110,8 @@ class Suratonline extends CI_Controller
         if ($_FILES['file']['name'] == null) {
             $file = '-';
         } else {
-            $namafile = substr($_FILES['file']['name'],-7);
-            $file = $jenis_surat.uniqid().$namafile;
+            $namafile = substr($_FILES['file']['name'], -7);
+            $file = $jenis_surat . uniqid() . $namafile;
             $config['upload_path']          = './uploads/berkas';
             $config['allowed_types']        = '*';
             $config['max_size']             = 5120; // 5MB
@@ -139,7 +140,7 @@ class Suratonline extends CI_Controller
         // die;
 
         $this->pengajuan_track->insert_p_surat($data);
-        $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Berhasil Mengajukan Surat! Berikut <b>ID</b> anda: <b>' . $id . '</b></div>');
+        $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Anda telah berhasil mengajukan permohonan pembuatan surat <b>' . $jenis_surat . '</b> dengan <b>ID</b> <b>' . $id . '</b></div>');
         redirect(base_url("suratonline"));
     }
 }

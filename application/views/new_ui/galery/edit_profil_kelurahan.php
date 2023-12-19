@@ -5,24 +5,16 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Profil Kelurahan</h6>
+                    <h6>Ubah Profil Kelurahan</h6>
                 </div>
-                <form action="<?= base_url('admin/galery/edit_profil/') ?><?= $profil[0]['id'] ?>" method="post">
-                    <div class="card-body">
-
+                <div class="card-body">
+                    <form action="<?= site_url('admin/profil/update') ?>" method="POST">
                         <div class="form-group">
-                            <label for="profil" class="form-control-label">Profil Kelurahan</label>
-                            <textarea class="form-control" name="profil" id="profil"><?= $profil[0]['profile'] ?></textarea>
-                            <?= form_error('profil', '<div class="text-danger text-sm">', '</div>'); ?>
+                            <textarea name="profile" id="profile" class="ckeditor"><?= $galeri->profile; ?></textarea>
                         </div>
-
-                        <div class="category form-category">
-                            <div class="form-footer text-right">
-                                <button type="submit" class="btn btn-success btn-fill">Simpan</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

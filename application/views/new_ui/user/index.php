@@ -41,10 +41,12 @@
                                 <thead>
                                     <tr>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No.</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nama</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2">Username</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Password</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Role</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Aksi</th>
+                                        <th class="text-capitalize text-center text-secondary text-sm font-weight-bolder opacity-7">Foto Profil</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,12 +55,21 @@
                                     <?php foreach ($data as $key) : ?>
                                         <tr>
                                             <td class="text-secondary font-weight-normal text-sm text-center"><?= $no; ?></td>
+                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['name']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['username']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['password']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['level']; ?></td>
                                             <td class="text-right">
                                                 <a href="<?= base_url() ?>admin/user/edit/<?= $key['id_user']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusUser<?= $key['id_user']; ?>"><i class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                            <td class="w-15 text-center">
+
+                                                <?php if (!empty($key['gambar'])) : ?>
+                                                    <img class="w-25" src="<?= base_url('/uploads/profil_pengelola/' . $key['gambar']); ?>" alt="Profil Pengguna">
+                                                <?php else : ?>
+                                                    <img class="w-25" src="<?= base_url('/assets/img/default-avatar.png') ?>" alt="Profil Pengguna Default">
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         <?php $no++; ?>

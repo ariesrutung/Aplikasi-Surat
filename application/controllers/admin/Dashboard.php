@@ -85,11 +85,8 @@ class Dashboard extends CI_Controller
         $data['pengajuan'] = [$januari3, $februari3, $maret3, $april3, $mei3, $juni3, $juli3, $agustus3, $september3, $oktober3, $november3, $desember3];
 
 
-        // $data["smm"] = $this->db->get('surat_masuk');
-        // $data["skk"] = $this->db->get('surat_keluar');
-
-        // var_dump($data);
-
+        $data2['pengajuan_terbaru'] = $this->dashboard->get_5_pengajuan_terbaru();
+        $data2['penduduk_terbaru'] = $this->dashboard->get_5_penduduk_terbaru();
 
         $data2['sm'] = $this->db->query('SELECT tanggal_surat_masuk FROM surat_masuk ORDER BY tanggal_surat_masuk DESC LIMIT 1')->result_array();
 
@@ -111,9 +108,6 @@ class Dashboard extends CI_Controller
         if ($data2['ps'] == null) {
             $data2['ps'] = 0;
         }
-
-        // var_dump($data2);
-        // die;
 
         $this->load->view('new_ui/template/header', $judul);
         $this->load->view('new_ui/dashboard/index', $data2);

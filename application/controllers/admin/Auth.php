@@ -47,7 +47,7 @@ class Auth extends CI_Controller
 
                 $this->session->set_userdata($data_session);
 
-                redirect(base_url("dashboard"));
+                redirect(base_url("admin/dashboard"));
             }
         }
     }
@@ -188,7 +188,7 @@ class Auth extends CI_Controller
             $this->session->unset_userdata('reset_email');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password berhasil diubah! Silahkan login</div>');
-            redirect(base_url("auth/login"));
+            redirect(base_url("admin/auth/login"));
         }
     }
 }

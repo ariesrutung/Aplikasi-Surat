@@ -21,8 +21,8 @@
                     </div>
                 <?php endif; ?>
                 <div class="card-body">
-                    <h5 class="text-justify"><?= $profil[0]['profile'] ?></h5>
-                    <a href="<?= base_url('admin/galery/edit_profil/') ?><?= $profil[0]['id'] ?>" class="btn bg-gradient-primary btn-sm mb-0"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit Profil</a>
+                    <h5 class="text-justify"><?= $galeri->profile; ?></h5>
+                    <a href="<?= site_url('admin/profil/edit') ?>" class="btn bg-gradient-primary btn-sm mb-0"><i class="fas fa-pencil-alt" aria-hidden="true"></i> Edit Profil</a>
                 </div>
             </div>
         </div>

@@ -17,43 +17,43 @@ class Galery extends CI_Controller
         }
     }
 
-    public function profil_kelurahan()
-    {
-        $data['profil'] = $this->galery->profil();
-        $judul = [
-            'title' => 'Galery',
-            'sub_title' => 'Profil Kelurahan'
-        ];
+    // public function profil_kelurahan()
+    // {
+    //     $data['profil'] = $this->galery->profil();
+    //     $judul = [
+    //         'title' => 'Galery',
+    //         'sub_title' => 'Profil Kelurahan'
+    //     ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data['profil'][0]['profile']);
-        // die;
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/galery/profil_kelurahan', $data);
-        $this->load->view('new_ui/template/footer');
-    }
+    //     // $data['sm'] = $this->db->get('surat_masuk')->row_array();
+    //     // var_dump($data['profil'][0]['profile']);
+    //     // die;
+    //     $this->load->view('new_ui/template/header', $judul);
+    //     $this->load->view('new_ui/galery/profil_kelurahan', $data);
+    //     $this->load->view('new_ui/template/footer');
+    // }
 
-    public function edit_profil()
-    {
-        $this->form_validation->set_rules('profil', 'Profil', 'trim|required');
+    // public function edit_profil()
+    // {
+    //     $this->form_validation->set_rules('profil', 'Profil', 'trim|required');
 
-        if ($this->form_validation->run() == false) {
-            $data['profil'] = $this->galery->profil();
-            $judul = [
-                'title' => 'Galery',
-                'sub_title' => 'Profil Kelurahan'
-            ];
+    //     if ($this->form_validation->run() == false) {
+    //         $data['profil'] = $this->galery->profil();
+    //         $judul = [
+    //             'title' => 'Galery',
+    //             'sub_title' => 'Profil Kelurahan'
+    //         ];
 
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/galery/edit_profil_kelurahan', $data);
-            $this->load->view('new_ui/template/footer');
-        } else {
-            $id = $this->uri->segment(3);
-            $this->galery->UpdateProfil($id);
-            $this->session->set_flashdata('success', 'Berhasil Di Update!');
-            redirect('admin/galery/profil_kelurahan');
-        }
-    }
+    //         $this->load->view('new_ui/template/header', $judul);
+    //         $this->load->view('new_ui/galery/edit_profil_kelurahan', $data);
+    //         $this->load->view('new_ui/template/footer');
+    //     } else {
+    //         $id = $this->uri->segment(3);
+    //         $this->galery->UpdateProfil($id);
+    //         $this->session->set_flashdata('success', 'Berhasil Di Update!');
+    //         redirect('admin/galery/profil_kelurahan');
+    //     }
+    // }
 
     public function s_kelurahan()
     {
