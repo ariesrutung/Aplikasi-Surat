@@ -25,7 +25,7 @@ class Suratonline extends CI_Controller
         ];
 
         $data['options'] = [
-            'Pilih',
+            '- Pilih -',
             'Surat Pengantar:' => [
                 'SPKK' => 'Kartu Keluarga',
                 'SPNA' => 'Nikah(N.A)',

@@ -86,21 +86,14 @@
 <main id="main">
     <section class="breadcrumbs">
         <div class="container">
-            <ol>
-                <li><a href="index.html">Surat</a></li>
-                <li>Pengaduan Surat</li>
-            </ol>
-            <h2>Pengaduan Surat</h2>
-
-        </div>
-    </section>
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Formulir Pengaduan Surat Online</h2>
                 <p>Silakan lengkapi data-data yang diminta di bawah ini ketika mengajukan pengurusan surat secara online.</p>
             </div>
-
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-lg-12">
                     <?php if ($this->session->flashdata('success') == TRUE) : ?>

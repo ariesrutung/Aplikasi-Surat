@@ -16,12 +16,12 @@ body {
 
 a {
   color: #e03a3c;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 a:hover {
   color: #e76668;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 h1,
@@ -124,6 +124,8 @@ h6 {
   font-size: 14px;
   font-weight: 600;
   display: inline-block;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 .get-started-btn:hover {
@@ -172,6 +174,8 @@ h6 {
   color: #111111;
   white-space: nowrap;
   transition: 0.3s;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 .navbar a i,
@@ -210,6 +214,8 @@ h6 {
 .navbar .dropdown ul a {
   padding: 10px 20px;
   font-size: 14px;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 .navbar .dropdown ul a i {
@@ -220,6 +226,8 @@ h6 {
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
   color: #e03a3c;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 .navbar .dropdown:hover>ul {
@@ -387,6 +395,7 @@ h6 {
   font-size: 48px;
   font-weight: 700;
   color: #fff;
+  text-align: left !important;
 }
 
 #hero h2 {
@@ -496,10 +505,10 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
+  padding: 30px 0;
   background: #2b2b2b;
   min-height: 40px;
-  margin-top: 82px;
+  margin-top: 100px;
   color: #fff;
 }
 

@@ -43,16 +43,20 @@
                     <li><a class="nav-link scrollto active" href="<?= base_url('/'); ?>home">Beranda</a></li>
                     <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Profil Lembaga</a></li>
-                            <li><a href="#">Struktur Organisasi</a></li>
-                            <li><a href="#">Profil Pimpinan</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/profil">Profil Lembaga</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/struktur">Struktur Organisasi</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/pimpinan">Profil Pimpinan</a></li>
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto" href="#contact">Berita</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Layanan</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
-                    <li class="dropdown"><a href="#"><span>Surat</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/berita">Berita</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pengumuman">Pengumuman</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pelatihan">Pelatihan</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto " href="<?= base_url('/'); ?>frontend/portofolio">Portofolio Kegiatan</a></li>
+                    <li class="dropdown"><a href="#"><span>e-Surat</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="<?= base_url('suratonline') ?>">Pengaduan Surat</a></li>
                             <li><a href="<?= base_url('tracking') ?>">Tracking Surat</a></li>

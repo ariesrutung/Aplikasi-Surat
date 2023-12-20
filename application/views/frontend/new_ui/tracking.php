@@ -86,21 +86,14 @@
 <main id="main">
     <section class="breadcrumbs">
         <div class="container">
-            <ol>
-                <li><a href="index.html">Surat</a></li>
-                <li>Tracking Surat</li>
-            </ol>
-            <h2>Tracking Surat</h2>
-
-        </div>
-    </section>
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Tracking Pengajuan Surat</h2>
                 <p>Anda dapat mengecek progres pengurusan surat Anda dengan memasukkan ID Pengajuan Surat pada kolom di bawah ini.</p>
             </div>
-
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-lg-12">
                     <?php if ($this->session->flashdata('success') == TRUE) : ?>
