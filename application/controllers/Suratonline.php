@@ -17,11 +17,9 @@ class Suratonline extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Pengajuan Surat Online',
-            'sub_title' => ''
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
         $data['options'] = [

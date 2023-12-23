@@ -83,38 +83,28 @@
         background: #e35052;
     }
 </style>
-<main id="main">
-    <section class="breadcrumbs">
-        <div class="container">
-            <div class="section-title">
-                <h2>Tracking Pengajuan Surat</h2>
-                <p>Anda dapat mengecek progres pengurusan surat Anda dengan memasukkan ID Pengajuan Surat pada kolom di bawah ini.</p>
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12">
+                <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                    <?= $this->session->flashdata('success'); ?>
+                <?php endif; ?>
             </div>
         </div>
-    </section>
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-12">
-                    <?php if ($this->session->flashdata('success') == TRUE) : ?>
-                        <?= $this->session->flashdata('success'); ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <?= form_open('tracking/cari', 'id="tracking", class="formsaja"') ?>
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col form-group">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" name="trackid" placeholder="Masukkan ID Pengajuan Surat Anda">
-                        </div>
+        <?= form_open('tracking/cari', 'id="tracking", class="formsaja"') ?>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col form-group">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" name="trackid" placeholder="Masukkan ID Pengajuan Surat Anda">
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <button type="submit" class="btn btn-block btn-primary">Cari</button>
-                </div>
-                <?= form_close() ?>
             </div>
+            <div class="col-lg-3">
+                <button type="submit" class="btn btn-block btn-primary">Cari</button>
+            </div>
+            <?= form_close() ?>
         </div>
-    </section>
-</main>
+    </div>
+</section>

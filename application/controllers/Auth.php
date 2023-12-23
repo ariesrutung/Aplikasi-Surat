@@ -20,7 +20,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('auth/login');
+            $this->load->view('frontend/new_ui/login');
         } else {
             $user =  $this->input->post("username", TRUE);
             $pass =  $this->input->post("password", TRUE);
@@ -34,7 +34,7 @@ class Auth extends CI_Controller
 
             if ($cek <= 0) {
                 $this->session->set_flashdata('gagal', 'Username dan Password Anda Salah');
-                redirect(base_url("auth/login"));
+                redirect(base_url("admin/auth/login"));
             } else {
                 $cek_akun = $this->auth->cek_akun($where)->row_array();
                 $id_user = $cek_akun["id_user"];

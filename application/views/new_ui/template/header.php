@@ -173,6 +173,37 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#pageInformasi" class="nav-link <?php echo ($this->uri->segment(2) == 'informasi' || $this->uri->segment(3) == 'berita' || $this->uri->segment(3) == 'pengumuman' || $this->uri->segment(3) == 'pelatihan') ? 'active' : ''; ?>" aria-controls="pageInformasi" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
+                            <i class="ni ni-ungroup text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Informasi</span>
+                    </a>
+                    <div class="collapse <?php echo ($this->uri->segment(2) == 'informasi' || $this->uri->segment(3) == 'berita' || $this->uri->segment(3) == 'pengumuman' || $this->uri->segment(3) == 'pelatihan') ? 'show' : ''; ?>" id="pageInformasi">
+                        <ul class="nav ms-4">
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($this->uri->segment(2) == 'informasi') ? 'active' : ''; ?>" href="<?= base_url('admin/informasi') ?>">
+                                    <span class="sidenav-mini-icon text-xs"> R </span>
+                                    <span class="sidenav-normal"> Berita </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 'pengumuman') ? 'active' : ''; ?>" href="<?= base_url('admin/informasi/pengumuman') ?>">
+                                    <span class="sidenav-mini-icon text-xs"> R </span>
+                                    <span class="sidenav-normal"> Struktur Kelurahan </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo ($this->uri->segment(3) == 'pelatihan') ? 'active' : ''; ?>" href="<?= base_url('admin/informasi/pelatihan') ?>">
+                                    <span class="sidenav-mini-icon text-xs"> R </span>
+                                    <span class="sidenav-normal"> Struktur LPM </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Manajemen Users</h6>
@@ -219,13 +250,12 @@
 
                             // Periksa apakah gambar tersedia
                             if (!empty($data['gambar']) && file_exists($gambarPath)) :
-                            ?>
+                                ?>
                                 <img class="text-center" src="<?= base_url($gambarPath); ?>" alt="Profil Pengguna">
                             <?php else : ?>
                                 <img class="text-center" src="<?= base_url('assets/img/default-avatar.png') ?>" alt="Profil Pengguna Default">
                             <?php endif; ?>
                         </div>
-
 
                         <div class="col-10">
                             <h5 class="m-0 text-white">Hi,<span>

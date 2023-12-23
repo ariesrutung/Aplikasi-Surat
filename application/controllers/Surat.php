@@ -13,8 +13,8 @@ class Surat extends CI_Controller
     public function surat_masuk()
     {
         $judul = [
-            'title' => 'Management Surat',
-            'sub_title' => 'Surat Masuk'
+            'title' => 'Surat Masuk',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
         $data['data'] = $this->db->get('surat_masuk')->result_array();
@@ -34,8 +34,8 @@ class Surat extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
-                'title' => 'Management Surat',
-                'sub_title' => 'Surat Masuk'
+                'title' => 'Tambah Surat Masuk',
+                'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
             ];
             $this->load->view('templates/header', $judul);
             $this->load->view('surat/tambah_surat_masuk');
@@ -453,7 +453,7 @@ class Surat extends CI_Controller
         ];
         $this->db->select('*');
         $this->db->from('pengajuan_surat');
-        $this->db->join('penduduk','penduduk.nik=pengajuan_surat.NIK');
+        $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.NIK');
         $this->db->order_by("tanggal", "desc");
         $query = $this->db->get();
         $data['data'] = $query->result_array();
@@ -496,9 +496,9 @@ class Surat extends CI_Controller
             // die;
 
             $save = [
-                'nama_surat_keluar' => '['.$pndk['nama'].'-'.$pndk['nik'].']-Surat '.$options[$pSurat['jenis_surat']],
+                'nama_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $options[$pSurat['jenis_surat']],
                 'tanggal_surat_keluar' => date('Y-m-d', strtotime($dateNow)),
-                'keterangan_surat_keluar' => 'ID: '.$pSurat['id']
+                'keterangan_surat_keluar' => 'ID: ' . $pSurat['id']
             ];
 
             $this->db->insert('surat_keluar', $save);

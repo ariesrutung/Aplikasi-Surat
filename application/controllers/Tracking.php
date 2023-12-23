@@ -16,18 +16,14 @@ class Tracking extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
         $judul = [
-            'title' => 'Tracking',
-            'sub_title' => ''
+            'title' => 'Tracking Surat',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
-        $this->load->view('frontend/new_ui/tracking', $data);
-        $this->load->view('frontend/new_ui/footer', $data);
+        $this->load->view('frontend/new_ui/tracking');
+        $this->load->view('frontend/new_ui/footer');
     }
 
     public function cari()
@@ -40,9 +36,6 @@ class Tracking extends CI_Controller
             'id' => $id,
             'row' => $row
         ];
-
-        // var_dump($row);
-        // die;
 
         if ($row === null) {
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-bank"></i> Maaf!</h5> ID yang anda masukkan Salah! <b>ID: </b><b>' . $id . '</b> <i>tidak ditemukan</i></div>');
@@ -72,16 +65,14 @@ class Tracking extends CI_Controller
             'SITU' => 'Izin Tempat Usaha',
             'SIMB' => 'Izin Mendirikan Bangunan',
         ];
+
         $judul = [
-            'title' => 'Tracking',
-            'sub_title' => ''
+            'title' => 'Hasil Tracking Surat',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
-        $this->load->view('frontend/result', $data);
+        $this->load->view('frontend/new_ui/result', $data);
         $this->load->view('frontend/New_ui/footer', $data);
     }
 }

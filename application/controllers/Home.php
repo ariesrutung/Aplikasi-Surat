@@ -8,6 +8,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('galery_model', 'galery');
+        $this->load->model('Slider_model', 'slider');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -22,8 +23,8 @@ class Home extends CI_Controller
             'sub_title' => ''
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
+        $data['active_sliders'] = $this->slider->get_active_sliders();
+
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/home', $data);
         $this->load->view('frontend/new_ui/footer', $data);

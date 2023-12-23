@@ -15,45 +15,36 @@ class Informasi extends CI_Controller
 
     public function berita()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
+        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'berita'])->result_array();
         $judul = [
-            'title' => 'Home - Kelurahan Pulau',
-            'sub_title' => ''
+            'title' => 'Berita',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/berita', $data);
         $this->load->view('frontend/new_ui/footer', $data);
     }
     public function pengumuman()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
+        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'pengumuman'])->result_array();
         $judul = [
-            'title' => 'Home - Kelurahan Pulau',
-            'sub_title' => ''
+            'title' => 'Pengumuman',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/pengumuman', $data);
         $this->load->view('frontend/new_ui/footer', $data);
     }
     public function pelatihan()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
+        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'berita'])->result_array();
         $judul = [
-            'title' => 'Home - Kelurahan Pulau',
-            'sub_title' => ''
+            'title' => 'Pelatihan',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/pelatihan', $data);
         $this->load->view('frontend/new_ui/footer', $data);

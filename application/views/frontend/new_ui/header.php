@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Presento Bootstrap Template - Index</title>
+    <title><?= $title; ?></title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -34,13 +34,13 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>home">Presento<span>.</span></a></h1>
+            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>admin/home">Presento<span>.</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <a href="<?= base_url('/'); ?>home" class="logo me-auto"><img src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="<?= base_url('/'); ?>home">Beranda</a></li>
+                    <li><a class="nav-link scrollto active" href="<?= base_url('/'); ?>admin/home">Beranda</a></li>
                     <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="<?= base_url('/'); ?>frontend/profil">Profil Lembaga</a></li>
@@ -58,7 +58,7 @@
                     <li><a class="nav-link scrollto " href="<?= base_url('/'); ?>frontend/portofolio">Portofolio Kegiatan</a></li>
                     <li class="dropdown"><a href="#"><span>e-Surat</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="<?= base_url('suratonline') ?>">Pengaduan Surat</a></li>
+                            <li><a href="<?= base_url('suratonline') ?>">Pengajuan Surat</a></li>
                             <li><a href="<?= base_url('tracking') ?>">Tracking Surat</a></li>
                         </ul>
                     </li>
@@ -68,4 +68,19 @@
 
             <a href="<?= base_url('') ?>admin/auth/login" class="get-started-btn scrollto">MASUK</a>
         </div>
-    </header><!-- End Header -->
+    </header>
+    <?php if ($this->uri->uri_string() != 'admin/home' && $this->uri->uri_string() != '') : ?>
+        <main id="main">
+            <section class="breadcrumbs">
+                <div class="container">
+                    <div class="section-title">
+                        <h2><?= $title; ?></h2>
+                        <p><?= $sub_title; ?></p>
+                    </div>
+                </div>
+            </section><!-- End Breadcrumbs -->
+            <figure class="w-100">
+                <img class="js-svg-injector" src="<?= base_url(); ?>assets/frontend/assets/img/breadcrumbs.svg" data-parent="#SVGhireUsBg">
+            </figure>
+        </main>
+    <?php endif; ?>

@@ -450,14 +450,14 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 0 0 60px 0;
   overflow: hidden;
   position: relative;
 }
 
 .section-title {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 0;
   position: relative;
 }
 
@@ -505,11 +505,16 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 30px 0;
+  padding: 30px 0 0 0;
   background: #2b2b2b;
   min-height: 40px;
   margin-top: 100px;
   color: #fff;
+}
+
+img.js-svg-injector {
+  background-color: #2b2b2b;
+  width: 100%;
 }
 
 .breadcrumbs h2 {
@@ -1465,23 +1470,32 @@ section {
 # Blog
 --------------------------------------------------------------*/
 .blog {
-  padding: 40px 0 20px 0;
+  /* padding: 0; */
+}
+
+.col-lg-8.entries {
+  padding: 0;
 }
 
 .blog .entry {
-  padding: 30px;
-  margin-bottom: 60px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  margin-bottom: 20px;
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); */
 }
 
 .blog .entry .entry-img {
-  max-height: 440px;
-  margin: -30px -30px 20px -30px;
+  max-height: 250px;
+  margin: 0 0 5px 0;
+  /* margin: -30px -30px 20px -30px; */
   overflow: hidden;
 }
 
+.blog .col-lg-6 {
+  padding: 5px;
+}
+
 .blog .entry .entry-title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
   padding: 0;
   margin: 0 0 20px 0;
@@ -1821,7 +1835,7 @@ section {
 }
 
 .blog .sidebar {
-  padding: 30px;
+  padding: 0 30px;
   margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }

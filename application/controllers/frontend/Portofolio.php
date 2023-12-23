@@ -18,8 +18,8 @@ class Portofolio extends CI_Controller
         // $data = $this->dashboard->user();
         $data['profil'] = $this->galery->profil();
         $judul = [
-            'title' => 'Home - Kelurahan Pulau',
-            'sub_title' => ''
+            'title' => 'Portofolio Kegiatan',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();

@@ -1,4 +1,4 @@
-<!-- ======= Footer ======= -->
+</main>
 <footer id="footer">
 
     <div class="footer-top">
@@ -55,9 +55,6 @@
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
                 &copy; Copyright <strong><span>Presento</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
         <div class="social-links text-center text-md-end pt-3 pt-md-0">

@@ -18,10 +18,9 @@ class Profil extends CI_Controller
         // $data = $this->dashboard->user();
         $data['profil'] = $this->galery->profil();
         $judul = [
-            'title' => 'Home - Kelurahan Pulau',
-            'sub_title' => ''
+            'title' => 'Profil',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
-
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);

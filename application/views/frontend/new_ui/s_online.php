@@ -83,66 +83,56 @@
         background: #e35052;
     }
 </style>
-<main id="main">
-    <section class="breadcrumbs">
-        <div class="container">
-            <div class="section-title">
-                <h2>Formulir Pengaduan Surat Online</h2>
-                <p>Silakan lengkapi data-data yang diminta di bawah ini ketika mengajukan pengurusan surat secara online.</p>
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12">
+                <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                    <?= $this->session->flashdata('success'); ?>
+                <?php endif; ?>
             </div>
-        </div>
-    </section>
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-12">
-                    <?php if ($this->session->flashdata('success') == TRUE) : ?>
-                        <?= $this->session->flashdata('success'); ?>
-                    <?php endif; ?>
-                </div>
-                <div class="col-lg-12">
-                    <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat" class="formsaja"') ?>
-                    <div class="row">
-                        <div class="col form-group">
-                            <label class="mb-1" for="nik">NIK *</label>
-                            <?= form_input(['name' => 'nik', 'id' => 'nik', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan NIK anda']); ?>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label class="mb-1" for="nama">Nama *</label>
-                            <?= form_input(['name' => 'nama', 'id' => 'nama', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan nama anda']); ?>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label class="mb-1" for="no_hp">No Hp *</label>
-                            <?= form_input(['type' => 'text', 'name' => 'no_hp', 'id' => 'no_hp', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan No Hp anda']); ?>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label class="mb-1" for="jenis">Pilih Jenis Surat *</label>
-                            <?= form_dropdown('jenis_surat', $options, '', ['id' => 'jenis', 'class' => 'form-control']); ?>
-                        </div>
-                        <div class="col-lg-6 form-group">
-                            <label class="mb-1" for="file">File Berkas/Lampiran <sup class="text-danger">*Disarankan file jenis PDF dengan ukuran maksimal 5MB</sup></label>
-                            <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
-                        </div>
+            <div class="col-lg-12">
+                <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat" class="formsaja"') ?>
+                <div class="row">
+                    <div class="col form-group">
+                        <label class="mb-1" for="nik">NIK *</label>
+                        <?= form_input(['name' => 'nik', 'id' => 'nik', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan NIK anda']); ?>
                     </div>
-
-                    <hr>
-                    <small>
-                        <p class="text-danger">PENTING!! Syarat Harus Terpenuhi, Jika Tidak Pengajuan Tidak Diproses!</p>
-                        <div id="syarat_dok" class="text-danger">
-                        </div>
-                    </small>
-                    <hr>
-                    <div class="row mt-2">
-                        <div class="col-lg-4">
-                            <!-- <button type="submit" class="btn btn-block btn-primary">KIRIM PERMOHONAN</button> -->
-                            <button type="submit" class="btn btn-block btn-primary" id="submitButton">KIRIM PERMOHONAN</button>
-                        </div>
+                    <div class="col-lg-6 form-group">
+                        <label class="mb-1" for="nama">Nama *</label>
+                        <?= form_input(['name' => 'nama', 'id' => 'nama', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan nama anda']); ?>
                     </div>
-                    <?= form_close() ?>
+                    <div class="col-lg-6 form-group">
+                        <label class="mb-1" for="no_hp">No Hp *</label>
+                        <?= form_input(['type' => 'text', 'name' => 'no_hp', 'id' => 'no_hp', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan No Hp anda']); ?>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label class="mb-1" for="jenis">Pilih Jenis Surat *</label>
+                        <?= form_dropdown('jenis_surat', $options, '', ['id' => 'jenis', 'class' => 'form-control']); ?>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label class="mb-1" for="file">File Berkas/Lampiran <sup class="text-danger">*Disarankan file jenis PDF dengan ukuran maksimal 5MB</sup></label>
+                        <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
+                    </div>
                 </div>
 
+                <hr>
+                <small>
+                    <p class="text-danger">PENTING!! Syarat Harus Terpenuhi, Jika Tidak Pengajuan Tidak Diproses!</p>
+                    <div id="syarat_dok" class="text-danger">
+                    </div>
+                </small>
+                <hr>
+                <div class="row mt-2">
+                    <div class="col-lg-4">
+                        <!-- <button type="submit" class="btn btn-block btn-primary">KIRIM PERMOHONAN</button> -->
+                        <button type="submit" class="btn btn-block btn-primary" id="submitButton">KIRIM PERMOHONAN</button>
+                    </div>
+                </div>
+                <?= form_close() ?>
             </div>
 
         </div>
-    </section>
-</main>
+
+    </div>
+</section>
