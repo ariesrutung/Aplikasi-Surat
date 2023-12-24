@@ -11,6 +11,9 @@ class Penduduk extends CI_Controller
         $this->load->library('form_validation');
 
         $this->load->model('M_Penduduk');
+        if ($this->session->userdata('id_user') == FALSE) {
+            redirect(base_url("auth/login"));
+        }
     }
 
     public function index()

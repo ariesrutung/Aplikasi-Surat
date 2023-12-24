@@ -4,6 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Informasi extends CI_Controller
 {
 
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('auth_model', 'auth');
+        if ($this->session->userdata('id_user') == FALSE) {
+            redirect(base_url("auth/login"));
+        }
+    }
+
     public function index()
     {
 

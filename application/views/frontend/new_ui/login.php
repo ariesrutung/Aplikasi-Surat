@@ -310,7 +310,7 @@
                             </div>
                             <div class="login_btn"> <button type="submit" class="login_button">LOGIN</button> </div>
 
-                            <div class="create margin"> <a href="<?= base_url('/'); ?>" class="create_acc">Kembali ke Beranda <i class="fa fa-long-arrow-left"></i></a> </div>
+                            <div class="create margin"> <a href="<?= base_url(''); ?>admin/home" class="create_acc">Kembali ke Beranda <i class="fa fa-long-arrow-left"></i></a> </div>
                         </form>
                     </div>
                 </div>

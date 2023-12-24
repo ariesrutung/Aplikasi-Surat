@@ -20,6 +20,10 @@
         font-size: 14px;
         color: #fff;
     }
+
+    .text-sm {
+        white-space: normal !important;
+    }
 </style>
 <div class="container-fluid py-4">
     <div class="row">
@@ -41,8 +45,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No.</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2 w-5">Judul</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-25">Isi</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2 w-25">Judul</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-35">Isi</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Tanggal</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Kategori</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Gambar</th>
@@ -56,13 +60,23 @@
                                         <tr>
                                             <td class="text-secondary font-weight-normal text-sm text-center"><?= $no; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['judul']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm w-25"><?= $key['isi']; ?></td>
+                                            <td class="text-secondary font-weight-normal text-sm w-25">
+                                                <div class="content-wrapper">
+                                                    <span class="content">
+                                                        <span class="shortcontent"><?= $key['isi']; ?></span>
+                                                        <span class="morecontent">
+                                                            <span style="display: none;"><?= $key['isi']; ?></span>
+                                                            &nbsp;&nbsp;<a href="#" class="toggle-text">Show More</a>
+                                                        </span>
+                                                    </span>
+                                                    <span class="show-more">... <a href="#" class="toggle-text">Show More</a></span>
+                                                </div>
+                                            </td>
+
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['tanggal']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['kategori']; ?></td>
-                                            <td>
-                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatInformasi<?= $key['id']; ?>"><i class="fas fa-eye"></i></button>
-                                            </td>
                                             <td class="text-right">
+                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatInformasi<?= $key['id']; ?>"><i class="fas fa-eye"></i></button>
                                                 <a href="<?= base_url() ?>admin/informasi/edit_informasi/<?= $key['id']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusInformasi<?= $key['id']; ?>"><i class="fas fa-trash-alt"></i></button>
                                             </td>
@@ -135,3 +149,34 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var showChar = 100; // Jumlah karakter yang akan ditampilkan awal
+        var ellipsestext = "...";
+        var moretext = "Show More";
+        var lesstext = "Show Less";
+
+        $('.text-secondary .content-wrapper').each(function() {
+            var content = $(this).find('.shortcontent').text();
+
+            if (content.length > showChar) {
+                var c = content.substr(0, showChar);
+                var h = content.substr(showChar, content.length - showChar);
+
+                var html = '<span class="shortcontent">' + c + '</span><span class="ellipsis">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span style="display: none;">' + h + '</span>&nbsp;&nbsp;<a href="#" class="toggle-text">' + moretext + '</a></span>';
+
+                $(this).html(html);
+            }
+        });
+
+        $(".toggle-text").click(function(e) {
+            e.preventDefault();
+            var parent = $(this).closest('.text-secondary .content-wrapper');
+            parent.find(".morecontent span").toggle();
+            parent.find(".ellipsis").toggle();
+            parent.find(".toggle-text").text(parent.find(".toggle-text").text() == moretext ? lesstext : moretext);
+        });
+    });
+</script>
