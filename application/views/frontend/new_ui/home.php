@@ -142,6 +142,14 @@
         height: 400px !important;
         object-position: center top;
     }
+
+    a:hover {
+        color: #e03a3c;
+    }
+
+    a {
+        color: #000;
+    }
 </style>
 <section id="hero" class="d-flex align-items-center py-0">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
@@ -169,7 +177,7 @@
                 <?php foreach ($pengumuman_terbaru as $pg) : ?>
                     <div class="col-md-6">
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <h4 class="ml-0"><a href="#"><?= (strlen($pg->judul) > 100) ? substr($pg->judul, 0, 100) . '...' : $pg->judul; ?></a></h4>
+                            <h4 class="ml-0"><a href="<?= base_url('frontend/informasi/detail_pengumuman/' . $pg->slug); ?>"><?= (strlen($pg->judul) > 100) ? substr($pg->judul, 0, 100) . '...' : $pg->judul; ?></a></h4>
                             <!-- <p><?= (strlen($pg->isi) > 100) ? substr($pg->isi, 0, 100) . '...' : $pg->isi; ?></p> -->
                             <hr>
 
@@ -208,8 +216,14 @@
                         <div class="swiper-slide">
                             <div class="testimonial-wrap">
                                 <div class="testimonial-item">
-                                    <h6 class="mb-3"><?= (strlen($info->judul) > 50) ? substr($info->judul, 0, 50) . '...' : $info->judul; ?></h6>
-                                    <p><?= (strlen($info->isi) > 150) ? substr($info->isi, 0, 150) . '...' : $info->isi; ?></p>
+                                    <a href="<?= base_url('frontend/informasi/detail_berita/' . $info->slug); ?>">
+                                        <h6 class="mb-3"><?= (strlen($info->judul) > 50) ? substr($info->judul, 0, 50) . '...' : $info->judul; ?></h6>
+                                    </a>
+                                    <p>
+                                        <a href="<?= base_url('frontend/informasi/detail_berita/' . $info->slug); ?>">
+                                            <?= (strlen($info->isi) > 150) ? substr($info->isi, 0, 150) . '...' : $info->isi; ?>
+                                        </a>
+                                    </p>
                                     <h4 class="mt-3"><i class="bi bi-calendar-date-fill"></i><?= $info->lokasi; ?>, <?= $info->tanggal; ?></h4>
                                 </div>
                             </div>
