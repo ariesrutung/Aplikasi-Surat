@@ -92,7 +92,7 @@
                 <?php endif; ?>
             </div>
         </div>
-        <?= form_open('tracking/cari', 'id="tracking", class="formsaja"') ?>
+        <?= form_open('admin/tracking/cari', 'id="tracking", class="formsaja"') ?>
         <div class="row">
             <div class="col-lg-9">
                 <div class="row">

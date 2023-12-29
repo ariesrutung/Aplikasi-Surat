@@ -19,9 +19,9 @@ class Surat extends CI_Controller
 
         $data['data'] = $this->db->get('surat_masuk')->result_array();
 
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/surat/surat_masuk', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/surat/surat_masuk', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function tambah_surat_masuk()
@@ -36,9 +36,9 @@ class Surat extends CI_Controller
                 'title' => 'Management Surat',
                 'sub_title' => 'Surat Masuk'
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/tambah_surat_masuk');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/tambah_surat_masuk');
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -99,9 +99,9 @@ class Surat extends CI_Controller
             ];
             $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['id_surat_masuk' => $id])->row_array();
 
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/edit_surat_masuk', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/edit_surat_masuk', $data);
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -154,9 +154,9 @@ class Surat extends CI_Controller
         ];
         $data['data'] = $this->db->get('surat_keluar')->result_array();
 
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/surat/surat_keluar', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/surat/surat_keluar', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function tambah_surat_keluar()
@@ -172,9 +172,9 @@ class Surat extends CI_Controller
                 'title' => 'Management Surat',
                 'sub_title' => 'Surat Keluar'
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/tambah_surat_keluar');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/tambah_surat_keluar');
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -235,9 +235,9 @@ class Surat extends CI_Controller
             ];
             $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id_surat_keluar' => $id])->row_array();
 
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/edit_surat_keluar', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/edit_surat_keluar', $data);
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -291,9 +291,9 @@ class Surat extends CI_Controller
 
         $data['data'] = $this->db->get('surat_keterangan')->result_array();
 
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/surat/surat_keterangan', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/surat/surat_keterangan', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function tambah_surat_keterangan()
@@ -309,9 +309,9 @@ class Surat extends CI_Controller
                 'title' => 'Management Surat',
                 'sub_title' => 'Surat Keterangan'
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/tambah_surat_keterangan');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/tambah_surat_keterangan');
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -372,9 +372,9 @@ class Surat extends CI_Controller
             ];
             $data['surat_keterangan'] = $this->db->get_where('surat_keterangan', ['id_surat_keterangan' => $id])->row_array();
 
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/surat/edit_surat_keterangan', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/surat/edit_surat_keterangan', $data);
+            $this->load->view('backend/template/footer');
         } else {
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
@@ -457,9 +457,9 @@ class Surat extends CI_Controller
         $query = $this->db->get();
         $data['data'] = $query->result_array();
 
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/surat/pengajuan_surat', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/surat/pengajuan_surat', $data);
+        $this->load->view('backend/template/footer');
     }
 
 

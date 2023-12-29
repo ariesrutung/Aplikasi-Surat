@@ -109,8 +109,8 @@ class Dashboard extends CI_Controller
             $data2['ps'] = 0;
         }
 
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/dashboard/index', $data2);
-        $this->load->view('new_ui/template/footer', $data);
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/dashboard/index', $data2);
+        $this->load->view('backend/template/footer', $data);
     }
 }

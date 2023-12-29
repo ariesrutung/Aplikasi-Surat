@@ -34,32 +34,61 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>admin/home">Presento<span>.</span></a></h1>
+            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>admin/home"></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="<?= base_url('/'); ?>home" class="logo me-auto"><img src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
+            <a href="<?= base_url('/'); ?>admin/home" class="logo me-auto"><img src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="<?= base_url('/'); ?>admin/home">Beranda</a></li>
-                    <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
+                    <!-- <li><a id="menuberanda" class="nav-link scrollto" href="<?= base_url('/'); ?>admin/home">Beranda</a></li> -->
+                    <li>
+                        <a href="<?= base_url('/'); ?>admin/home" <?php if ($this->uri->segment(2) == "home") {
+                                                                        echo 'class="active"';
+                                                                    } ?>>Beranda</a>
+                    </li>
+                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "profil" || $this->uri->segment(2) == "struktur" || $this->uri->segment(2) == "pimpinan") {
+                                                            echo 'class="active"';
+                                                        } ?>><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="<?= base_url('/'); ?>frontend/profil">Profil Lembaga</a></li>
-                            <li><a href="<?= base_url('/'); ?>frontend/struktur">Struktur Organisasi</a></li>
-                            <li><a href="<?= base_url('/'); ?>frontend/pimpinan">Profil Pimpinan</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/profil" <?php if ($this->uri->segment(2) == "profil") {
+                                                                                    echo 'class="active"';
+                                                                                } ?>>Profil Lembaga</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/struktur" <?php if ($this->uri->segment(2) == "struktur") {
+                                                                                        echo 'class="active"';
+                                                                                    } ?>>Struktur Organisasi</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/pimpinan" <?php if ($this->uri->segment(2) == "pimpinan") {
+                                                                                        echo 'class="active"';
+                                                                                    } ?>>Profil Pimpinan</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#"><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(3) == "berita"  || $this->uri->segment(3) == "detail_berita" || $this->uri->segment(3) == "pengumuman" || $this->uri->segment(3) == "detail_pengumuman" || $this->uri->segment(3) == "pelatihan" || $this->uri->segment(3) == "detail_pelatihan") {
+                                                            echo 'class="active"';
+                                                        } ?>><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="<?= base_url('/'); ?>frontend/informasi/berita">Berita</a></li>
-                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pengumuman">Pengumuman</a></li>
-                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pelatihan">Pelatihan</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/berita" <?php if ($this->uri->segment(3) == "berita" || $this->uri->segment(3) == "detail_berita") {
+                                                                                                echo 'class="active"';
+                                                                                            } ?>>Berita</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pengumuman" <?php if ($this->uri->segment(3) == "pengumuman" || $this->uri->segment(3) == "detail_pengumuman") {
+                                                                                                    echo 'class="active"';
+                                                                                                } ?>>Pengumuman</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/informasi/pelatihan" <?php if ($this->uri->segment(3) == "pelatihan" || $this->uri->segment(3) == "detail_pelatihan") {
+                                                                                                echo 'class="active"';
+                                                                                            } ?>>Pelatihan</a></li>
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto " href="<?= base_url('/'); ?>frontend/portofolio">Portofolio Kegiatan</a></li>
-                    <li class="dropdown"><a href="#"><span>e-Surat</span> <i class="bi bi-chevron-down"></i></a>
+                    <li><a href="<?= base_url('/'); ?>frontend/portofolio" <?php if ($this->uri->segment(2) == "portofolio") {
+                                                                                echo 'class="active"';
+                                                                            } ?>>Portofolio Kegiatan</a></li>
+                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "suratonline" || $this->uri->segment(2) == "tracking") {
+                                                            echo 'class="active"';
+                                                        } ?>><span>e-Surat</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="<?= base_url('suratonline') ?>">Pengajuan Surat</a></li>
-                            <li><a href="<?= base_url('tracking') ?>">Tracking Surat</a></li>
+                            <li><a href="<?= base_url('admin/suratonline') ?>" <?php if ($this->uri->segment(2) == "suratonline") {
+                                                                                    echo 'class="active"';
+                                                                                } ?>>Pengajuan Surat</a></li>
+                            <li><a href="<?= base_url('admin/tracking') ?>" <?php if ($this->uri->segment(2) == "tracking") {
+                                                                                echo 'class="active"';
+                                                                            } ?>>Tracking Surat</a></li>
                         </ul>
                     </li>
                 </ul>

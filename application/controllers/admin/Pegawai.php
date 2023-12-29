@@ -15,9 +15,9 @@ class Pegawai extends CI_Controller
         ];
 
         $data['data'] = $this->db->get('pegawai')->result_array();
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/pegawai/index', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/pegawai/index', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function hapus($id)
@@ -51,9 +51,9 @@ class Pegawai extends CI_Controller
                 'title' => 'Management User',
                 'sub_title' => 'Surat Masuk'
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/pegawai/tambah_data_pegawai');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/pegawai/tambah_data_pegawai');
+            $this->load->view('backend/template/footer');
         } else {
             $nama =  $this->input->post("nama", TRUE);
             $nip =  $this->input->post("nip", TRUE);
@@ -113,9 +113,9 @@ class Pegawai extends CI_Controller
             ];
 
             $data['pegawai'] = $this->db->get_where('pegawai', ['id_pegawai' => $id])->row_array();
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/pegawai/edit_data_pegawai', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/pegawai/edit_data_pegawai', $data);
+            $this->load->view('backend/template/footer');
         } else {
             // $data = $this->db->get_where('pegawai', ['id_pegawai' => $id])->row_array();
             // unlink("./uploads/foto/" . $data['foto']);

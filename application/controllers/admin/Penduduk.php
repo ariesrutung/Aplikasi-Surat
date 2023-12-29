@@ -25,9 +25,9 @@ class Penduduk extends CI_Controller
         ];
 
         $data['data'] = $this->db->get('penduduk')->result_array();
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/penduduk/index', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/penduduk/index', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function hapus($id)
@@ -60,9 +60,9 @@ class Penduduk extends CI_Controller
                 'title' => 'Penduduk',
                 'sub_title' => 'Tambah Data Penduduk '
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/penduduk/tambah_data_penduduk');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/penduduk/tambah_data_penduduk');
+            $this->load->view('backend/template/footer');
         } else {
             $nik =  $this->input->post("nik", TRUE);
             $nama =  $this->input->post("nama", TRUE);
@@ -114,9 +114,9 @@ class Penduduk extends CI_Controller
             ];
 
             $data['penduduk'] = $this->db->get_where('penduduk', ['nik' => $id])->row_array();
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/penduduk/edit_data_penduduk', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/penduduk/edit_data_penduduk', $data);
+            $this->load->view('backend/template/footer');
         } else {
 
             $nik =  $this->input->post("nik", TRUE);

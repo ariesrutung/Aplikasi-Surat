@@ -17,15 +17,13 @@ class Suratonline extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Pengajuan Surat Online',
-            'sub_title' => ''
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
         $data['options'] = [
-            'Pilih',
+            '- Pilih -',
             'Surat Pengantar:' => [
                 'SPKK' => 'Kartu Keluarga',
                 'SPNA' => 'Nikah(N.A)',
@@ -50,9 +48,12 @@ class Suratonline extends CI_Controller
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('frontend/header2', $judul);
-        $this->load->view('frontend/s_online', $data);
-        $this->load->view('frontend/footer2', $data);
+        $this->load->view('frontend/new_ui/header', $judul);
+        $this->load->view('frontend/new_ui/s_online', $data);
+        $this->load->view('frontend/new_ui/footer', $data);
+        // $this->load->view('frontend/header2', $judul);
+        // $this->load->view('frontend/s_online', $data);
+        // $this->load->view('frontend/footer2', $data);
     }
 
     public function ajukan()
@@ -79,8 +80,6 @@ class Suratonline extends CI_Controller
             ];
 
             $this->db->insert('penduduk', $save);
-            // $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-cross"></i> Maaf!</h5> NIK Anda tidak Terdaftar!</div>');
-            // redirect(base_url("suratonline"));
         }
 
         //Output a v4 UUID 
@@ -103,7 +102,7 @@ class Suratonline extends CI_Controller
 
         if ($_FILES['file']['size'] >= 5242880) {
             $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
-            redirect(base_url("suratonline"));
+            redirect(base_url("admin/suratonline"));
         }
 
         if ($_FILES['file']['name'] == null) {
@@ -139,7 +138,7 @@ class Suratonline extends CI_Controller
         // die;
 
         $this->pengajuan_track->insert_p_surat($data);
-        $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Berhasil Mengajukan Surat! Berikut <b>ID</b> anda: <b>' . $id . '</b></div>');
-        redirect(base_url("suratonline"));
+        $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Anda telah berhasil mengajukan permohonan pembuatan surat <b>' . $jenis_surat . '</b> dengan <b>ID</b> <b>' . $id . '</b></div>');
+        redirect(base_url("admin/suratonline"));
     }
 }

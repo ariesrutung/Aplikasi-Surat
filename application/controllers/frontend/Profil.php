@@ -21,8 +21,7 @@ class Profil extends CI_Controller
             'title' => 'Profil',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
+        $data['profil'] = $this->db->get_where('informasi', ['kategori' => 'profil'])->row_array();
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/profil', $data);
         $this->load->view('frontend/new_ui/footer', $data);

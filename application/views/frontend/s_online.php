@@ -8,7 +8,7 @@
             <h3 class="section-subheading text-muted">Isi Form Pengajuan Surat Dibawah:</h3>
         </div>
         <div class="text-justify pl-5 pr-5">
-            <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat"') ?>
+            <?= form_open_multipart('admin/suratonline/ajukan', 'id="ajukanSurat"') ?>
             <div class="row">
                 <div class="col-lg-6">
                     <label for="nik">NIK *</label>

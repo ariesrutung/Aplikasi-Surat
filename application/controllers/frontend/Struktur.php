@@ -22,8 +22,8 @@ class Struktur extends CI_Controller
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
+        $data['struktur_org'] = $this->db->get_where('informasi', ['kategori' => 'struktur_organisasi'])->row_array();
+
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/struktur', $data);
         $this->load->view('frontend/new_ui/footer', $data);

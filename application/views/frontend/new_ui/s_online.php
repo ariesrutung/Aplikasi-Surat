@@ -92,7 +92,7 @@
                 <?php endif; ?>
             </div>
             <div class="col-lg-12">
-                <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat" class="formsaja"') ?>
+                <?= form_open_multipart('admin/suratonline/ajukan', 'id="ajukanSurat" class="formsaja"') ?>
                 <div class="row">
                     <div class="col form-group">
                         <label class="mb-1" for="nik">NIK *</label>

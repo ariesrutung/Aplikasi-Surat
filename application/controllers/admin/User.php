@@ -21,9 +21,9 @@ class User extends CI_Controller
         ];
 
         $data['data'] = $this->db->get('user')->result_array();
-        $this->load->view('new_ui/template/header', $judul);
-        $this->load->view('new_ui/user/index', $data);
-        $this->load->view('new_ui/template/footer');
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/user/index', $data);
+        $this->load->view('backend/template/footer');
     }
 
     public function hapus($id)
@@ -54,9 +54,9 @@ class User extends CI_Controller
                 'title' => 'Management User',
                 'sub_title' => 'Surat Masuk'
             ];
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/user/tambah_user');
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/user/tambah_user');
+            $this->load->view('backend/template/footer');
         } else {
             $name =  $this->input->post("name", TRUE);
             $username =  $this->input->post("username", TRUE);
@@ -114,9 +114,9 @@ class User extends CI_Controller
             ];
             $data['user'] = $this->db->get_where('user', ['id_user' => $id])->row_array();
 
-            $this->load->view('new_ui/template/header', $judul);
-            $this->load->view('new_ui/user/edit_user', $data);
-            $this->load->view('new_ui/template/footer');
+            $this->load->view('backend/template/header', $judul);
+            $this->load->view('backend/user/edit_user', $data);
+            $this->load->view('backend/template/footer');
         } else {
             $username =  $this->input->post("username", TRUE);
             $password =  $this->input->post("password", TRUE);
