@@ -45,26 +45,26 @@
                                 <?= form_error('isi', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="gambar" class="form-control-label">Gambar</label>
                                 <input class="form-control" type="file" name="gambar" id="gambar">
                                 <?= form_error('gambar', '<div class="text-danger">', '</div>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="ket_gambar" class="form-control-label">Keterangan Gambar</label>
                                 <input type="text" class="form-control datepicker" name="ket_gambar" id="ket_gambar" value="<?= set_value('ket_gambar'); ?>" />
                                 <?= form_error('ket_gambar', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="kategori" class="form-label">Kategori Informasi</label>
                                 <select class="form-select" id="kategori" name="kategori" required>
-                                    <option value=""> - Pilih -</option>
-                                    <option option value="berita">Berita</option>
+                                    <option> - Pilih -</option>
+                                    <option value="berita">Berita</option>
                                     <option value="pengumuman">Pengumuman</option>
                                     <option value="pelatihan">Pelatihan</option>
                                     <option value="profil">Profil Kelurahan</option>

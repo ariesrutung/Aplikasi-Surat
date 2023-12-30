@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller
         parent::__construct();
         $this->load->model('dashboard_model', 'dashboard');
         if ($this->session->userdata('id_user') == FALSE) {
-            redirect(base_url("auth/login"));
+            redirect(base_url("admin/auth/login"));
         }
     }
 

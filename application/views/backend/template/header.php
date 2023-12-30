@@ -66,8 +66,9 @@
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href="<?= base_url('admin/dashboard') ?>">
-                <span class="font-weight-bold d-flex justify-content-center">PANEL ADMIN</span>
+            <a class="navbar-brand m-0 d-flex align-items-center justify-content-center" href="<?= base_url('admin/dashboard') ?>">
+                <!-- <span class="font-weight-bold d-flex justify-content-center">PANEL ADMIN</span> -->
+                <img src="<?= base_url('') ?>/assets/frontend/assets/img/logo.png" alt="Panel Logo">
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -78,7 +79,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(2) == 'dashboard') ? 'active' : ''; ?>" href="<?= base_url('admin/dashboard') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="bi bi-tv text-primary text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
@@ -91,7 +92,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(3) == 'pengajuan') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/pengajuan') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                            <i class="bi bi-envelope-exclamation-fill text-warning text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Pengajuan Surat</span>
                     </a>
@@ -99,7 +100,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_masuk' || $this->uri->segment(3) == 'editSuratMasuk' || $this->uri->segment(3) == 'tambah_surat_masuk') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_masuk') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                            <i class="bi bi-envelope-check-fill text-success text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Surat Masuk</span>
                     </a>
@@ -107,7 +108,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_keluar' || $this->uri->segment(3) == 'editSuratKeluar' || $this->uri->segment(3) == 'tambah_surat_keluar') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_keluar') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-app text-info text-sm opacity-10"></i>
+                            <i class="bi bi-envelope-arrow-up-fill text-info text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Surat Keluar</span>
                     </a>
@@ -115,7 +116,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(3) == 'surat_keterangan' || $this->uri->segment(3) == 'editSuratKeterangan' || $this->uri->segment(3) == 'tambah_surat_keterangan') ? 'active' : ''; ?>" href="<?= base_url('admin/surat/surat_keterangan') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                            <i class="bi bi-envelope-plus-fill text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Surat Keterangan</span>
                     </a>
@@ -127,7 +128,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(3) == 'informasi' || $this->uri->segment(3) == 'tambah_informasi' || $this->uri->segment(3) == 'edit_informasi') ? 'active' : ''; ?>" href="<?= base_url('admin/profil/informasi') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                            <i class="bi bi-pencil-square text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Konten</span>
                     </a>
@@ -188,7 +189,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(2) == 'penduduk') ? 'active' : ''; ?>" href="<?= base_url('admin/penduduk') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                            <i class="bi bi-people-fill text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Penduduk</span>
                     </a>
@@ -196,7 +197,7 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(2) == 'pegawai') ? 'active' : ''; ?>" href="<?= base_url('admin/pegawai') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                            <i class="bi bi-person-vcard-fill text-danger text-sm opacity-10"></i>
                         </div>
                         <span class="nav-link-text ms-1">Aparat Desa</span>
                     </a>
@@ -205,7 +206,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php echo ($this->uri->segment(2) == 'user') ? 'active' : ''; ?>" href="<?= base_url('admin/user') ?>">
                             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                                <i class="bi bi-person-fill-gear text-danger text-sm opacity-10"></i>
                             </div>
                             <span class="nav-link-text ms-1">Pengelola Website</span>
                         </a>
@@ -270,8 +271,8 @@
                             </a>
                         </li>
                         <li class="nav-item px-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-white p-0">
-                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            <a href="<?= base_url() ?>admin/home" target="_blank" class="nav-link text-white p-0">
+                                <i class="bi bi-globe fixed-plugin-button-nav cursor-pointer"></i>
                             </a>
                         </li>
 
@@ -279,8 +280,7 @@
 
                             <li class="d-flex align-items-center">
                                 <a class="text-white" href="<?= base_url() ?>admin/logout">
-                                    <i class="bi bi-power"></i>
-                                    Logout
+                                    <i class="bi bi-box-arrow-right"></i>
                                 </a>
                             </li>
 
@@ -295,7 +295,7 @@
 
                         <?php endif; ?>
 
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-power cursor-pointer"></i>
                             </a>
@@ -367,7 +367,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

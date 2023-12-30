@@ -15,7 +15,7 @@ class Profil extends CI_Controller
         $this->load->library('form_validation');
 
         if ($this->session->userdata('id_user') == FALSE) {
-            redirect(base_url("auth/login"));
+            redirect(base_url("admin/auth/login"));
         }
     }
 

@@ -20,21 +20,21 @@
         margin-bottom: 10px;
     }
 
-    article.entry.entry-single {
+    /* article.entry.entry-single {
         margin: -70px 20px 0 20px;
         background-color: #fff !important;
         z-index: 999;
         position: relative;
         border-radius: 20px;
         padding: 20px 20px 0 20px;
-    }
+    } */
 
     p.text-sm {
         font-size: 12px;
         text-transform: capitalize !important;
         font-weight: bold;
         font-style: italic;
-        color: #e03a3c;
+        color: #00a8ff;
         margin-bottom: 30px;
     }
 
@@ -67,7 +67,7 @@
     }
 
     a:hover {
-        color: #e03a3c;
+        color: #00a8ff;
     }
 
     a {
@@ -89,7 +89,7 @@
         display: block;
         width: 50px;
         height: 3px;
-        background: #e03a3c;
+        background: #00a8ff;
         bottom: 0;
         left: calc(50% - 25px px);
         margin-top: 10px;
@@ -97,13 +97,14 @@
 
     .btn.btn-danger {
         border-radius: 30px;
-        border: 2px solid #e03a3c;
+        border: 2px solid #00a8ff;
+        background-color: #00a8ff;
     }
 
     a.btn.btn-danger:hover {
         border-radius: 30px;
         background-color: transparent;
-        border: 2px solid #e03a3c;
+        border: 2px solid #00a8ff;
         color: #212529;
     }
 </style>
@@ -112,11 +113,22 @@
         <div class="row">
             <div class="col-lg-12 entries">
                 <article class="entry entry-single">
-                    <p class="text-sm"><?= $detail['ket_gambar']; ?></p>
                     <div class="entry-meta">
                         <h2 class="entry-title"><?= $detail['judul']; ?></h2>
-                        <ul> <?php $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array(); ?>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= ucfirst($data['username']); ?></li>
+                        <ul>
+                            <?php
+                            $penulisId = $detail['penulis'];
+                            $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                            $penulis = $query->row_array();
+
+                            if ($penulis) {
+                                $namaPenulis = ucfirst($penulis['name']);
+                            } else {
+                                $namaPenulis = 'Anonim';
+                            }
+                            ?>
+
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
                             <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $detail['tanggal']; ?></li>
                         </ul>
                     </div>

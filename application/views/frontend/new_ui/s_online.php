@@ -71,7 +71,7 @@
     }
 
     .contact .formsaja button[type=submit] {
-        background: #e03a3c;
+        background: #00a8ff;
         border: 0;
         padding: 10px 32px;
         color: #fff;

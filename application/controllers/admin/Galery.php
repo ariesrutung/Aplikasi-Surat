@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Galery extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -13,7 +12,7 @@ class Galery extends CI_Controller
         $this->load->library('form_validation');
 
         if ($this->session->userdata('id_user') == FALSE) {
-            redirect(base_url("auth/login"));
+            redirect(base_url("admin/auth/login"));
         }
     }
 

@@ -63,9 +63,10 @@
                                                 <td class="text-secondary font-weight-normal text-sm"><?= $status[$key['status']]; ?></td>
                                                 <td class="text-secondary font-weight-normal text-sm"><?= $options[$key['jenis_surat']]; ?></td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatfile<?= $key['id']; ?>"><i class="fas fa-file-pdf"></i></button>
+                                                    <a href="<?= base_url('uploads/berkas') ?>/<?= $key['file'] ?>" class="btn bg-gradient-info btn-xs mb-0" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                                    <!-- <a type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatfile<?= $key['id']; ?>"><i class="fas fa-file-pdf"></i></a> -->
                                                     <button type="button" class="btn bg-gradient-primary btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#statusPengajuan<?= $key['id']; ?>"><i class="fas fa-pencil-alt"></i></button>
-                                                    <button type="button" class="btn bg-gradient-warning btn-xs mb-0    " data-bs-toggle="modal" data-bs-target="#hapusPengajuan<?= $key['id']; ?>"><i class="fas fa-trash-alt"></i></button>
+                                                    <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusPengajuan<?= $key['id']; ?>"><i class="fas fa-trash-alt"></i></button>
                                                 </td>
                                             </tr>
                                             <?php $no++; ?>
@@ -81,7 +82,7 @@
     </div>
 </div>
 
-
+<!-- 
 <?php foreach ($data as $key) : ?>
     <div class="modal fade" id="lihatfile<?= $key['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="lihatFile<?= $key['id']; ?>Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -108,7 +109,7 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 
 
 <?php foreach ($data as $key) : ?>

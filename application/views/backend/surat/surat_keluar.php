@@ -56,7 +56,8 @@
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['tanggal_surat_keluar']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['keterangan_surat_keluar']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm">
-                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatSurat<?= $key['id_surat_keluar']; ?>"><i class="fas fa-eye"></i></button>
+                                                <a href="<?= base_url('uploads/surat_keluar') ?>/<?= $key['file_surat_keluar'] ?>" class="btn bg-gradient-info btn-xs mb-0" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                                <!-- <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatSurat<?= $key['id_surat_keluar']; ?>"><i class="fas fa-eye"></i></button> -->
                                                 <a href="<?= base_url() ?>admin/surat/editSuratKeluar/<?= $key['id_surat_keluar']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn bg-gradient-warning btn-xs mb-0    " data-bs-toggle="modal" data-bs-target="#hapusSuratKeluar<?= $key['id_surat_keluar']; ?>"><i class="fas fa-trash-alt"></i></button>
                                             </td>
@@ -72,7 +73,7 @@
         </div>
     </div>
 </div>
-
+<!-- 
 <?php foreach ($data as $key) : ?>
     <div class="modal fade" id="lihatSurat<?= $key['id_surat_keluar']; ?>" tabindex="-1" role="dialog" aria-labelledby="lihatSurat<?= $key['id_surat_keluar']; ?>Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -99,7 +100,7 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 
 <!-- Button trigger modal -->
 <?php foreach ($data as $key) : ?>

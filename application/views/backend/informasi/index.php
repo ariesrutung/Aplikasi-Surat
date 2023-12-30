@@ -75,7 +75,8 @@
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['tanggal']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['kategori']; ?></td>
                                             <td class="text-right">
-                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatInformasi<?= $key['id']; ?>"><i class="fas fa-eye"></i></button>
+                                                <a href="<?= base_url("uploads/informasi") ?>/<?= $key["gambar"] ?> " class="btn bg-gradient-info btn-xs mb-0" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                                <!-- <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatInformasi<?= $key['id']; ?>"><i class="fas fa-eye"></i></button> -->
                                                 <a href="<?= base_url() ?>admin/profil/edit_informasi/<?= $key['id']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusInformasi<?= $key['id']; ?>"><i class="fas fa-trash-alt"></i></button>
                                             </td>
@@ -120,7 +121,7 @@
 <?php endforeach; ?>
 
 
-<?php foreach ($data as $key) : ?>
+<!-- <?php foreach ($data as $key) : ?>
     <div class="modal fade" id="lihatInformasi<?= $key['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="lihatInformasi<?= $key['id']; ?>Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -147,7 +148,7 @@
             </div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>

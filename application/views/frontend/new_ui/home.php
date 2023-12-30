@@ -33,7 +33,7 @@
         display: block;
         width: 50px;
         height: 3px;
-        background: #e03a3c;
+        background: #00a8ff;
         bottom: 0;
         left: 0;
         margin-top: 10px;
@@ -78,12 +78,12 @@
         height: 10px;
         background-color: #fff;
         opacity: 1;
-        border: 1px solid #e03a3c;
+        border: 1px solid #00a8ff;
         border-radius: 10px !important;
     }
 
     .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-        background-color: #e03a3c !important;
+        background-color: #00a8ff !important;
     }
 
     section#testimonials {
@@ -114,24 +114,25 @@
     .btn.btn-more {
         color: #fff;
         background: transparent;
-        border: 2px solid #e03a3c;
+        border: 2px solid #00a8ff;
         border-radius: 30px;
     }
 
     a.btn.btn-more:hover {
         color: #fff;
-        background-color: #e03a3c;
+        background-color: #00a8ff;
     }
 
     .btn.btn-danger {
         border-radius: 30px;
-        border: 2px solid #e03a3c;
+        border: 2px solid #00a8ff;
+        background-color: #00a8ff;
     }
 
     a.btn.btn-danger:hover {
         border-radius: 30px;
         background-color: transparent;
-        border: 2px solid #e03a3c;
+        border: 2px solid #00a8ff;
         color: #212529;
     }
 
@@ -144,11 +145,33 @@
     }
 
     a:hover {
-        color: #e03a3c;
+        color: #00a8ff;
     }
 
     a {
         color: #000;
+    }
+
+
+    section#about li {
+        padding: 5px 0;
+    }
+
+    section#about ul i {
+        font-size: 20px;
+        padding-right: 4px;
+        color: #00a8ff;
+    }
+
+    section#about ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    section#about .w-100 {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
     }
 </style>
 <section id="hero" class="d-flex align-items-center py-0">
@@ -243,30 +266,30 @@
         </div>
     </section>
 
-    <section id="about" class="about section-bg">
+    <section id="about" class="section-bg tabs">
         <div class="container" data-aos="fade-up">
             <div class="section-title mb-4">
                 <h2><?= $alur_masuk['judul']; ?></h2>
                 <!-- <p><?= $alur_masuk['ket_gambar']; ?></p> -->
             </div>
-            <div class="row no-gutters" data-aos="fade-up" data-aos-delay="200">
-                <div class="content col-xl-8 d-flex align-items-stretch pl">
+            <div class="row no-gutters mb-5" data-aos="fade-up" data-aos-delay="200">
+                <div class="content col-lg-7 d-flex align-items-stretch pl">
                     <div class="content">
                         <h3><?= $alur_masuk['ket_gambar']; ?></h3>
                         <p><?= $alur_masuk['isi']; ?></p>
                     </div>
                 </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                    <img class="w-100" src="<?= base_url('uploads/informasi/' . $alur_masuk['gambar']); ?>" alt="Gambar Berita">
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <img class="w-100 ml-3" src="<?= base_url('uploads/informasi/' . $alur_masuk['gambar']); ?>" alt="Gambar Berita">
                 </div>
             </div>
 
             <div class="row no-gutters" data-aos="fade-up" data-aos-delay="200">
-                <div class="col-xl-4 d-flex align-items-stretch">
+                <div class="col-lg-5 d-flex align-items-stretch">
                     <img class="w-100" src="<?= base_url('uploads/informasi/' . $alur_keluar['gambar']); ?>" alt="Gambar Berita">
                 </div>
 
-                <div class="content col-xl-8 d-flex align-items-stretch pl-3">
+                <div class="content col-lg-7 d-flex align-items-stretch pl-3">
                     <div class="content">
                         <h3><?= $alur_keluar['ket_gambar']; ?></h3>
                         <p><?= $alur_keluar['isi']; ?></p>
@@ -542,14 +565,18 @@
 
 </main>
 <script>
-    $(document).ready(function() {
-        $('#menuberanda').last().addClass("active");
-    });
-</script>
-
-<script>
     document.addEventListener("DOMContentLoaded", function() {
         var myListItems = document.querySelectorAll("section#tabs ul li");
+
+        myListItems.forEach(function(item) {
+            var iconElement = document.createElement("i");
+            iconElement.className = "bi bi-check2-all";
+            item.insertBefore(iconElement, item.firstChild);
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var myListItems = document.querySelectorAll("section#about ul li");
 
         myListItems.forEach(function(item) {
             var iconElement = document.createElement("i");

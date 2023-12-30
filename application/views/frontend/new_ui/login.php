@@ -209,7 +209,7 @@
             width: 100%;
             color: #fff;
             border-radius: 30px;
-            background-color: #e03a3c;
+            background-color: #00a8ff;
             font-size: 13px;
             cursor: pointer;
             transition: all 0.5s

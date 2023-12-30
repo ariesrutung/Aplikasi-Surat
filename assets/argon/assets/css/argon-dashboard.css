@@ -21672,6 +21672,8 @@ label,
 
 .bg-gradient-info {
   background-image: linear-gradient(310deg, #1171ef 0%, #11cdef 100%);
+  /* background-image: none;
+  background-color: #00a8ff; */
 }
 
 .bg-gradient-warning {
@@ -21802,7 +21804,7 @@ label,
 }
 
 .icon-sm i {
-  top: 3px;
+  top: 0;
   font-size: .65rem;
 }
 
@@ -23346,7 +23348,7 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active {
-  color: #344767;
+  color: #00a8ff;
   background-color: rgba(255, 255, 255, 0.13);
 }
 

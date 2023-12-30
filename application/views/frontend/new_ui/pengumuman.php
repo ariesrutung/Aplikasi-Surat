@@ -1,6 +1,6 @@
 <style>
     i.bi.bi-file-earmark-pdf-fill {
-        color: #e03a3c;
+        color: #00a8ff;
         font-size: 45px;
     }
 
@@ -34,16 +34,19 @@
                                         <div class="entry-meta">
                                             <ul>
                                                 <?php
-
-                                                    $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array();
-
+                                                    $penulisId = $info['penulis'];
+                                                    $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                                                    $penulis = $query->row_array();
+                                                    if ($penulis) {
+                                                        $namaPenulis = ucfirst($penulis['name']);
+                                                    } else {
+                                                        $namaPenulis = 'Anonim';
+                                                    }
                                                     ?>
-
-                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= ucfirst($data['username']); ?></li>
+                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
                                                 <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $info['tanggal']; ?></li>
                                             </ul>
                                         </div>
-
                                         <div class="entry-content">
                                             <p><?= (strlen($info['isi']) > 150) ? substr($info['isi'], 0, 150) . '...' : $info['isi']; ?></p>
                                         </div>

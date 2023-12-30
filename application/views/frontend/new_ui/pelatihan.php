@@ -1,194 +1,69 @@
+<style>
+    i.bi.bi-file-earmark-pdf-fill {
+        color: #00a8ff;
+        font-size: 45px;
+    }
+
+    section#blog article.entry {
+        border: 2px solid #e1e1e1;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .col-lg-2.d-flex.justify-content-center.align-items-center {
+        border-right: 2px solid #e1e1e1;
+    }
+</style>
 <section id="blog" class="blog">
     <div class="container" data-aos="fade-up">
         <div class="row">
-            <div class="col-lg-8 entries">
+            <div class="col-lg-12 entries">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <article class="entry">
-                            <div class="entry-img">
-                                <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-1.jpg" alt="" class="w-100">
-                            </div>
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                            </h2>
+                    <?php foreach ($informasi as $info) : ?>
+                        <div class="col-lg-12">
+                            <article class="entry">
+                                <div class="row">
+                                    <div class="col-lg-3 d-flex justify-content-center align-items-center">
+                                        <?php if ($info['gambar']) : ?>
+                                            <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>">
+                                                <img class="w-100 rounded" src="<?= base_url('uploads/informasi/' . $info['gambar']); ?>" alt="Gambar Berita">
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <h2 class="entry-title">
+                                            <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>"><?= (strlen($info['judul']) > 70) ? substr($info['judul'], 0, 70) . '...' : $info['judul']; ?></a>
+                                        </h2>
 
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                </ul>
-                            </div>
+                                        <div class="entry-meta">
+                                            <ul>
+                                                <?php
+                                                    $penulisId = $info['penulis'];
+                                                    $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                                                    $penulis = $query->row_array();
 
-                            <div class="entry-content">
-                                <p>
-                                    Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                                    Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut.
-                                </p>
-                            </div>
+                                                    if ($penulis) {
+                                                        $namaPenulis = ucfirst($penulis['name']);
+                                                    } else {
+                                                        $namaPenulis = 'Anonim';
+                                                    }
+                                                    ?>
 
-                        </article><!-- End blog entry -->
-                    </div>
+                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
+                                                <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $info['tanggal']; ?></li>
+                                            </ul>
+                                        </div>
 
-                    <div class="col-lg-6">
-                        <article class="entry">
+                                        <div class="entry-content">
+                                            <p><?= (strlen($info['isi']) > 150) ? substr($info['isi'], 0, 150) . '...' : $info['isi']; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div class="entry-img">
-                                <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-2.jpg" alt="" class="w-100">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Nisi magni odit consequatur autem nulla dolorem</a>
-                            </h2>
-
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="entry-content">
-                                <p>
-                                    Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                                    Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut.
-                                </p>
-                            </div>
-
-                        </article><!-- End blog entry -->
-                    </div>
-                    <div class="col-lg-6">
-                        <article class="entry">
-
-                            <div class="entry-img">
-                                <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-3.jpg" alt="" class="w-100">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</a>
-                            </h2>
-
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="entry-content">
-                                <p>
-                                    Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                                    Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut.
-                                </p>
-                            </div>
-
-                        </article><!-- End blog entry -->
-                    </div>
-                    <div class="col-lg-6">
-                        <article class="entry">
-
-                            <div class="entry-img">
-                                <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-4.jpg" alt="" class="w-100">
-                            </div>
-
-                            <h2 class="entry-title">
-                                <a href="blog-single.html">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</a>
-                            </h2>
-
-                            <div class="entry-meta">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                                </ul>
-                            </div>
-
-                            <div class="entry-content">
-                                <p>
-                                    Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                                    Ad impedit qui officiis est in non aliquid veniam laborum. Id ipsum qui aut.
-                                </p>
-                            </div>
-
-                        </article><!-- End blog entry -->
-                    </div>
-                    <div class="blog-pagination">
-                        <ul class="justify-content-center">
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- End blog entries list -->
-
+                            </article>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="sidebar">
-                    <h3 class="sidebar-title">Categories</h3>
-                    <div class="sidebar-item categories">
-                        <ul>
-                            <li><a href="#">General <span>(25)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(5)</span></a></li>
-                            <li><a href="#">Design <span>(22)</span></a></li>
-                            <li><a href="#">Creative <span>(8)</span></a></li>
-                            <li><a href="#">Educaion <span>(14)</span></a></li>
-                        </ul>
-                    </div><!-- End sidebar categories-->
-
-                    <h3 class="sidebar-title">Recent Posts</h3>
-                    <div class="sidebar-item recent-posts">
-                        <div class="post-item clearfix">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-recent-1.jpg" alt="">
-                            <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-recent-2.jpg" alt="">
-                            <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-recent-3.jpg" alt="">
-                            <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-recent-4.jpg" alt="">
-                            <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                        <div class="post-item clearfix">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/blog/blog-recent-5.jpg" alt="">
-                            <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                        </div>
-
-                    </div><!-- End sidebar recent posts-->
-
-                    <h3 class="sidebar-title">Tags</h3>
-                    <div class="sidebar-item tags">
-                        <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
-                    </div><!-- End sidebar tags-->
-
-                </div><!-- End sidebar -->
-
-            </div><!-- End blog sidebar -->
         </div>
-</section><!-- End Blog Section -->
+</section>

@@ -8,7 +8,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         if ($this->session->userdata('id_user') == FALSE) {
-            redirect(base_url("auth/login"));
+            redirect(base_url("admin/auth/login"));
         }
     }
 
@@ -36,18 +36,14 @@ class User extends CI_Controller
 
     public function tambah()
     {
-
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[8]|trim|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password2', 'required|trim|min_length[8]|matches[password]');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim[user.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|trim');
         $this->form_validation->set_rules('level', 'Hak Akses', 'required');
         $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required');
         $this->form_validation->set_rules('address', 'Alamat', 'required');
-        $this->form_validation->set_rules('level', 'Hak Akses', 'required');
-
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -58,20 +54,19 @@ class User extends CI_Controller
             $this->load->view('backend/user/tambah_user');
             $this->load->view('backend/template/footer');
         } else {
-            $name =  $this->input->post("name", TRUE);
-            $username =  $this->input->post("username", TRUE);
-            $email =  $this->input->post("email", TRUE);
-            $no_hp =  $this->input->post("no_hp", TRUE);
-            $address =  $this->input->post("address", TRUE);
-            $password =  $this->input->post("password", TRUE);
-            $level =  $this->input->post("level", TRUE);
+            $name = $this->input->post("name", TRUE);
+            $username = $this->input->post("username", TRUE);
+            $email = $this->input->post("email", TRUE);
+            $no_hp = $this->input->post("no_hp", TRUE);
+            $address = $this->input->post("address", TRUE);
+            $password = $this->input->post("password", TRUE);
+            $level = $this->input->post("level", TRUE);
 
-            $config['upload_path']          = './uploads/profil_pengelola';
-            $config['allowed_types']        = 'jpg|png|jpeg';
+            $config['upload_path'] = './uploads/profil_pengelola';
+            $config['allowed_types'] = 'jpg|png|jpeg';
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('gambar')) {
-
                 $data = array('upload_data' => $this->upload->data());
                 $gambar = $data['upload_data']['file_name'];
 
@@ -84,7 +79,6 @@ class User extends CI_Controller
                     'password' => $password,
                     'level' => $level,
                     'gambar' => $gambar,
-
                 ];
 
                 $this->db->insert('user', $save);
@@ -95,17 +89,17 @@ class User extends CI_Controller
         }
     }
 
+
     public function edit($id)
     {
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[8]|trim|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password2', 'required|trim|min_length[8]|matches[password]');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email[user.email]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('level', 'Hak Akses', 'required');
         $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required');
         $this->form_validation->set_rules('address', 'Alamat', 'required');
-        $this->form_validation->set_rules('level', 'Hak Akses', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -118,24 +112,22 @@ class User extends CI_Controller
             $this->load->view('backend/user/edit_user', $data);
             $this->load->view('backend/template/footer');
         } else {
-            $username =  $this->input->post("username", TRUE);
-            $password =  $this->input->post("password", TRUE);
-            $level =  $this->input->post("level", TRUE);
+            $username = $this->input->post("username", TRUE);
+            $password = $this->input->post("password", TRUE);
+            $level = $this->input->post("level", TRUE);
 
-            $name =  $this->input->post("name", TRUE);
-            $username =  $this->input->post("username", TRUE);
-            $email =  $this->input->post("email", TRUE);
-            $no_hp =  $this->input->post("no_hp", TRUE);
-            $address =  $this->input->post("address", TRUE);
-            $password =  $this->input->post("password", TRUE);
-            $level =  $this->input->post("level", TRUE);
+            $name = $this->input->post("name", TRUE);
+            $email = $this->input->post("email", TRUE);
+            $no_hp = $this->input->post("no_hp", TRUE);
+            $address = $this->input->post("address", TRUE);
+            $password = $this->input->post("password", TRUE);
+            $level = $this->input->post("level", TRUE);
 
-            $config['upload_path']          = './uploads/profil_pengelola';
-            $config['allowed_types']        = 'jpg|png|jpeg';
+            $config['upload_path'] = './uploads/profil_pengelola';
+            $config['allowed_types'] = 'jpg|png|jpeg';
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('gambar')) {
-
                 $data = array('upload_data' => $this->upload->data());
                 $gambar = $data['upload_data']['file_name'];
 
@@ -149,7 +141,6 @@ class User extends CI_Controller
                     'level' => $level,
                     'gambar' => $gambar,
                 ];
-
 
                 $this->db->where('id_user', $id);
                 $this->db->update('user', $update);

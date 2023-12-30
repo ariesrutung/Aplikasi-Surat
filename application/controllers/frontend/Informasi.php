@@ -83,14 +83,37 @@ class Informasi extends CI_Controller
 
     public function pelatihan()
     {
-        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'berita'])->result_array();
+        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'pelatihan'])->result_array();
         $judul = [
             'title' => 'Pelatihan',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
+        // $data['pelatihan_terbaru'] = $this->Informasi_model->get_4_terbaru_by_kategori('pelatihan');
+
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/pelatihan', $data);
+        $this->load->view('frontend/new_ui/footer', $data);
+    }
+
+
+    public function detail_pelatihan($slug)
+    {
+        $data['detail'] = $this->db->get_where('informasi', ['slug' => $slug, 'kategori' => 'pelatihan'])->row_array();
+
+        if (!$data['detail']) {
+            show_404();
+        }
+
+        $judul = [
+            'title' => 'Detail Pelatihan',
+            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        ];
+
+        $data['pelatihan_terbaru'] = $this->Informasi_model->get_4_terbaru_by_kategori('pelatihan');
+
+        $this->load->view('frontend/new_ui/header', $judul);
+        $this->load->view('frontend/new_ui/detail_pelatihan', $data);
         $this->load->view('frontend/new_ui/footer', $data);
     }
 }

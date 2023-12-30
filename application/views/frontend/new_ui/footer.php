@@ -6,44 +6,44 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Presento<span>.</span></h3>
+                    <!-- <h3>Presento<span>.</span></h3> -->
+                    <a href="<?= base_url('/'); ?>admin/home" class="logo me-auto footer-logo"><img class="w-75 rounded bg-light p-2" src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
                     <p>
-                        A108 Adam Street <br>
+                        Jln. Kebun Cengkeh<br>
                         New York, NY 535022<br>
                         United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        <strong>Phone:</strong> +6289 55488 55<br>
+                        <strong>Email:</strong> info@newslab.com<br>
                     </p>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Link Informasi</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>frontend/profil">Profil</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>frontend/struktur">Struktur Organisasi</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>frontend/informasi/berita">Berita</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>frontend/informasi/pengumuman">Pengumuman</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Link Layanan</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>admin/suratonline">Pengajuan Surat</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url('/'); ?>admin/tracking">Tracking Surat</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Join Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
+                    <h4>Link Social Media</h4>
+                    <div class="social-links text-left text-md-end pt-3 pt-md-0">
+                        <a href="https://twitter.com/" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="https://facebook.com/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="https://instagram.com/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="https://skype.com/" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="https://linkedin.com/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    </div>
                 </div>
 
             </div>
@@ -54,16 +54,16 @@
 
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Copyright <strong><span>Presento</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>e-Surat</span></strong>. All Rights Reserved
             </div>
         </div>
-        <div class="social-links text-center text-md-end pt-3 pt-md-0">
+        <!-- <div class="social-links text-center text-md-end pt-3 pt-md-0">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
             <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
+        </div> -->
     </div>
 </footer><!-- End Footer -->
 

@@ -39,35 +39,37 @@
                                 <?= form_error('isi', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="gambar" class="form-control-label">Gambar</label>
                                 <input class="form-control" type="file" name="gambar" id="gambar">
                                 <?= form_error('gambar', '<div class="text-danger">', '</div>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="ket_gambar" class="form-control-label">Keterangan Gambar</label>
                                 <input type="text" class="form-control datepicker" name="ket_gambar" id="ket_gambar" value="<?= $informasi['ket_gambar']; ?>" />
                                 <?= form_error('ket_gambar', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="kategori" class="form-label">Kategori Informasi</label>
-                            <select class="form-select" id="kategori" name="kategori" required>
-                                <option value=""> - Pilih -</option>
-                                <option value="berita">Berita</option>
-                                <option value="pengumuman">Pengumuman</option>
-                                <option value="pelatihan">Pelatihan</option>
-                                <option value="profil">Profil Kelurahan</option>
-                                <option value="alur_surat_masuk">Alur Surat Masuk</option>
-                                <option value="alur_surat_keluar">Alur Surat Keluar</option>
-                                <option value="maksud_dan_tujuan">Maksud & Tujuan</option>
-                                <option value="struktur_organisasi">Struktur Organisasi</option>
-                                <option value="profil">Profil</option>
-                            </select>
+                        <div class="col-sm-4">
+                            <div class="mb-3">
+                                <label for="kategori" class="form-label">Kategori Informasi</label>
+                                <select class="form-select" id="kategori" name="kategori" required>
+                                    <option disabled> - Pilih -</option>
+                                    <option value="berita" <?= ($informasi['kategori'] == 'berita') ? 'selected' : ''; ?>>Berita</option>
+                                    <option value="pengumuman" <?= ($informasi['kategori'] == 'pengumuman') ? 'selected' : ''; ?>>Pengumuman</option>
+                                    <option value="pelatihan" <?= ($informasi['kategori'] == 'pelatihan') ? 'selected' : ''; ?>>Pelatihan</option>
+                                    <option value="profil" <?= ($informasi['kategori'] == 'profil') ? 'selected' : ''; ?>>Profil Kelurahan</option>
+                                    <option value="alur_surat_masuk" <?= ($informasi['kategori'] == 'alur_surat_masuk') ? 'selected' : ''; ?>>Alur Surat Masuk</option>
+                                    <option value="alur_surat_keluar" <?= ($informasi['kategori'] == 'alur_surat_keluar') ? 'selected' : ''; ?>>Alur Surat Keluar</option>
+                                    <option value="maksud_dan_tujuan" <?= ($informasi['kategori'] == 'maksud_dan_tujuan') ? 'selected' : ''; ?>>Maksud & Tujuan</option>
+                                    <option value="struktur_organisasi" <?= ($informasi['kategori'] == 'struktur_organisasi') ? 'selected' : ''; ?>>Struktur Organisasi</option>
+                                    <option value="profil" <?= ($informasi['kategori'] == 'profil') ? 'selected' : ''; ?>>Profil</option>
+                                </select>
+                                <?= form_error('kategori', '<div class="text-danger">', '</div>'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="category form-category">

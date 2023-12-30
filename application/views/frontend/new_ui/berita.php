@@ -27,12 +27,21 @@
                                 <div class="entry-meta">
                                     <ul>
                                         <?php
+                                            // Assuming $info adalah data dari tabel informasi
+                                            $penulisId = $info['penulis'];
 
-                                            $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array();
+                                            // Ambil nama penulis dari tabel user
+                                            $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                                            $penulis = $query->row_array();
 
+                                            if ($penulis) {
+                                                $namaPenulis = ucfirst($penulis['name']); // Ganti 'name' dengan kolom yang sesuai di tabel user
+                                            } else {
+                                                $namaPenulis = 'Anonim';
+                                            }
                                             ?>
 
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= ucfirst($data['username']); ?></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
                                         <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $info['tanggal']; ?></li>
                                     </ul>
                                 </div>

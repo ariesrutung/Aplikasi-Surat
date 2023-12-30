@@ -27,6 +27,15 @@
     <link href="<?= base_url(); ?>assets/frontend/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="<?= base_url() ?>assets/css/progress_bar.css" rel="stylesheet" />
+    <style>
+        img.js-svg-injector {
+            background-color: #2b2b2b;
+            width: 100%;
+            height: 131px;
+            object-fit: fill;
+            object-position: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,7 +104,17 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <a href="<?= base_url('') ?>admin/auth/login" class="get-started-btn scrollto">MASUK</a>
+            <?php
+            // Pemeriksaan apakah pengguna sudah login
+            if ($this->session->logged_in) {
+                // Jika sudah login, tampilkan nama pengguna atau avatar atau hal lainnya
+                // Misalnya, tampilkan nama pengguna
+                echo '<span class="get-started-btn">Selamat datang, ' . ucfirst($this->session->username) . '</span>';
+            } else {
+                // Jika belum login, tampilkan link MASUK
+                echo '<a href="' . base_url('admin/auth/login') . '" class="get-started-btn scrollto">MASUK</a>';
+            }
+            ?>
         </div>
     </header>
     <?php if ($this->uri->uri_string() != 'admin/home' && $this->uri->uri_string() != '') : ?>

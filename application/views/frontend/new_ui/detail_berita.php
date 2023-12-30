@@ -34,7 +34,7 @@
         text-transform: capitalize !important;
         font-weight: bold;
         font-style: italic;
-        color: #e03a3c;
+        color: #00a8ff;
         margin-bottom: 30px;
     }
 
@@ -67,7 +67,7 @@
     }
 
     a:hover {
-        color: #e03a3c;
+        color: #00a8ff;
     }
 
     a {
@@ -89,7 +89,7 @@
         display: block;
         width: 50px;
         height: 3px;
-        background: #e03a3c;
+        background: #00a8ff;
         bottom: 0;
         left: calc(50% - 25px px);
         margin-top: 10px;
@@ -104,8 +104,19 @@
                     <p class="text-sm"><?= $detail['ket_gambar']; ?></p>
                     <div class="entry-meta">
                         <h2 class="entry-title"><?= $detail['judul']; ?></h2>
-                        <ul> <?php $data = $this->db->get_where('user', ['id_user' => $this->session->userdata('id_user')])->row_array(); ?>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= ucfirst($data['username']); ?></li>
+                        <ul>
+                            <?php
+                            $penulisId = $detail['penulis'];
+                            $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                            $penulis = $query->row_array();
+
+                            if ($penulis) {
+                                $namaPenulis = ucfirst($penulis['name']);
+                            } else {
+                                $namaPenulis = 'Anonim';
+                            }
+                            ?>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
                             <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $detail['tanggal']; ?></li>
                         </ul>
                     </div>

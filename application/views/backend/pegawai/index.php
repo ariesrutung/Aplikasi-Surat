@@ -64,13 +64,11 @@
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['tempat_lahir']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['tanggal_lahir']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['alamat']; ?></td>
-                                            <td>
-                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatFoto<?= $key['id_pegawai']; ?>"><i class="fas fa-eye"></i></button>
-                                            </td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['no_hp']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['jabatan']; ?></td>
                                             <td class="text-secondary font-weight-normal text-sm"><?= $key['pendidikan']; ?></td>
                                             <td class="text-right">
+                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatFoto<?= $key['id_pegawai']; ?>"><i class="fas fa-eye"></i></button>
                                                 <a href="<?= base_url() ?>admin/pegawai/edit/<?= $key['id_pegawai']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
                                                 <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusPegawai<?= $key['id_pegawai']; ?>"><i class="fas fa-trash-alt"></i></button>
                                             </td>
@@ -128,13 +126,16 @@
                     <div class="instruction">
                         <div class="row">
                             <div class="col-md-12">
-                                <img width="100%" height="450px;" src="<?= base_url("uploads/foto") ?>/<?= $key["foto"] ?>">
+                                <!-- <img width="100%" height="450px;" src="<?= base_url("uploads/foto") ?>/<?= $key["foto"] ?>"> -->
+                                <?php if (!empty($key['foto'])) : ?>
+                                    <img class="w-100" src="<?= base_url('/uploads/foto/' . $key['foto']); ?>" alt="Profil Pengguna">
+                                <?php else : ?>
+                                    <img class="w-100" src="<?= base_url('/assets/img/default-avatar.png') ?>" alt="Profil Pengguna Default">
+                                <?php endif; ?>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">Tutup</button>
                 </div>

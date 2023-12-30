@@ -1,3 +1,11 @@
+<style>
+    span#togglePassword,
+    span#togglePassword2 {
+        border: 0 !important;
+        border-radius: 0 5px 5px 0;
+        background-color: #999;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
@@ -57,15 +65,29 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="password" class="form-control-label">Password</label>
-                                <input class="form-control" name="password" id="password" type="password" value="<?= set_value('password'); ?>" />
+                                <div class="input-group">
+                                    <input class="form-control" name="password" id="password" type="password" value="<?= set_value('password'); ?>" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text toggle-password" id="togglePassword">
+                                            <i class="bi bi-eye text-white" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <?= form_error('password', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
-
                         </div>
+
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="password2" class="form-control-label">Konfirmasi Password</label>
-                                <input class="form-control" name="password2" id="password2" type="password" value="<?= set_value('password2'); ?>" />
+                                <div class="input-group">
+                                    <input class="form-control" name="password2" id="password2" type="password" value="<?= set_value('password2'); ?>" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text toggle-password" id="togglePassword2">
+                                            <i class="bi bi-eye text-white" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
                                 <?= form_error('password2', '<div class="text-danger text-sm">', '</div>'); ?>
                             </div>
                         </div>
@@ -88,3 +110,25 @@
         </div>
     </div>
 </div>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function() {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+    });
+
+    const togglePassword2 = document.getElementById('togglePassword2');
+    const password2 = document.getElementById('password2');
+
+    togglePassword2.addEventListener('click', function() {
+        const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+        password2.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('bi-eye');
+        this.querySelector('i').classList.toggle('bi-eye-slash');
+    });
+</script>

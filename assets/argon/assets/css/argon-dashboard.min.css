@@ -21645,7 +21645,7 @@ label {
 }
 
 .icon-sm i {
-    top: 3px;
+    top: 0;
     font-size: .65rem
 }
 
@@ -23172,7 +23172,7 @@ hr.horizontal.gray-light {
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active {
-    color: #344767;
+    color: #00a8ff;
     background-color: hsla(0, 0%, 100%, .13)
 }
 

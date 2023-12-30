@@ -3,12 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Surat extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
 
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     $this->load->model('dashboard_model', 'dashboard');
-    // }
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+
+        if ($this->session->userdata('id_user') == FALSE) {
+            redirect(base_url("admin/auth/login"));
+        }
+    }
 
     public function surat_masuk()
     {
