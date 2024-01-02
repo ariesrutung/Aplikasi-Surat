@@ -43,19 +43,16 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto"><a href="<?= base_url('/'); ?>admin/home"></a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="<?= base_url('/'); ?>admin/home" class="logo me-auto"><img src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
+            <a href="<?= base_url('/'); ?>" class="logo me-auto"><img src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <!-- <li><a id="menuberanda" class="nav-link scrollto" href="<?= base_url('/'); ?>admin/home">Beranda</a></li> -->
                     <li>
-                        <a href="<?= base_url('/'); ?>admin/home" <?php if ($this->uri->segment(2) == "home") {
-                                                                        echo 'class="active"';
-                                                                    } ?>>Beranda</a>
+                        <a href="<?= base_url('/'); ?>" <?php if ($this->uri->segment(2) == "home") {
+                                                            echo 'class="active"';
+                                                        } ?>>Beranda</a>
                     </li>
-                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "profil" || $this->uri->segment(2) == "struktur" || $this->uri->segment(2) == "pimpinan") {
+                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "profil" || $this->uri->segment(2) == "struktur" || $this->uri->segment(2) == "pimpinan" || $this->uri->segment(2) == "perangkatdesa") {
                                                             echo 'class="active"';
                                                         } ?>><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -65,9 +62,12 @@
                             <li><a href="<?= base_url('/'); ?>frontend/struktur" <?php if ($this->uri->segment(2) == "struktur") {
                                                                                         echo 'class="active"';
                                                                                     } ?>>Struktur Organisasi</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/perangkatdesa" <?php if ($this->uri->segment(2) == "perangkatdesa") {
+                                                                                            echo 'class="active"';
+                                                                                        } ?>>Perangkat Desa</a></li>
                             <li><a href="<?= base_url('/'); ?>frontend/pimpinan" <?php if ($this->uri->segment(2) == "pimpinan") {
                                                                                         echo 'class="active"';
-                                                                                    } ?>>Profil Pimpinan</a></li>
+                                                                                    } ?>>Tata Kerja Perangkat Desa</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" <?php if ($this->uri->segment(3) == "berita"  || $this->uri->segment(3) == "detail_berita" || $this->uri->segment(3) == "pengumuman" || $this->uri->segment(3) == "detail_pengumuman" || $this->uri->segment(3) == "pelatihan" || $this->uri->segment(3) == "detail_pelatihan") {
@@ -104,17 +104,7 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <?php
-            // Pemeriksaan apakah pengguna sudah login
-            if ($this->session->logged_in) {
-                // Jika sudah login, tampilkan nama pengguna atau avatar atau hal lainnya
-                // Misalnya, tampilkan nama pengguna
-                echo '<span class="get-started-btn">Selamat datang, ' . ucfirst($this->session->username) . '</span>';
-            } else {
-                // Jika belum login, tampilkan link MASUK
-                echo '<a href="' . base_url('admin/auth/login') . '" class="get-started-btn scrollto">MASUK</a>';
-            }
-            ?>
+            <a href="<?= base_url('') ?>admin/auth/login" class="get-started-btn scrollto">MASUK</a>
         </div>
     </header>
     <?php if ($this->uri->uri_string() != 'admin/home' && $this->uri->uri_string() != '') : ?>

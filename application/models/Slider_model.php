@@ -60,4 +60,10 @@ class Slider_model extends CI_Model
         $this->db->update('slider', $data);
         return $this->db->affected_rows();
     }
+
+    public function get_slider_images()
+    {
+        $query = $this->db->get('slider');
+        return $query->result_array();
+    }
 }

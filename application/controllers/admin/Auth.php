@@ -51,12 +51,6 @@ class Auth extends CI_Controller
         }
     }
 
-    // public function logout()
-    // {
-    //     $this->session->sess_destroy();
-    //     redirect(base_url('auth/login'));
-    // }
-
     private function _sendEmail($token, $type)
     {
         $config = [
@@ -70,10 +64,6 @@ class Auth extends CI_Controller
             'newline' => "\r\n"
 
         ];
-
-        // $this->email->initialize($config);
-
-
 
         $this->load->library('email', $config);
 
@@ -131,7 +121,6 @@ class Auth extends CI_Controller
 
     public function resetPassword()
     {
-        // $this->load->view("auth/changePassword");
         $email = $this->input->get('email');
         $token = $this->input->get('token');
 

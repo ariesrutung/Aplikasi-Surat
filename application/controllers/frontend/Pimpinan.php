@@ -7,7 +7,7 @@ class Pimpinan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
+        // $this->load->model('Tatakerja_model');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -15,15 +15,12 @@ class Pimpinan extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
-        $data['profil'] = $this->galery->profil();
+        $data['tatakerja'] = $this->db->get('tatakerja')->result_array();
         $judul = [
-            'title' => 'Profil Pimpinan',
-            'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+            'title' => 'Tata Kerja Perangkat Desa',
+            'sub_title' => 'Jabaran tugas dan fungsi perangkat desa.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/pimpinan', $data);
         $this->load->view('frontend/new_ui/footer', $data);

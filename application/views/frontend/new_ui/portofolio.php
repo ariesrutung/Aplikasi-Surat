@@ -1,143 +1,65 @@
+<style>
+    .portfolio .portfolio-wrap .portfolio-links {
+        text-align: center;
+        z-index: 4;
+        height: 100%;
+        width: 100%;
+    }
+
+    .portfolio .portfolio-wrap .portfolio-links a {
+        height: 100%;
+        width: 100%;
+    }
+
+    .portfolio .portfolio-wrap {
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        background: rgba(17, 17, 17, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 <section id="portfolio" class="portfolio">
     <div class="container" data-aos="fade-up">
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-12 d-flex justify-content-center">
                 <ul id="portfolio-flters">
                     <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-card">Card</li>
-                    <li data-filter=".filter-web">Web</li>
+                    <?php foreach ($unique_categories as $category) : ?>
+                        <?php
+                            // Replace underscore with space in the category name
+                            $kategori_tampilan = str_replace('_', ' ', $category);
+                            ?>
+                        <li data-filter=".filter-<?php echo strtolower($category); ?>"><?php echo $kategori_tampilan; ?></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>App 1</h4>
-                        <p>App</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            <?php foreach ($unique_categories as $category) : ?>
+                <?php
+                    $filtered_portofolios = array_filter($portofolios, function ($item) use ($category) {
+                        return strtolower($item['kategori']) === strtolower($category);
+                    });
+                    ?>
+                <?php foreach ($filtered_portofolios as $portfolio) : ?>
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo strtolower($portfolio['kategori']); ?>">
+                        <div class="portfolio-wrap">
+                            <img src="<?= base_url('uploads/portofolio/' . $portfolio['gambar']); ?>" class="img-fluid portfolio-lightbox" data-gallery="portfolioGallery">
+                            <div class="portfolio-info">
+                                <div class="portfolio-links">
+                                    <a href="<?= base_url('uploads/portofolio/' . $portfolio['gambar']); ?>" data-gallery="portfolioGallery" class="portfolio-lightbox d-flex justify-content-center align-items-center" title="<?php echo $portfolio['judul']; ?>"><i class="bi bi-plus btn-xl"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Web 3</h4>
-                        <p>Web</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>App 2</h4>
-                        <p>App</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Card 2</h4>
-                        <p>Card</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Web 2</h4>
-                        <p>Web</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>App 3</h4>
-                        <p>App</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Card 1</h4>
-                        <p>Card</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Card 3</h4>
-                        <p>Card</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <div class="portfolio-wrap">
-                    <img src="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-                    <div class="portfolio-info">
-                        <h4>Web 3</h4>
-                        <p>Web</p>
-                        <div class="portfolio-links">
-                            <a href="<?= base_url(); ?>assets/frontend/assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
 
         </div>
 

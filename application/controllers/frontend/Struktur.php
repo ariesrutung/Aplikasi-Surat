@@ -15,7 +15,6 @@ class Struktur extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
         $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Struktur Organisasi',

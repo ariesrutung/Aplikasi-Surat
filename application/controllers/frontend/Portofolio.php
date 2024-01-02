@@ -8,6 +8,7 @@ class Portofolio extends CI_Controller
     {
         parent::__construct();
         $this->load->model('galery_model', 'galery');
+        $this->load->model('Portofolio_model');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -15,15 +16,15 @@ class Portofolio extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
         $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Portofolio Kegiatan',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
+        $data['portofolios'] = $this->Portofolio_model->get_all();
+        $data['unique_categories'] = array_unique(array_column($data['portofolios'], 'kategori'));
+
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/portofolio', $data);
         $this->load->view('frontend/new_ui/footer', $data);

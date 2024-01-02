@@ -164,4 +164,39 @@ class Penduduk extends CI_Controller
             }
         }
     }
+
+    public function ajax_list()
+    {
+        $list = $this->M_Penduduk->get_datatables();
+        $data = array();
+        // $no = $_POST['start'];
+        foreach ($list as $key => $info) {
+            $row = array();
+            $row[] = $key + 1; // Nomor urut
+            $row[] = $info->nama;
+            $row[] = $info->nik;
+            $row[] = $info->no_hp;
+            $row[] = $info->tmpt_lhr;
+            $row[] = $info->tgl_lhr;
+            $row[] = $info->alamat;
+            $row[] = $info->pekerjaan;
+            $row[] = "RT " . $info->rt . "/RW " . $info->rw;
+
+            $aksi = '<a href="' . base_url() . 'admin/penduduk/edit_data_penduduk/' . $info->nik . '" class="btn bg-gradient-primary btn-xs mx-1"><i class="fas fa-pencil-alt"></i></a>';
+            $aksi .= '<button type="button" class="btn bg-gradient-warning btn-xs mx-1" data-bs-toggle="modal" data-bs-target="#hapusPenduduk' . $info->nik . '"><i class="fas fa-trash-alt"></i></button>';
+
+            $row[] = $aksi;
+
+            $data[] = $row;
+        }
+
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->M_Penduduk->count_all(),
+            "recordsFiltered" => $this->M_Penduduk->count_filtered(),
+            "data" => $data,
+        );
+        echo json_encode($output);
+    }
 }

@@ -34,7 +34,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -48,7 +47,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_masuk';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -95,7 +93,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -111,7 +108,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_masuk';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -170,7 +166,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -184,7 +179,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_keluar';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -231,7 +225,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -247,7 +240,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_keluar';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -307,7 +299,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -321,7 +312,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_keterangan';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -368,7 +358,6 @@ class Surat extends CI_Controller
         $this->form_validation->set_rules('nama_surat', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tanggal_surat', 'Keterangan', 'required');
         $this->form_validation->set_rules('keterangan_surat', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -384,7 +373,6 @@ class Surat extends CI_Controller
             $nama_surat =  $this->input->post("nama_surat", TRUE);
             $tanggal_surat =  $this->input->post("tanggal_surat", TRUE);
             $keterangan_surat =  $this->input->post("keterangan_surat", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './uploads/surat_keterangan';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -428,7 +416,6 @@ class Surat extends CI_Controller
     {
         $judul = [
             'title' => 'Pengajuan Surat',
-            // 'sub_title' => 'Pengajuan S0urat'
         ];
 
         $data['status'] = [
@@ -489,15 +476,10 @@ class Surat extends CI_Controller
 
         $status = $this->input->post('status');
 
-        // var_dump($status);
-        // die;
-
         if ($status == 5) {
             $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
             $pndk = $this->db->get_where('penduduk', ['nik' => $pSurat['NIK']])->row_array();
             $dateNow = date('Y-m-d');
-            // var_dump($pSurat);
-            // die;
 
             $save = [
                 'nama_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $options[$pSurat['jenis_surat']],
@@ -521,7 +503,6 @@ class Surat extends CI_Controller
 
     public function hapusPengajuan($id)
     {
-
         $data = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
 
         unlink("./uploads/berkas/" . $data['file']);

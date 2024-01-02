@@ -32,7 +32,6 @@ class Informasi extends CI_Controller
         $data['detail'] = $this->db->get_where('informasi', ['slug' => $slug, 'kategori' => 'berita'])->row_array();
 
         if (!$data['detail']) {
-            // Handle jika berita tidak ditemukan
             show_404();
         }
 
@@ -88,9 +87,6 @@ class Informasi extends CI_Controller
             'title' => 'Pelatihan',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
-
-        // $data['pelatihan_terbaru'] = $this->Informasi_model->get_4_terbaru_by_kategori('pelatihan');
-
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/pelatihan', $data);
         $this->load->view('frontend/new_ui/footer', $data);

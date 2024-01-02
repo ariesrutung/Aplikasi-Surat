@@ -126,8 +126,6 @@ class Pegawai extends CI_Controller
             $this->load->view('backend/pegawai/edit_data_pegawai', $data);
             $this->load->view('backend/template/footer');
         } else {
-            // $data = $this->db->get_where('pegawai', ['id_pegawai' => $id])->row_array();
-            // unlink("./uploads/foto/" . $data['foto']);
 
             $nama =  $this->input->post("nama", TRUE);
             $nip =  $this->input->post("nip", TRUE);

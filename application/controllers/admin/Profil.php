@@ -53,6 +53,43 @@ class Profil extends CI_Controller
         redirect('admin/profil/profil');
     }
 
+
+    public function sambuatan()
+    {
+        $judul = [
+            'title' => 'Profil',
+            'sub_title' => ''
+        ];
+
+        $data['galeri'] = $this->Galeri_model->getProfil();
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/profil/profil_kelurahan', $data);
+        $this->load->view('backend/template/footer');
+    }
+
+    public function edit_sambuatan()
+    {
+        $judul = [
+            'title' => 'Edit Profil',
+            'sub_title' => ''
+        ];
+
+        $data['galeri'] = $this->Galeri_model->getProfil();
+        $this->load->view('backend/template/header', $judul);
+        $this->load->view('backend/profil/edit_profil_kelurahan', $data);
+        $this->load->view('backend/template/footer');
+    }
+
+    public function update_sambuatan()
+    {
+        $data['profile'] = $this->input->post('profile');
+        $this->Galeri_model->updateProfil($data);
+        $this->session->set_flashdata('success', 'Berhasil Di Update!');
+        redirect('admin/profil/profil');
+    }
+
+
+
     public function alur_surat_masuk()
     {
         $judul = [
@@ -314,5 +351,38 @@ class Profil extends CI_Controller
                 redirect(base_url("admin/profil/informasi"));
             }
         }
+    }
+
+    public function ajax_list()
+    {
+        $list = $this->informasi->get_datatables();
+        $data = array();
+        // $no = $_POST['start'];
+        foreach ($list as $key => $info) {
+            $row = array();
+            $row[] = $key + 1; // Nomor urut
+            $row[] = $info->judul;
+            // $row[] = $info->isi;
+            $row[] = strlen($info->isi) > 200 ? substr($info->isi, 0, 200) . '...' : $info->isi;
+            $row[] = $info->kategori;
+
+            // Kolom aksi
+            $aksi = '<a href="' . base_url("uploads/informasi") . '/' . $info->gambar . '" class="btn bg-gradient-info btn-xs mx-1" target="_blank"><i class="fas fa-file-pdf"></i></a>';
+            $aksi .= '<a href="' . base_url() . 'admin/profil/edit_informasi/' . $info->id . '" class="btn bg-gradient-primary btn-xs mx-1"><i class="fas fa-pencil-alt"></i></a>';
+            $aksi .= '<button type="button" class="btn bg-gradient-warning btn-xs mx-1" data-bs-toggle="modal" data-bs-target="#hapusInformasi' . $info->id . '"><i class="fas fa-trash-alt"></i></button>';
+
+            $row[] = $aksi;
+
+            $data[] = $row;
+        }
+
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->informasi->count_all(),
+            "recordsFiltered" => $this->informasi->count_filtered(),
+            "data" => $data,
+        );
+        echo json_encode($output);
     }
 }

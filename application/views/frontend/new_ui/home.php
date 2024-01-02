@@ -26,6 +26,21 @@
         padding: 5px 0;
     }
 
+    .section-bg:before {
+        content: "";
+        background: #1b1b1b;
+        position: absolute;
+        bottom: 60px;
+        top: 30px;
+        left: 0;
+        right: 0;
+        transform: skewY(-1deg);
+    }
+
+    section#services {
+        padding-top: 80px;
+    }
+
     h3.tujuan:after,
     h3:after {
         content: " " !important;
@@ -39,8 +54,28 @@
         margin-top: 10px;
     }
 
-    #hero {
-        clip-path: polygon(100% 0, 100% 90%, 0 100%, 0 0);
+    #carousel {
+        clip-path: polygon(100% 0, 100% 95%, 0 100%, 0 0);
+        /* clip-path: polygon(100% 0, 100% 95%, 50% 95%, 0 100%, 0 0); */
+    }
+
+    #carousel h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        color: #fff;
+        text-align: left !important;
+        width: 100%;
+        padding-right: 40%;
+    }
+
+    #carousel h2 {
+        color: #fff;
+        margin: 10px 0 0 0;
+        font-size: 24px;
+        text-align: left;
+        width: 100%;
+        padding-right: 30%;
     }
 
     .testimonial-wrap {
@@ -174,17 +209,45 @@
         object-fit: contain;
     }
 </style>
-<section id="hero" class="d-flex align-items-center py-0">
-    <div class="container" data-aos="zoom-out" data-aos-delay="100">
-        <div class="row">
-            <div class="col-xl-6">
-                <h1>Sistem Manajemen Desa dan Persuratan Elektronik</h1>
-                <h2>Membantu memudahkan urusan pengelolaan desa dan mendukung efektifitas kinerja di lingkungan pedesaan.</h2>
-                <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
+<div id="carousel" class="carousel slide" data-ride="carousel">
+    <?php if (!empty($active_sliders)) : ?>
+        <ol class="carousel-indicators">
+            <?php foreach ($active_sliders as $index => $slider) : ?>
+                <li data-target="#carousel" data-slide-to="<?php echo $index; ?>" <?php echo ($index == 0) ? 'class="active"' : ''; ?>></li>
+            <?php endforeach; ?>
+        </ol>
+        <div class="carousel-inner">
+            <?php foreach ($active_sliders as $index => $slider) : ?>
+                <div class="carousel-item <?= ($index == 0) ? 'active' : ''; ?>">
+                    <img style="background-size: contain !important;" src="<?php echo base_url('uploads/slider/' . $slider->gambar); ?>" alt="Carousel Image">
+                    <div class="carousel-caption">
+                        <h1 class="animated fadeInLeft"><?= $slider->judul; ?></h1>
+                        <h2 class="animated fadeInRight"><?= $slider->subjudul; ?></h2>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php if (count($active_sliders) > 1) : ?>
+            <!-- Tampilkan carousel control hanya jika ada lebih dari satu gambar yang aktif -->
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        <?php endif; ?>
+    <?php else : ?>
+        <!-- Tampilkan gambar default jika tidak ada slider yang aktif -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img style="background-size: contain !important;" src="<?php echo base_url('assets/frontend/assets/img/blog/blog-recent-4.jpg'); ?>" alt="Default Image">
             </div>
         </div>
-    </div>
-</section>
+    <?php endif; ?>
+</div>
+
 
 <main id="main">
 

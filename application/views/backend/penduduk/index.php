@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+
+<!-- Optional JS -->
+<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/jquery/dist/jquery.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+
 <style>
     .text-center {
         text-align: center;
@@ -20,6 +29,72 @@
         font-size: 14px;
         color: #fff;
     }
+
+    div#tbl_penduduk_info {
+        color: #8392ab;
+        font-size: .875rem;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
+        margin: 0 4px;
+    }
+
+    .page-item .page-link,
+    .page-item span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8392ab;
+        padding: 0;
+        margin: 0 3px;
+        border-radius: 50% !important;
+        width: 100% !important;
+        height: 36px;
+        font-size: 0.875rem;
+        border-radius: 10px !important;
+        margin: 0 10px !important;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .page-item.active .page-link {
+        color: #fff !important;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .table thead th {
+        padding: 0.5rem 0.5rem;
+        text-transform: capitalize;
+        letter-spacing: 0px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .alert.alert-success {
+        margin: 5px 20px;
+        padding: 15px;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .text-sm {
+        white-space: normal !important;
+    }
+
+    .table .thead-light th {
+        color: #8898aa;
+        background-color: #f6f9fc;
+    }
+
+    .table .thead-light th {
+        color: #8898aa;
+        border-color: #e9ecef;
+        background-color: #f6f9fc;
+    }
 </style>
 <div class="container-fluid py-4">
     <div class="row">
@@ -37,44 +112,21 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
+                            <table id="tbl_penduduk" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No.</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nama Lengkap</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">NIK</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No. HP</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Tempat Lahir</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Tanggal Lahir</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Alamat</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Pekerjaan</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">RT/RW</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No. HP</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Aksi</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 text-center">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($data as $key) : ?>
-                                        <tr>
-                                            <td class="text-secondary font-weight-normal text-sm text-center"><?= $no; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['nama']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['nik']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['tmpt_lhr']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['tgl_lhr']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['alamat']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['pekerjaan']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['rw'] . '/' . $key['rt']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm"><?= $key['no_hp']; ?></td>
-                                            <td class="text-right">
-                                                <a href="<?= base_url() ?>admin/penduduk/edit_data_penduduk/<?= $key['nik']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
-                                                <button type="button" class="btn bg-gradient-warning btn-xs mb-0    " data-bs-toggle="modal" data-bs-target="#hapusPenduduk<?= $key['nik']; ?>"><i class="fas fa-trash-alt"></i></button>
-
-                                            </td>
-                                        </tr>
-                                        <?php $no++; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -109,3 +161,81 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tbl_penduduk').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "<?= base_url('admin/penduduk/ajax_list'); ?>",
+                "type": "POST"
+            },
+            "columns": [{
+                    "data": "0",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-5 text-center">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "1",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-25">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "2",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-50">' + data + '</span>';
+                    }
+                },
+
+                {
+                    "data": "3",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "4",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "5",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "6",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "7",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "8",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "9",
+                    "render": function(data, type, row) {
+                        return data;
+                    }
+                },
+            ],
+            "createdRow": function(row, data, dataIndex) {
+                $('th', row).addClass('text-capitalize text-secondary text-sm font-weight-bolder opacity-7');
+            }
+        });
+    });
+</script>

@@ -20,7 +20,6 @@ class Dashboard extends CI_Controller
             'sub_title' => ''
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         $januari = $this->db->query('SELECT * FROM surat_masuk WHERE month(tanggal_surat_masuk)="1"')->num_rows();
         $februari = $this->db->query('SELECT * FROM surat_masuk WHERE month(tanggal_surat_masuk)="2"')->num_rows();
         $maret = $this->db->query('SELECT * FROM surat_masuk WHERE month(tanggal_surat_masuk)="3"')->num_rows();

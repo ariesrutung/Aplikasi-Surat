@@ -46,14 +46,9 @@ class Suratonline extends CI_Controller
             ],
         ];
 
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/s_online', $data);
         $this->load->view('frontend/new_ui/footer', $data);
-        // $this->load->view('frontend/header2', $judul);
-        // $this->load->view('frontend/s_online', $data);
-        // $this->load->view('frontend/footer2', $data);
     }
 
     public function ajukan()
@@ -82,7 +77,6 @@ class Suratonline extends CI_Controller
             $this->db->insert('penduduk', $save);
         }
 
-        //Output a v4 UUID 
         $rid = uniqid($jenis_surat, TRUE);
         $rid2 = str_replace('.', '', $rid);
         $rid3 = substr(str_shuffle($rid2), 0, 3);
@@ -96,9 +90,6 @@ class Suratonline extends CI_Controller
         $s = date('s');
         $randomize = $d + $y + $mnth + $s;
         $id = $id . $rid3 . $randomize . $count . $y;
-
-        // var_dump($id);
-        // die;
 
         if ($_FILES['file']['size'] >= 5242880) {
             $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
@@ -125,17 +116,12 @@ class Suratonline extends CI_Controller
 
         $data = [
             'id' => $id,
-            // 'nama' => $nama,
             'nik' => $nik,
-            // 'no_hp' => $no_hp,
             'jenis_surat' => $jenis_surat,
             'file' => $file,
             'tanggal' => date('Y-m-d'),
             'status' => $status[1]
         ];
-
-        // var_dump($data);
-        // die;
 
         $this->pengajuan_track->insert_p_surat($data);
         $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Anda telah berhasil mengajukan permohonan pembuatan surat <b>' . $jenis_surat . '</b> dengan <b>ID</b> <b>' . $id . '</b></div>');
