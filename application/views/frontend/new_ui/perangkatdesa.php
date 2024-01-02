@@ -35,6 +35,10 @@
         color: #00a8ff;
         font-weight: bold;
     }
+
+    .team .member .member-info span {
+        text-transform: uppercase;
+    }
 </style>
 <section id="team" class="team section-bg">
     <div class="container aos-init aos-animate" data-aos="fade-up">
@@ -54,7 +58,17 @@
                             </div>
                         </div>
                         <div class="member-info">
-                            <h4><?= $pd['nama_lengkap'] ?></h4>
+                            <h4>
+                                <?php
+                                    $namaArray = explode(' ', $pd['nama_lengkap']);
+                                    $jumlahKata = count($namaArray);
+                                    if ($jumlahKata > 2) {
+                                        echo $namaArray[0] . ' ' . $namaArray[$jumlahKata - 1];
+                                    } else {
+                                        echo $pd['nama_lengkap'];
+                                    }
+                                    ?>
+                            </h4>
                             <span><?= $pd['jabatan'] ?></span>
                         </div>
                     </div>
