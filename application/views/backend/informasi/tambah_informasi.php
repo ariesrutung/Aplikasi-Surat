@@ -67,14 +67,17 @@
                                     <option value="berita">Berita</option>
                                     <option value="pengumuman">Pengumuman</option>
                                     <option value="pelatihan">Pelatihan</option>
-                                    <option value="profil">Profil Kelurahan</option>
-                                    <option value="alur_surat_masuk">Alur Surat Masuk</option>
-                                    <option value="alur_surat_keluar">Alur Surat Keluar</option>
-                                    <option value="maksud_dan_tujuan">Maksud & Tujuan</option>
-                                    <option value="struktur_organisasi">Struktur Organisasi</option>
-                                    <option value="profil">Profil</option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="col-sm-6" style="visibility: hidden;">
+                            <div class="form-group">
+                                <label class="text-label">Status</label><br>
+                                <input type="radio" name="status" value="1" checked> Aktif
+                                <input type="radio" name="status" value="0"> Nonaktif
+                            </div>
+                            <?= form_error('status', '<div class="text-danger">', '</div>'); ?>
                         </div>
                     </div>
                     <div class="category form-category">

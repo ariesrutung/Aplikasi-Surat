@@ -38,12 +38,25 @@
                             </div>
                         </div>
 
-
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="fungsi" class="form-control-label">Fungsi</label>
                                 <textarea class="form-control" name="fungsi" id="fungsi" type="text" value="<?= set_value('fungsi'); ?>"></textarea>
                                 <?= form_error('fungsi', '<div class="text-danger text-sm">', '</div>'); ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ket_tugas" class="form-control-label">Keterangan Tugas</label>
+                                <input class="form-control" name="ket_tugas" id="ket_tugas" type="text" placeholder="Misalnya, Tugas Kepala Desa" value="<?= set_value('ket_tugas'); ?>">
+                                <?= form_error('ket_tugas', '<div class="text-danger text-sm">', '</div>'); ?>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ket_fungsi" class="form-control-label">Keterangan Fungsi</label>
+                                <input class="form-control" name="ket_fungsi" id="ket_fungsi" type="text" placeholder="Misalnya, Fungsi Kepala Desa" value="<?= set_value('ket_fungsi'); ?>">
                             </div>
                         </div>
                         <div class="col-sm-6">

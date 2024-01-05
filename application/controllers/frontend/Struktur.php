@@ -7,7 +7,6 @@ class Struktur extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -15,13 +14,12 @@ class Struktur extends CI_Controller
 
     public function index()
     {
-        $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Struktur Organisasi',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 
-        $data['struktur_org'] = $this->db->get_where('informasi', ['kategori' => 'struktur_organisasi'])->row_array();
+        $data['struktur_org'] = $this->db->get_where('profil', ['kategori' => 'struktur_organisasi'])->row_array();
 
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/struktur', $data);

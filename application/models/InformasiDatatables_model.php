@@ -1,11 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class InfoModel extends CI_Model
+class Informasi_model extends CI_Model
 {
+
     var $table = 'informasi';
-    var $column_order = array('id', 'judul', 'isi', 'lokasi', 'tanggal', 'kategori', 'aksi');
-    var $column_search = array('id', 'judul', 'isi', 'lokasi', 'tanggal', 'kategori', 'aksi');
+    var $column_order = array('id', 'judul', 'isi', 'lokasi', 'gambar', 'ket_gambar', 'slug', 'tanggal', 'kategori', 'penulis');
+    var $column_search = array('id', 'judul', 'isi', 'lokasi', 'gambar', 'ket_gambar', 'slug', 'tanggal', 'kategori', 'penulis');
     var $order = array('id' => 'asc');
 
     private function _get_datatables_query()
@@ -57,5 +58,27 @@ class InfoModel extends CI_Model
     {
         $this->db->from($this->table);
         return $this->db->count_all_results();
+    }
+
+    public function get_informasi()
+    {
+        return $this->db->get('informasi')->result();
+    }
+
+    public function tambah_informasi($data)
+    {
+        $this->db->insert('informasi', $data);
+        return $this->db->insert_id();
+    }
+
+    public function get_4_terbaru_by_kategori($kategori)
+    {
+        $this->db->select('*');
+        $this->db->from('informasi');
+        $this->db->where('kategori', $kategori);
+        $this->db->order_by('tanggal', 'desc');
+        $this->db->limit(4);
+        $query = $this->db->get();
+        return $query->result();
     }
 }

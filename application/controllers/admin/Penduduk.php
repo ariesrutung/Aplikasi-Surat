@@ -10,7 +10,7 @@ class Penduduk extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
-        $this->load->model('M_Penduduk');
+        $this->load->model('Penduduk_model');
         if ($this->session->userdata('id_user') == FALSE) {
             redirect(base_url("admin/auth/login"));
         }
@@ -71,6 +71,7 @@ class Penduduk extends CI_Controller
             $alamat =  $this->input->post("alamat", TRUE);
             $no_hp =  $this->input->post("no_hp", TRUE);
             $pekerjaan =  $this->input->post("pekerjaan", TRUE);
+            $pendidikan =  $this->input->post("pendidikan", TRUE);
             $rw =  $this->input->post("rw", TRUE);
             $rt =  $this->input->post("rt", TRUE);
 
@@ -82,6 +83,7 @@ class Penduduk extends CI_Controller
                 'alamat' => $alamat,
                 'no_hp' => $no_hp,
                 'pekerjaan' => $pekerjaan,
+                'pendidikan' => $pendidikan,
                 'rw' => $rw,
                 'rt' => $rt
 
@@ -125,6 +127,7 @@ class Penduduk extends CI_Controller
             $tgl_lhr =  $this->input->post("tgl_lhr", TRUE);
             $alamat =  $this->input->post("alamat", TRUE);
             $no_hp =  $this->input->post("no_hp", TRUE);
+            $pendidikan =  $this->input->post("pendidikan", TRUE);
             $pekerjaan =  $this->input->post("pekerjaan", TRUE);
             $rw =  $this->input->post("rw", TRUE);
             $rt =  $this->input->post("rt", TRUE);
@@ -136,6 +139,7 @@ class Penduduk extends CI_Controller
                 'tgl_lhr' => date('Y-m-d', strtotime($tgl_lhr)),
                 'alamat' => $alamat,
                 'no_hp' => $no_hp,
+                'pendidikan' => $pendidikan,
                 'pekerjaan' => $pekerjaan,
                 'rw' => $rw,
                 'rt' => $rt
@@ -152,7 +156,7 @@ class Penduduk extends CI_Controller
     function get_autocomplete()
     {
         if (isset($_GET['term'])) {
-            $result = $this->M_Penduduk->search_nik($_GET['term']);
+            $result = $this->Penduduk_model->search_nik($_GET['term']);
             if (count($result) > 0) {
                 foreach ($result as $row)
                     $arr_result[] = array(
@@ -167,20 +171,22 @@ class Penduduk extends CI_Controller
 
     public function ajax_list()
     {
-        $list = $this->M_Penduduk->get_datatables();
+        $list = $this->Penduduk_model->get_datatables();
         $data = array();
-        // $no = $_POST['start'];
         foreach ($list as $key => $info) {
             $row = array();
             $row[] = $key + 1; // Nomor urut
             $row[] = $info->nama;
             $row[] = $info->nik;
             $row[] = $info->no_hp;
-            $row[] = $info->tmpt_lhr;
-            $row[] = $info->tgl_lhr;
-            $row[] = $info->alamat;
+
+            $tanggal_lahir = $info->tgl_lhr;
+            $tanggal_lahir_format = date('d-m-Y', strtotime($tanggal_lahir));
+            $row[] = $info->tmpt_lhr . ", " . $tanggal_lahir_format;
+
+            $row[] = $info->alamat . " " . "RT " . $info->rt . "/RW " . $info->rw;
             $row[] = $info->pekerjaan;
-            $row[] = "RT " . $info->rt . "/RW " . $info->rw;
+            $row[] = $info->pendidikan;
 
             $aksi = '<a href="' . base_url() . 'admin/penduduk/edit_data_penduduk/' . $info->nik . '" class="btn bg-gradient-primary btn-xs mx-1"><i class="fas fa-pencil-alt"></i></a>';
             $aksi .= '<button type="button" class="btn bg-gradient-warning btn-xs mx-1" data-bs-toggle="modal" data-bs-target="#hapusPenduduk' . $info->nik . '"><i class="fas fa-trash-alt"></i></button>';
@@ -193,10 +199,18 @@ class Penduduk extends CI_Controller
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->M_Penduduk->count_all(),
-            "recordsFiltered" => $this->M_Penduduk->count_filtered(),
+            "recordsTotal" => $this->Penduduk_model->count_all(),
+            "recordsFiltered" => $this->Penduduk_model->count_filtered(),
             "data" => $data,
         );
         echo json_encode($output);
+    }
+
+    public function getPekerjaan()
+    {
+        $searchTerm = $this->input->post('searchTerm');
+        $response = $this->Penduduk_model->getPekerjaan($searchTerm);
+
+        echo json_encode($response);
     }
 }

@@ -7,9 +7,7 @@ class Profil extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Galeri_model');
-        $this->load->model('Galery_model', 'galery');
-        $this->load->model('Informasi_model', 'informasi');
+        $this->load->model('Profil_model');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -19,205 +17,34 @@ class Profil extends CI_Controller
         }
     }
 
-    public function profil()
-    {
-        $judul = [
-            'title' => 'Profil',
-            'sub_title' => ''
-        ];
-
-        $data['galeri'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/profil_kelurahan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function edit_profil()
-    {
-        $judul = [
-            'title' => 'Edit Profil',
-            'sub_title' => ''
-        ];
-
-        $data['galeri'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/edit_profil_kelurahan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function update()
-    {
-        $data['profile'] = $this->input->post('profile');
-        $this->Galeri_model->updateProfil($data);
-        $this->session->set_flashdata('success', 'Berhasil Di Update!');
-        redirect('admin/profil/profil');
-    }
-
-
-    public function sambuatan()
-    {
-        $judul = [
-            'title' => 'Profil',
-            'sub_title' => ''
-        ];
-
-        $data['galeri'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/profil_kelurahan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function edit_sambuatan()
-    {
-        $judul = [
-            'title' => 'Edit Profil',
-            'sub_title' => ''
-        ];
-
-        $data['galeri'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/edit_profil_kelurahan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function update_sambuatan()
-    {
-        $data['profile'] = $this->input->post('profile');
-        $this->Galeri_model->updateProfil($data);
-        $this->session->set_flashdata('success', 'Berhasil Di Update!');
-        redirect('admin/profil/profil');
-    }
-
-
-
-    public function alur_surat_masuk()
-    {
-        $judul = [
-            'title' => 'Alur Surat Masuk',
-            'sub_title' => ''
-        ];
-
-        $data['alur'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/alur_surat_masuk', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function edit_alur_surat_masuk()
-    {
-        $judul = [
-            'title' => 'Edit Alur Surat Masuk',
-            'sub_title' => ''
-        ];
-        $data['alur'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/edit_alur_surat_masuk', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function update_alur_surat_masuk()
-    {
-        $data['alur_surat_masuk'] = $this->input->post('alur_surat_masuk');
-        $this->Galeri_model->updateProfil($data);
-        $this->session->set_flashdata('success', 'Berhasil Di Update!');
-        redirect('admin/profil/alur_surat_masuk');
-    }
-
-    public function alur_surat_keluar()
-    {
-        $judul = [
-            'title' => 'Alur Surat Keluar',
-            'sub_title' => ''
-        ];
-
-        $data['alur'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/alur_surat_keluar', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function edit_alur_surat_keluar()
-    {
-        $judul = [
-            'title' => 'Edit Alur Surat Keluar',
-            'sub_title' => ''
-        ];
-        $data['alur'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/edit_alur_surat_keluar', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function update_alur_surat_keluar()
-    {
-        $data['alur_surat_keluar'] = $this->input->post('alur_surat_keluar');
-        $this->Galeri_model->updateProfil($data);
-        $this->session->set_flashdata('success', 'Berhasil Di Update!');
-        redirect('admin/profil/alur_surat_keluar');
-    }
-
-    public function maksud_tujuan()
-    {
-        $judul = [
-            'title' => 'Maksud & Tujuan',
-            'sub_title' => ''
-        ];
-
-        $data['profil'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/maksud_tujuan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function edit_maksud_tujuan()
-    {
-        $judul = [
-            'title' => 'Edit Maksud & Tujuan',
-            'sub_title' => ''
-        ];
-
-        $data['profil'] = $this->Galeri_model->getProfil();
-        $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/profil/edit_maksud_tujuan', $data);
-        $this->load->view('backend/template/footer');
-    }
-
-    public function update_maksud_tujuan()
-    {
-        $data['maksud_tujuan'] = $this->input->post('maksud_tujuan');
-        $this->Galeri_model->updateProfil($data);
-        $this->session->set_flashdata('success', 'Berhasil Di Update!');
-        redirect('admin/profil/maksud_tujuan');
-    }
-
-    public function informasi()
+    public function index()
     {
 
         $judul = [
-            'title' => 'Management Informasi',
+            'title' => 'Management Profil',
             'sub_title' => ''
         ];
 
-        $data['data'] = $this->db->get('informasi')->result_array();
+        $data['data'] = $this->db->get('profil')->result_array();
         $this->load->view('backend/template/header', $judul);
-        $this->load->view('backend/informasi/index', $data);
+        $this->load->view('backend/profil/index', $data);
         $this->load->view('backend/template/footer');
     }
 
-    public function hapus_informasi($id)
+    public function hapus_profil($id)
     {
 
-        $data = $this->db->get_where('informasi', ['id' => $id])->row_array();
+        $data = $this->db->get_where('profil', ['id' => $id])->row_array();
 
-        unlink("./uploads/informasi/" . $data['gambar']);
+        unlink("./uploads/profil/" . $data['gambar']);
 
         $this->db->where(['id' => $id]);
-        $this->db->delete('informasi');
+        $this->db->delete('profil');
         $this->session->set_flashdata('success', 'Berhasil Dihapus!');
-        redirect(base_url('admin/profil/informasi'));
+        redirect(base_url('admin/profil'));
     }
 
-    public function tambah_informasi()
+    public function tambah_profil()
     {
 
         $this->form_validation->set_rules('judul', 'Judul', 'required');
@@ -230,11 +57,11 @@ class Profil extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
-                'title' => 'Tambah Informasi',
+                'title' => 'Tambah Profil',
                 'sub_title' => ''
             ];
             $this->load->view('backend/template/header', $judul);
-            $this->load->view('backend/informasi/tambah_informasi');
+            $this->load->view('backend/profil/tambah_profil');
             $this->load->view('backend/template/footer');
         } else {
 
@@ -246,7 +73,7 @@ class Profil extends CI_Controller
             $kategori = $this->input->post("kategori", TRUE);
             $penulis = $this->session->userdata('id_user');
 
-            $config['upload_path']          = './uploads/informasi';
+            $config['upload_path']          = './uploads/profil';
             $config['allowed_types']        = 'png|jpg|jpeg|pdf';
             $this->load->library('upload', $config);
 
@@ -268,14 +95,14 @@ class Profil extends CI_Controller
                     'penulis' => $penulis,
                 ];
 
-                $this->db->insert('informasi', $save);
+                $this->db->insert('profil', $save);
                 $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("admin/profil/informasi"));
+                redirect(base_url("admin/profil"));
             }
         }
     }
 
-    public function edit_informasi($id)
+    public function edit_profil($id)
     {
         $this->form_validation->set_rules('judul', 'Judul', 'required');
         $this->form_validation->set_rules('isi', 'Isi', 'required');
@@ -287,13 +114,13 @@ class Profil extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
-                'title' => 'Management Informasi',
+                'title' => 'Management Profil',
                 'sub_title' => 'Surat Masuk'
             ];
 
-            $data['informasi'] = $this->db->get_where('informasi', ['id' => $id])->row_array();
+            $data['profil'] = $this->db->get_where('profil', ['id' => $id])->row_array();
             $this->load->view('backend/template/header', $judul);
-            $this->load->view('backend/informasi/edit_informasi', $data);
+            $this->load->view('backend/profil/edit_profil', $data);
             $this->load->view('backend/template/footer');
         } else {
             $judul = $this->input->post("judul", TRUE);
@@ -303,16 +130,17 @@ class Profil extends CI_Controller
             $tanggal = $this->input->post("tanggal", TRUE);
             $kategori = $this->input->post("kategori", TRUE);
 
-            $config['upload_path']          = './uploads/informasi';
+            $config['upload_path']          = './uploads/profil';
             $config['allowed_types']        = 'png|jpg|jpeg';
             $this->load->library('upload', $config);
 
+            // Cek apakah gambar diunggah
             if ($this->upload->do_upload('gambar')) {
-                $data = $this->db->get_where('informasi', ['id' => $id])->row_array();
-                unlink("./uploads/informasi/" . $data['gambar']);
+                $data = $this->db->get_where('profil', ['id' => $id])->row_array();
+                unlink("./uploads/profil/" . $data['gambar']);
 
-                $data = array('upload_data' => $this->upload->data());
-                $gambar = $data['upload_data']['file_name'];
+                $uploaded_data = $this->upload->data();
+                $gambar = $uploaded_data['file_name'];
                 $slug = url_title($this->input->post('judul'), 'dash', TRUE);
 
                 $update = [
@@ -324,15 +152,17 @@ class Profil extends CI_Controller
                     'slug' => $slug,
                     'tanggal' => $tanggal,
                     'kategori' => $kategori,
-
                 ];
 
                 $this->db->where('id', $id);
-                $this->db->update('informasi', $update);
+                $this->db->update('profil', $update);
 
                 $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("admin/profil/informasi"));
+                redirect(base_url("admin/profil"));
             } else {
+                // Jika gambar tidak diunggah, gunakan gambar yang sudah ada
+                $gambar = $this->db->get_where('profil', ['id' => $id])->row_array()['gambar'];
+
                 $update = [
                     'judul' => $judul,
                     'isi' => $isi,
@@ -345,44 +175,11 @@ class Profil extends CI_Controller
                 ];
 
                 $this->db->where('id', $id);
-                $this->db->update('informasi', $update);
+                $this->db->update('profil', $update);
 
                 $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("admin/profil/informasi"));
+                redirect(base_url("admin/profil"));
             }
         }
-    }
-
-    public function ajax_list()
-    {
-        $list = $this->informasi->get_datatables();
-        $data = array();
-        // $no = $_POST['start'];
-        foreach ($list as $key => $info) {
-            $row = array();
-            $row[] = $key + 1; // Nomor urut
-            $row[] = $info->judul;
-            // $row[] = $info->isi;
-            $row[] = strlen($info->isi) > 200 ? substr($info->isi, 0, 200) . '...' : $info->isi;
-            $row[] = $info->kategori;
-
-            // Kolom aksi
-            $aksi = '<a href="' . base_url("uploads/informasi") . '/' . $info->gambar . '" class="btn bg-gradient-info btn-xs mx-1" target="_blank"><i class="fas fa-file-pdf"></i></a>';
-            $aksi .= '<a href="' . base_url() . 'admin/profil/edit_informasi/' . $info->id . '" class="btn bg-gradient-primary btn-xs mx-1"><i class="fas fa-pencil-alt"></i></a>';
-            $aksi .= '<button type="button" class="btn bg-gradient-warning btn-xs mx-1" data-bs-toggle="modal" data-bs-target="#hapusInformasi' . $info->id . '"><i class="fas fa-trash-alt"></i></button>';
-
-            $row[] = $aksi;
-
-            $data[] = $row;
-        }
-
-
-        $output = array(
-            "draw" => $_POST['draw'],
-            "recordsTotal" => $this->informasi->count_all(),
-            "recordsFiltered" => $this->informasi->count_filtered(),
-            "data" => $data,
-        );
-        echo json_encode($output);
     }
 }

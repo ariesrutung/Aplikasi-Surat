@@ -1,102 +1,4 @@
-<link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-
-<!-- Optional JS -->
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/jquery/dist/jquery.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-
-<style>
-    .text-center {
-        text-align: center;
-    }
-
-    .text-left {
-        text-align: left;
-    }
-
-    .table thead th {
-        padding: 0.5rem 0.5rem;
-        text-transform: capitalize;
-        letter-spacing: 0px;
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    .alert.alert-success {
-        margin: 5px 20px;
-        padding: 15px;
-        font-size: 14px;
-        color: #fff;
-    }
-
-    div#tbl_penduduk_info {
-        color: #8392ab;
-        font-size: .875rem;
-    }
-
-    div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
-        margin: 0 4px;
-    }
-
-    .page-item .page-link,
-    .page-item span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #8392ab;
-        padding: 0;
-        margin: 0 3px;
-        border-radius: 50% !important;
-        width: 100% !important;
-        height: 36px;
-        font-size: 0.875rem;
-        border-radius: 10px !important;
-        margin: 0 10px !important;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .page-item.active .page-link {
-        color: #fff !important;
-    }
-
-    .text-left {
-        text-align: left;
-    }
-
-    .table thead th {
-        padding: 0.5rem 0.5rem;
-        text-transform: capitalize;
-        letter-spacing: 0px;
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    .alert.alert-success {
-        margin: 5px 20px;
-        padding: 15px;
-        font-size: 14px;
-        color: #fff;
-    }
-
-    .text-sm {
-        white-space: normal !important;
-    }
-
-    .table .thead-light th {
-        color: #8898aa;
-        background-color: #f6f9fc;
-    }
-
-    .table .thead-light th {
-        color: #8898aa;
-        border-color: #e9ecef;
-        background-color: #f6f9fc;
-    }
-</style>
-<div class="container-fluid py-4">
+<div id="halPenduduk" class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
@@ -115,16 +17,15 @@
                             <table id="tbl_penduduk" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No.</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nama Lengkap</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">NIK</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">No. HP</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Tempat Lahir</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Tanggal Lahir</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Alamat</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">Pekerjaan</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7">RT/RW</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 text-center">Aksi</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-2">No.</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">Nama Lengkap</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">NIK</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">No. HP</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-15">Tempat, Tanggal Lahir</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-20">Alamat</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">Pekerjaan</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">Pendidikan</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 text-center w-10">Aksi</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -175,26 +76,30 @@
                     "data": "0",
                     "render": function(data) {
                         return '<span class="text-secondary font-weight-normal text-sm w-5 text-center">' + data + '</span>';
-                    }
+                    },
+                    "orderable": false,
                 },
                 {
                     "data": "1",
                     "render": function(data) {
                         return '<span class="text-secondary font-weight-normal text-sm w-25">' + data + '</span>';
-                    }
+                    },
+                    "orderable": false,
                 },
                 {
                     "data": "2",
                     "render": function(data) {
-                        return '<span class="text-secondary font-weight-normal text-sm w-50">' + data + '</span>';
-                    }
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    },
+                    "orderable": false,
                 },
 
                 {
                     "data": "3",
                     "render": function(data) {
                         return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
-                    }
+                    },
+                    "orderable": false,
                 },
                 {
                     "data": "4",
@@ -206,7 +111,8 @@
                     "data": "5",
                     "render": function(data) {
                         return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
-                    }
+                    },
+                    "orderable": false,
                 },
                 {
                     "data": "6",
@@ -222,19 +128,14 @@
                 },
                 {
                     "data": "8",
-                    "render": function(data) {
-                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
-                    }
-                },
-                {
-                    "data": "9",
                     "render": function(data, type, row) {
                         return data;
-                    }
+                    },
+                    "orderable": false,
                 },
             ],
             "createdRow": function(row, data, dataIndex) {
-                $('th', row).addClass('text-capitalize text-secondary text-sm font-weight-bolder opacity-7');
+                $('th', row).addClass('text-capitalize text-secondary text-sm font-weight-bolder text-center opacity-7');
             }
         });
     });

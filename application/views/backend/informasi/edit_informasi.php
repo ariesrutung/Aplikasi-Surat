@@ -61,12 +61,6 @@
                                     <option value="berita" <?= ($informasi['kategori'] == 'berita') ? 'selected' : ''; ?>>Berita</option>
                                     <option value="pengumuman" <?= ($informasi['kategori'] == 'pengumuman') ? 'selected' : ''; ?>>Pengumuman</option>
                                     <option value="pelatihan" <?= ($informasi['kategori'] == 'pelatihan') ? 'selected' : ''; ?>>Pelatihan</option>
-                                    <option value="profil" <?= ($informasi['kategori'] == 'profil') ? 'selected' : ''; ?>>Profil Kelurahan</option>
-                                    <option value="alur_surat_masuk" <?= ($informasi['kategori'] == 'alur_surat_masuk') ? 'selected' : ''; ?>>Alur Surat Masuk</option>
-                                    <option value="alur_surat_keluar" <?= ($informasi['kategori'] == 'alur_surat_keluar') ? 'selected' : ''; ?>>Alur Surat Keluar</option>
-                                    <option value="maksud_dan_tujuan" <?= ($informasi['kategori'] == 'maksud_dan_tujuan') ? 'selected' : ''; ?>>Maksud & Tujuan</option>
-                                    <option value="struktur_organisasi" <?= ($informasi['kategori'] == 'struktur_organisasi') ? 'selected' : ''; ?>>Struktur Organisasi</option>
-                                    <option value="profil" <?= ($informasi['kategori'] == 'profil') ? 'selected' : ''; ?>>Profil</option>
                                 </select>
                                 <?= form_error('kategori', '<div class="text-danger">', '</div>'); ?>
                             </div>

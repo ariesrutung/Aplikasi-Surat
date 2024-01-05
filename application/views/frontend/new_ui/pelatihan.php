@@ -19,50 +19,57 @@
         <div class="row">
             <div class="col-lg-12 entries">
                 <div class="row">
-                    <?php foreach ($informasi as $info) : ?>
+                    <?php if (empty($active_pelatihan)) : ?>
                         <div class="col-lg-12">
-                            <article class="entry">
-                                <div class="row">
-                                    <div class="col-lg-3 d-flex justify-content-center align-items-center">
-                                        <?php if ($info['gambar']) : ?>
-                                            <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>">
-                                                <img class="w-100 rounded" src="<?= base_url('uploads/informasi/' . $info['gambar']); ?>" alt="Gambar Berita">
-                                            </a>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="col-lg-9">
-                                        <h2 class="entry-title">
-                                            <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>"><?= (strlen($info['judul']) > 70) ? substr($info['judul'], 0, 70) . '...' : $info['judul']; ?></a>
-                                        </h2>
-
-                                        <div class="entry-meta">
-                                            <ul>
-                                                <?php
-                                                    $penulisId = $info['penulis'];
-                                                    $query = $this->db->get_where('user', ['id_user' => $penulisId]);
-                                                    $penulis = $query->row_array();
-
-                                                    if ($penulis) {
-                                                        $namaPenulis = ucfirst($penulis['name']);
-                                                    } else {
-                                                        $namaPenulis = 'Anonim';
-                                                    }
-                                                    ?>
-
-                                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
-                                                <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $info['tanggal']; ?></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="entry-content">
-                                            <p><?= (strlen($info['isi']) > 150) ? substr($info['isi'], 0, 150) . '...' : $info['isi']; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </article>
+                            <p class="text-center">Belum ada data untuk ditampilkan.</p>
                         </div>
-                    <?php endforeach; ?>
+                    <?php else : ?>
+                        <?php foreach ($active_pelatihan as $info) : ?>
+                            <div class="col-lg-12">
+                                <article class="entry">
+                                    <div class="row">
+                                        <div class="col-lg-3 d-flex justify-content-center align-items-center">
+                                            <?php if ($info['gambar']) : ?>
+                                                <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>">
+                                                    <img class="w-100 rounded" src="<?= base_url('uploads/informasi/' . $info['gambar']); ?>" alt="Gambar Berita">
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <h2 class="entry-title">
+                                                <a href="<?= base_url('frontend/informasi/detail_pelatihan/' . $info['slug']); ?>"><?= (strlen($info['judul']) > 70) ? substr($info['judul'], 0, 70) . '...' : $info['judul']; ?></a>
+                                            </h2>
+
+                                            <div class="entry-meta">
+                                                <ul>
+                                                    <?php
+                                                            $penulisId = $info['penulis'];
+                                                            $query = $this->db->get_where('user', ['id_user' => $penulisId]);
+                                                            $penulis = $query->row_array();
+
+                                                            if ($penulis) {
+                                                                $namaPenulis = ucfirst($penulis['name']);
+                                                            } else {
+                                                                $namaPenulis = 'Anonim';
+                                                            }
+                                                            ?>
+
+                                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?= $namaPenulis; ?></li>
+                                                    <li class="d-flex align-items-center"><i class="bi bi-calendar-date-fill"></i><?= $info['tanggal']; ?></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="entry-content">
+                                                <p><?= (strlen($info['isi']) > 150) ? substr($info['isi'], 0, 150) . '...' : $info['isi']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>

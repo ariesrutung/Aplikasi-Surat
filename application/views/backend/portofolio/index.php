@@ -1,15 +1,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 
-<link rel="stylesheet" href="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-
-<!-- Optional JS -->
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/jquery/dist/jquery.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="https://appsrv1-147a1.kxcdn.com/argon-dashboard-pro/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-
 <style>
     .text-center {
         text-align: center;
@@ -51,11 +42,11 @@
         padding: 0;
         margin: 0 3px;
         border-radius: 50% !important;
-        width: 100% !important;
+        width: 36px !important;
         height: 36px;
         font-size: 0.875rem;
         border-radius: 10px !important;
-        margin: 0 10px !important;
+        margin: 0 !important;
     }
 
     .text-center {
@@ -97,6 +88,24 @@
         color: #8898aa;
         border-color: #e9ecef;
         background-color: #f6f9fc;
+    }
+
+    div#tbl_portofolio_paginate ul.pagination li:nth-child(1) a.page-link {
+        font-size: 0;
+    }
+
+    div#tbl_portofolio_paginate ul.pagination li:nth-last-child(1) a.page-link {
+        font-size: 0;
+    }
+
+    div#tbl_portofolio_paginate ul.pagination li:nth-child(1) a.page-link:before {
+        content: "<";
+        font-size: 16px;
+    }
+
+    div#tbl_portofolio_paginate ul.pagination li:nth-last-child(1) a.page-link:before {
+        content: ">";
+        font-size: 16px;
     }
 </style>
 

@@ -7,7 +7,6 @@ class Perangkatdesa extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -15,7 +14,6 @@ class Perangkatdesa extends CI_Controller
 
     public function index()
     {
-        // $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Perangkat Desa',
             'sub_title' => 'Profil Perangkat Desa'
@@ -29,9 +27,9 @@ class Perangkatdesa extends CI_Controller
     public function detail($slug)
     {
         $data['detail'] = $this->db->get_where('tatakerja', ['slug' => $slug])->row_array();
-
+        $data['perangkatdesa'] = $this->db->get('tatakerja')->result_array();
         $judul = [
-            'title' => 'Detail perangkatdesa',
+            'title' => 'Detail Perangkat Desa',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
         ];
 

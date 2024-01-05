@@ -9,7 +9,7 @@ class Tatakerja extends CI_Controller
 
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-        // $this->load->model('Tatakerja_model');
+        $this->load->model('Tatakerja_model', 'tatakerja');
 
         if ($this->session->userdata('id_user') == FALSE) {
             redirect(base_url("admin/auth/login"));
@@ -18,7 +18,6 @@ class Tatakerja extends CI_Controller
 
     public function index()
     {
-
         $judul = [
             'title' => 'Tata Kerja Aparat Desa',
             'sub_title' => ''
@@ -64,7 +63,9 @@ class Tatakerja extends CI_Controller
             $nama_lengkap =  $this->input->post("nama_lengkap", TRUE);
             $jabatan =  $this->input->post("jabatan", TRUE);
             $tugas =  $this->input->post("tugas", TRUE);
+            $ket_tugas =  $this->input->post("ket_tugas", TRUE);
             $fungsi =  $this->input->post("fungsi", TRUE);
+            $ket_fungsi =  $this->input->post("ket_fungsi", TRUE);
 
             $config['upload_path']          = './uploads/aparatdesa';
             $config['allowed_types']        = 'png|jpg|jpeg';
@@ -79,7 +80,9 @@ class Tatakerja extends CI_Controller
                     'nama_lengkap' => $nama_lengkap,
                     'jabatan' => $jabatan,
                     'tugas' => $tugas,
+                    'ket_tugas' => $ket_tugas,
                     'fungsi' => $fungsi,
+                    'ket_fungsi' => $ket_fungsi,
                     'gambar' => $gambar,
                     'slug' => $slug,
 
@@ -117,6 +120,8 @@ class Tatakerja extends CI_Controller
             $jabatan =  $this->input->post("jabatan", TRUE);
             $tugas =  $this->input->post("tugas", TRUE);
             $fungsi =  $this->input->post("fungsi", TRUE);
+            $ket_tugas =  $this->input->post("ket_tugas", TRUE);
+            $ket_fungsi =  $this->input->post("ket_fungsi", TRUE);
 
             $config['upload_path']          = './uploads/aparatdesa';
             $config['allowed_types']        = 'png|jpg|jpeg';
@@ -134,7 +139,9 @@ class Tatakerja extends CI_Controller
                     'nama_lengkap' => $nama_lengkap,
                     'jabatan' => $jabatan,
                     'tugas' => $tugas,
+                    'ket_tugas' => $ket_tugas,
                     'fungsi' => $fungsi,
+                    'ket_fungsi' => $ket_fungsi,
                     'gambar' => $gambar,
                     'slug' => $slug,
 
@@ -150,7 +157,9 @@ class Tatakerja extends CI_Controller
                     'nama_lengkap' => $nama_lengkap,
                     'jabatan' => $jabatan,
                     'tugas' => $tugas,
+                    'ket_tugas' => $ket_tugas,
                     'fungsi' => $fungsi,
+                    'ket_fungsi' => $ket_fungsi,
                     'gambar' => $gambar,
                     'slug' => $slug,
 
@@ -163,5 +172,37 @@ class Tatakerja extends CI_Controller
                 redirect(base_url("admin/tatakerja"));
             }
         }
+    }
+
+
+    public function ajax_list()
+    {
+        $tatakerja = $this->tatakerja->get_datatables();
+        $data = array();
+        foreach ($tatakerja as $key => $tk) {
+            $row = array();
+            $row[] = $key + 1; // Nomor urut
+            $row[] = $tk->nama_lengkap;
+            $row[] = $tk->jabatan;
+            $row[] = $tk->tugas;
+            $row[] = $tk->fungsi;
+
+            $aksi = '<a href="' . base_url("uploads/aparatdesa") . '/' . $tk->gambar . '" class="btn bg-gradient-info btn-xs mx-1" target="_blank"><i class="fas fa-file-pdf"></i></a>';
+            $aksi .= '<a href="' . base_url() . 'admin/tatakerja/edit/' . $tk->id . '" class="btn bg-gradient-primary btn-xs mx-1"><i class="fas fa-pencil-alt"></i></a>';
+            $aksi .= '<button type="button" class="btn bg-gradient-warning btn-xs mx-1" data-bs-toggle="modal" data-bs-target="#hapusTatakerja' . $tk->id . '"><i class="fas fa-trash-alt"></i></button>';
+
+            $row[] = $aksi;
+
+            $data[] = $row;
+        }
+
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->tatakerja->count_all(),
+            "recordsFiltered" => $this->tatakerja->count_filtered(),
+            "data" => $data,
+        );
+        echo json_encode($output);
     }
 }

@@ -7,7 +7,6 @@ class Tracking extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
         $this->load->model('pengajuan_track_model', 'pengajuan_track');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));

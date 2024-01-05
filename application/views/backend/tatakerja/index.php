@@ -1,6 +1,19 @@
 <style>
+    div#info_table_info {
+        color: #8392ab;
+        font-size: .875rem;
+    }
+
+    div#info_table_paginate li {
+        margin: 0 4px;
+    }
+
     .text-center {
         text-align: center;
+    }
+
+    .page-item.active .page-link {
+        color: #fff !important;
     }
 
     .text-left {
@@ -21,13 +34,63 @@
         color: #fff;
     }
 
-    .table tbody td {
-        white-space: normal;
+    .text-sm {
+        white-space: normal !important;
     }
 
-    .table.align-items-center td,
-    .table.align-items-center th {
-        vertical-align: top;
+    .table .thead-light th {
+        color: #8898aa;
+        background-color: #f6f9fc;
+    }
+
+    .table .thead-light th {
+        color: #8898aa;
+        border-color: #e9ecef;
+        background-color: #f6f9fc;
+    }
+
+    div#tatakerja_table_paginate ul.pagination li {
+        margin: 0 3px;
+    }
+
+    table#tatakerja_table td:nth-last-child(1) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-item .page-link,
+    .page-item span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8392ab;
+        padding: 0;
+        margin: 0 3px;
+        border-radius: 50% !important;
+        width: 36px !important;
+        height: 36px;
+        font-size: 0.875rem;
+        border-radius: 10px !important;
+        margin: 0 !important;
+    }
+
+    div#tatakerja_table_paginate ul.pagination li:nth-child(1) a.page-link {
+        font-size: 0;
+    }
+
+    div#tatakerja_table_paginate ul.pagination li:nth-last-child(1) a.page-link {
+        font-size: 0;
+    }
+
+    div#tatakerja_table_paginate ul.pagination li:nth-child(1) a.page-link:before {
+        content: "<";
+        font-size: 16px;
+    }
+
+    div#tatakerja_table_paginate ul.pagination li:nth-last-child(1) a.page-link:before {
+        content: ">";
+        font-size: 16px;
     }
 </style>
 <div class="container-fluid py-4">
@@ -46,36 +109,17 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
+                            <table id="tatakerja_table" class="display" cellspacing="0" width="100%">
                                 <thead>
-                                    <tr class="w-100">
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-5">No.</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 ps-2 w-10">Nama Lengkap</th>
+                                    <tr>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-5 text-center">No.</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">Nama Lengkap</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-10">Jabatan</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-20 ">Tugas</th>
-                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-40">Fungsi</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-25">Tugas</th>
+                                        <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-30">Fungsi</th>
                                         <th class="text-capitalize text-secondary text-sm font-weight-bolder opacity-7 w-15 text-center">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    <?php $no = 1; ?>
-                                    <?php foreach ($tatakerja as $key) : ?>
-                                        <tr>
-                                            <td class="text-secondary font-weight-normal text-sm w-5 text-center"><?= $no; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm w-10"><?= $key['nama_lengkap']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm w-10"><?= $key['jabatan']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm w-20 "><?= $key['tugas']; ?></td>
-                                            <td class="text-secondary font-weight-normal text-sm w-40"><?= $key['fungsi']; ?></td>
-                                            <td class="text-center w-15">
-                                                <button type="button" class="btn bg-gradient-info btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#lihatFoto<?= $key['id']; ?>"><i class="fas fa-eye"></i></button>
-                                                <a href="<?= base_url() ?>admin/tatakerja/edit/<?= $key['id']; ?>" class="btn bg-gradient-primary btn-xs mb-0"><i class="fas fa-pencil-alt"></i></a>
-                                                <button type="button" class="btn bg-gradient-warning btn-xs mb-0" data-bs-toggle="modal" data-bs-target="#hapusTatakerja<?= $key['id']; ?>"><i class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <?php $no++; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -142,3 +186,57 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tatakerja_table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "<?php echo site_url('admin/tatakerja/ajax_list'); ?>",
+                "type": "POST"
+            },
+            "columns": [{
+                    "data": "0",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-5 text-center">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "1",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-25">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "2",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm w-50">' + data + '</span>';
+                    }
+                },
+
+                {
+                    "data": "3",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "4",
+                    "render": function(data) {
+                        return '<span class="text-secondary font-weight-normal text-sm">' + data + '</span>';
+                    }
+                },
+                {
+                    "data": "5",
+                    "render": function(data, type, row) {
+                        return data;
+                    }
+                },
+            ],
+            "createdRow": function(row, data, dataIndex) {
+                $('th', row).addClass('text-capitalize text-secondary text-sm font-weight-bolder text-center opacity-7');
+            }
+        });
+    });
+</script>

@@ -6,7 +6,6 @@
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <!-- <h3>Presento<span>.</span></h3> -->
                     <a href="<?= base_url('/'); ?>admin/home" class="logo me-auto footer-logo"><img class="w-75 rounded bg-light p-2" src="<?= base_url(); ?>assets/frontend/assets/img/logo.png" alt=""></a>
                     <p>
                         Jln. Kebun Cengkeh<br>
@@ -57,13 +56,6 @@
                 &copy; Copyright <strong><span>e-Surat</span></strong>. All Rights Reserved
             </div>
         </div>
-        <!-- <div class="social-links text-center text-md-end pt-3 pt-md-0">
-            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div> -->
     </div>
 </footer><!-- End Footer -->
 
@@ -109,8 +101,6 @@
     $('#jenis').change(function() {
         var e = document.getElementById("jenis");
         var jenisSurat = e.value;
-        // console.log(jenisSurat)
-
         const spkk = ['KK Lama (Asli & FC)', 'KTP', 'Surat Pindah dari daerah asal', 'FC Buku Nikah', 'Surat Pengantar/Keterangan RT & RW']
         const spna = ['FC KK Calon Suami & Istri', 'FC KTP Calon Suami & Istri', 'Pas Foto 3x4 Calon Suami & Istri', 'Surat Pengantar/Keterangan RT & RW', 'FC Akta Cerai (Bagi Janda/Duda)']
         const skkl = ['KK (Asli & FC)', 'KTP', 'Surat Keterangan Kelahiran dari Bidan/RS (Jika ada/ Optional)', 'Surat Pengantar/Keterangan RT & RW']
@@ -126,64 +116,78 @@
         const situ = ['KTP (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
         const simb = ['KTP (Asli & FC)', 'FC Surat Tanah Lokasi Bangunan', 'Surat Pengantar/Keterangan RT & RW']
 
-        const showList = (surat) => {
-            surat.forEach(item => {
-                $('#syarat_dok').append(
-                    `
-                            <ul>
-                                <li>${item}</li>
-                            </ul>
-                            `
-                )
+        const showTable = (surat) => {
+            $('#syarat_dok').html('');
+            var tableHtml = '<div class="alert alert-danger" role="alert"> <h6 class="alert-heading"> Penting!! </h6>  <p>Silakan unggah dokumen yang diminta di bawah ini. Ketidaksesuaian dokumen akan mempengahruhi keberhasilan pengajuan surat!</p> <hr> <p class="mb-0">Disarankan file jenis PDF dengan ukuran maksimal 1MB per dokumen. Terima kasih. </p></div> <p class="text-danger"> </p><br><table class="table"><thead><tr><th>No</th> <th> Nama Dokumen </th><th>Aksi</th> </tr></thead> <tbody> ';
+            surat.forEach((item, index) => {
+                tableHtml += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${item}</td>
+            <td>
+            
+            <div class="row">
+                <div class="col-lg-6 form-group m-0">
+                    <input type="file" name="file" id="file" class="form-control m-0" />
+                </div>
+                <div class="col-lg-6 form-group m-0">
+                    <button class="btn btn-primary btn-upload">Hapus</button>
+                    <button class="btn btn-secondary btn-view">Lihat File</button>
+                </div>
+            </div>
+            </td>
+        </tr>`;
             });
+            tableHtml += '</tbody></table>';
+            $('#syarat_dok').append(tableHtml);
         }
 
         if (jenisSurat == 'SPKK') {
-            $('#syarat_dok').html('')
-            showList(spkk)
+            $('#syarat_dok').html('');
+            showTable(spkk);
         } else if (jenisSurat == 'SPNA') {
-            $('#syarat_dok').html('')
-            showList(spna)
+            $('#syarat_dok').html('');
+            showTable(spna);
         } else if (jenisSurat == 'SKKL') {
-            $('#syarat_dok').html('')
-            showList(skkl)
+            $('#syarat_dok').html('');
+            showTable(skkl);
         } else if (jenisSurat == 'SKKM') {
-            $('#syarat_dok').html('')
-            showList(skkm)
+            $('#syarat_dok').html('');
+            showTable(skkm);
         } else if (jenisSurat == 'SKP') {
-            $('#syarat_dok').html('')
-            showList(skp)
+            $('#syarat_dok').html('');
+            showTable(skp);
         } else if (jenisSurat == 'SKD') {
-            $('#syarat_dok').html('')
-            showList(skd)
+            $('#syarat_dok').html('');
+            showTable(skd);
         } else if (jenisSurat == 'SKBM') {
-            $('#syarat_dok').html('')
-            showList(skbm)
+            $('#syarat_dok').html('');
+            showTable(skbm);
         } else if (jenisSurat == 'SKPH') {
-            $('#syarat_dok').html('')
-            showList(skph)
+            $('#syarat_dok').html('');
+            showTable(skph);
         } else if (jenisSurat == 'SKM') {
-            $('#syarat_dok').html('')
-            showList(skm)
+            $('#syarat_dok').html('');
+            showTable(skm);
         } else if (jenisSurat == 'SKU') {
-            $('#syarat_dok').html('')
-            showList(sku)
+            $('#syarat_dok').html('');
+            showTable(sku);
         } else if (jenisSurat == 'SKT') {
-            $('#syarat_dok').html('')
-            showList(skt)
+            $('#syarat_dok').html('');
+            showTable(skt);
         } else if (jenisSurat == 'SKGG') {
-            $('#syarat_dok').html('')
-            showList(skgg)
+            $('#syarat_dok').html('');
+            showTable(skgg);
         } else if (jenisSurat == 'SITU') {
-            $('#syarat_dok').html('')
-            showList(situ)
+            $('#syarat_dok').html('');
+            showTable(situ);
         } else if (jenisSurat == 'SIMB') {
-            $('#syarat_dok').html('')
-            showList(simb)
+            $('#syarat_dok').html('');
+            showTable(simb);
         } else {
-            console.log('Nothing')
+            console.log('Nothing');
         }
-    })
+    });
 </script>
 </body>
 

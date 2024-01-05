@@ -19,6 +19,16 @@
     <link id="pagestyle" href="<?= base_url() ?>assets/argon/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <!-- Datatables JS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/argon/assets/css/custom-backend-css/halaman-penduduk.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/argon/assets/css/dataTables.bootstrap4.min.css">
+    <script src="<?= base_url() ?>assets/argon/assets/js/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/argon/assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>assets/argon/assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>assets/argon/assets/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url() ?>assets/argon/assets/js/buttons.bootstrap4.min.js"></script>
+
     <style>
         .col-2 {
             flex: 0 0 auto;
@@ -112,11 +122,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?php echo ($this->uri->segment(3) == 'informasi' || $this->uri->segment(3) == 'tambah_informasi' || $this->uri->segment(3) == 'edit_informasi') ? 'active' : ''; ?>" href="<?= base_url('admin/profil/informasi') ?>">
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'informasi' || $this->uri->segment(2) == 'tambah_informasi' || $this->uri->segment(2) == 'edit_informasi') ? 'active' : ''; ?>" href="<?= base_url('admin/informasi') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="bi bi-pencil-square text-danger text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Konten</span>
+                        <span class="nav-link-text ms-1">Informasi</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -138,9 +148,17 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo ($this->uri->segment(2) == 'tatakerja' || $this->uri->segment(3) == 'tambah_tatakerja' || $this->uri->segment(3) == 'edit_tatakerja') ? 'active' : ''; ?>" href="<?= base_url('admin/tatakerja/index') ?>">
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bi bi-images text-warning text-sm opacity-10"></i>
+                            <i class="bi bi-signpost-2-fill text-warning text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Tata Kerja Aparat Desa</span>
+                        <span class="nav-link-text ms-1">Tata Kerja</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo ($this->uri->segment(2) == 'profil' || $this->uri->segment(2) == 'tambah_profil' || $this->uri->segment(2) == 'edit_profil') ? 'active' : ''; ?>" href="<?= base_url('admin/profil') ?>">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-file-richtext-fill text-danger text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Profil</span>
                     </a>
                 </li>
 

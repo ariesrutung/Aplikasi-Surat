@@ -82,6 +82,10 @@
     .contact .formsaja button[type=submit]:hover {
         background: #e35052;
     }
+
+    form#ajukanSurat * {
+        font-size: 1rem;
+    }
 </style>
 <section id="contact" class="contact">
     <div class="container" data-aos="fade-up">
@@ -110,22 +114,16 @@
                         <label class="mb-1" for="jenis">Pilih Jenis Surat *</label>
                         <?= form_dropdown('jenis_surat', $options, '', ['id' => 'jenis', 'class' => 'form-control']); ?>
                     </div>
-                    <div class="col-lg-6 form-group">
-                        <label class="mb-1" for="file">File Berkas/Lampiran <sup class="text-danger">*Disarankan file jenis PDF dengan ukuran maksimal 5MB</sup></label>
-                        <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
-                    </div>
                 </div>
 
                 <hr>
                 <small>
-                    <p class="text-danger">PENTING!! Syarat Harus Terpenuhi, Jika Tidak Pengajuan Tidak Diproses!</p>
                     <div id="syarat_dok" class="text-danger">
                     </div>
                 </small>
                 <hr>
                 <div class="row mt-2">
                     <div class="col-lg-4">
-                        <!-- <button type="submit" class="btn btn-block btn-primary">KIRIM PERMOHONAN</button> -->
                         <button type="submit" class="btn btn-block btn-primary" id="submitButton">KIRIM PERMOHONAN</button>
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     .pl-0 {
         padding-left: 0 !important;
@@ -208,6 +209,13 @@
         height: auto !important;
         object-fit: contain;
     }
+
+    canvas#pendidikanChart,
+    canvas#pekerjaanChart {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
 </style>
 <div id="carousel" class="carousel slide" data-ride="carousel">
     <?php if (!empty($active_sliders)) : ?>
@@ -251,39 +259,46 @@
 
 <main id="main">
 
-    <section id="services" class="services section-bg ">
+    <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-left">
 
             <div class="section-title mb-4">
                 <h2>Pengumuman Hari ini</h2>
                 <p>Dapatkan pengumuman terbaru per hari ini terkait kementerian desa.</p>
             </div>
-
             <div class="row">
-                <?php foreach ($pengumuman_terbaru as $pg) : ?>
-                    <div class="col-md-6">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <h4 class="ml-0"><a href="<?= base_url('frontend/informasi/detail_pengumuman/' . $pg->slug); ?>"><?= (strlen($pg->judul) > 100) ? substr($pg->judul, 0, 100) . '...' : $pg->judul; ?></a></h4>
-                            <!-- <p><?= (strlen($pg->isi) > 100) ? substr($pg->isi, 0, 100) . '...' : $pg->isi; ?></p> -->
-                            <hr>
+                <?php if (!empty($pengumuman_terbaru)) : ?>
+                    <?php foreach ($pengumuman_terbaru as $pg) : ?>
+                        <div class="col-md-6">
+                            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                                <h4 class="ml-0"><a href="<?= base_url('frontend/informasi/detail_pengumuman/' . $pg->slug); ?>"><?= (strlen($pg->judul) > 100) ? substr($pg->judul, 0, 100) . '...' : $pg->judul; ?></a></h4>
+                                <!-- <p><?= (strlen($pg->isi) > 100) ? substr($pg->isi, 0, 100) . '...' : $pg->isi; ?></p> -->
+                                <hr>
 
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <p class="mt-3 ml-0"><i class="bi bi-calendar-date-fill"></i><?= $pg->lokasi; ?>, <?= $pg->tanggal; ?></p>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p class="mt-3 ml-0"><i class="bi bi-calendar-date-fill"></i><?= $pg->lokasi; ?>, <?= $pg->tanggal; ?></p>
+                                    </div>
+                                    <div class="col-md-4 d-flex justify-content-end align-items-center">
+                                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 d-flex justify-content-end align-items-center">
-                                    <i class="bi bi-file-earmark-pdf-fill"></i>
-                                </div>
+
                             </div>
-
                         </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="col-md-12">
+                        <p class="text-center">Belum ada pengumuman untuk ditampilkan.</p>
                     </div>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="row">
-                <div class="col-md-12 d-flex justify-content-start align-items-center">
-                    <a class="btn btn-more" href="<?= base_url('frontend/informasi/pengumuman'); ?>">Pengumuman Lainnya</a>
-                </div>
+                <?php if (!empty($pengumuman_terbaru)) : ?>
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <a class="btn btn-more" href="<?= base_url('frontend/informasi/pengumuman'); ?>">Pengumuman Lainnya</a>
+                    </div>
+                <?php endif; ?>
             </div>
 
         </div>
@@ -298,32 +313,40 @@
 
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                 <div class="swiper-wrapper">
-                    <?php foreach ($berita_terbaru as $info) : ?>
-                        <div class="swiper-slide">
-                            <div class="testimonial-wrap">
-                                <div class="testimonial-item">
-                                    <a href="<?= base_url('frontend/informasi/detail_berita/' . $info->slug); ?>">
-                                        <h6 class="mb-3"><?= (strlen($info->judul) > 50) ? substr($info->judul, 0, 50) . '...' : $info->judul; ?></h6>
-                                    </a>
-                                    <p>
+                    <?php if (!empty($berita_terbaru)) : ?>
+                        <?php foreach ($berita_terbaru as $info) : ?>
+                            <div class="swiper-slide">
+                                <div class="testimonial-wrap">
+                                    <div class="testimonial-item">
                                         <a href="<?= base_url('frontend/informasi/detail_berita/' . $info->slug); ?>">
-                                            <?= (strlen($info->isi) > 150) ? substr($info->isi, 0, 150) . '...' : $info->isi; ?>
+                                            <h6 class="mb-3"><?= (strlen($info->judul) > 50) ? substr($info->judul, 0, 50) . '...' : $info->judul; ?></h6>
                                         </a>
-                                    </p>
-                                    <h4 class="mt-3"><i class="bi bi-calendar-date-fill"></i><?= $info->lokasi; ?>, <?= $info->tanggal; ?></h4>
+                                        <p>
+                                            <a href="<?= base_url('frontend/informasi/detail_berita/' . $info->slug); ?>">
+                                                <?= (strlen($info->isi) > 150) ? substr($info->isi, 0, 150) . '...' : $info->isi; ?>
+                                            </a>
+                                        </p>
+                                        <h4 class="mt-3"><i class="bi bi-calendar-date-fill"></i><?= $info->lokasi; ?>, <?= $info->tanggal; ?></h4>
+                                    </div>
                                 </div>
                             </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="col-md-12">
+                            <p class="text-center">Belum ada pengumuman untuk ditampilkan.</p>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
 
             <div class="row">
-                <div class="col-md-12 d-flex justify-content-start align-items-center">
-                    <a class="btn btn-danger" href="<?= base_url('frontend/informasi/berita'); ?>">Berita Lainnya</a>
-                </div>
+                <?php if (!empty($berita_terbaru)) : ?>
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <a class="btn btn-danger" href="<?= base_url('frontend/informasi/berita'); ?>">Berita Lainnya</a>
+                    </div>
+                <?php endif; ?>
             </div>
 
         </div>
@@ -343,13 +366,13 @@
                     </div>
                 </div>
                 <div class="col-lg-5 d-flex align-items-stretch">
-                    <img class="w-100 ml-3" src="<?= base_url('uploads/informasi/' . $alur_masuk['gambar']); ?>" alt="Gambar Berita">
+                    <img class="w-100 ml-3" src="<?= base_url('uploads/profil/' . $alur_masuk['gambar']); ?>" alt="Gambar Berita">
                 </div>
             </div>
 
             <div class="row no-gutters" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-lg-5 d-flex align-items-stretch">
-                    <img class="w-100" src="<?= base_url('uploads/informasi/' . $alur_keluar['gambar']); ?>" alt="Gambar Berita">
+                    <img class="w-100" src="<?= base_url('uploads/profil/' . $alur_keluar['gambar']); ?>" alt="Gambar Berita">
                 </div>
 
                 <div class="content col-lg-7 d-flex align-items-stretch pl-3">
@@ -384,247 +407,26 @@
 
         </div>
     </section>
-
-
-    <!-- 
-    <section id="pricing" class="pricing section-bg">
+    <section id="tabs" class="tabs">
         <div class="container" data-aos="fade-up">
-
             <div class="section-title">
-                <h2>STRUKTUR ORGANISASI</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+                <h2>GRAFIK PERBANDINGAN PENDUDUK</h2>
+                <p>Grafik di bawah ini menampilkan data penduduk berdasarkan pendidikan dan pekerjaan</p>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
+            <div class="row mt-5">
+                <div class="col-lg-6 col-md-12">
+                    <h4 class="mb-4">Berdasarkan Pendidikan</h4>
+                    <canvas id="pendidikanChart" height="200"></canvas>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <h4 class="mb-4">Berdasarkan Pekerjaan</h4>
+                    <canvas id="pekerjaanChart" height="200"></canvas>
                 </div>
             </div>
-
         </div>
     </section>
-
-    <section id="faq" class="faq">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-            </div>
-
-            <ul class="faq-list accordion" data-aos="fade-up">
-
-                <li>
-                    <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq1" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                        </p>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq2" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                        </p>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq3" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                        </p>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq4" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                        </p>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq5" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-                        </p>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
-                    <div id="faq6" class="collapse" data-bs-parent=".faq-list">
-                        <p>
-                            Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
-                        </p>
-                    </div>
-                </li>
-
-            </ul>
-
-        </div>
-    </section>
-
-    <section id="team" class="team section-bg">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2>Team</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
-            </div>
-
-            <div class="row">
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-img">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Walter White</h4>
-                            <span>Chief Executive Officer</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-img">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Sarah Jhonson</h4>
-                            <span>Product Manager</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member-img">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>William Anderson</h4>
-                            <span>CTO</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="400">
-                        <div class="member-img">
-                            <img src="<?= base_url(); ?>assets/frontend/assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Amanda Jepson</h4>
-                            <span>Accountant</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2>Contact</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
-            </div>
-
-            <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="col-lg-6">
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="info-box">
-                                <i class="bx bx-map"></i>
-                                <h3>Our Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box mt-4">
-                                <i class="bx bx-envelope"></i>
-                                <h3>Email Us</h3>
-                                <p>info@example.com<br>contact@example.com</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box mt-4">
-                                <i class="bx bx-phone-call"></i>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </section> -->
 
 </main>
 <script>
@@ -646,5 +448,65 @@
             iconElement.className = "bi bi-check2-all";
             item.insertBefore(iconElement, item.firstChild);
         });
+    });
+</script>
+
+<script>
+    var pendidikanData = <?php echo json_encode($pendidikan_data); ?>;
+
+    var labels = [];
+    var data = [];
+
+    for (var i = 0; i < pendidikanData.length; i++) {
+        labels.push(pendidikanData[i].pendidikan);
+        data.push(pendidikanData[i].total);
+    }
+    var ctx = document.getElementById('pendidikanChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                ],
+            }]
+        },
+        options: {}
+    });
+</script>
+
+<script>
+    var pekerjaanData = <?php echo json_encode($pekerjaan_data); ?>;
+
+    var labels = [];
+    var data = [];
+
+    for (var i = 0; i < pekerjaanData.length; i++) {
+        labels.push(pekerjaanData[i].pekerjaan);
+        data.push(pekerjaanData[i].total);
+    }
+    var ctx = document.getElementById('pekerjaanChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                ],
+            }]
+        },
+        options: {}
     });
 </script>

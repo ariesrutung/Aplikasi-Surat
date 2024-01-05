@@ -87,13 +87,76 @@ class Slider extends CI_Controller
         }
     }
 
+    // public function edit_slider($id)
+    // {
+
+    //     $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
+    //     $this->form_validation->set_rules('subjudul', 'Subjudul', 'required|trim');
+    //     $this->form_validation->set_rules('status', 'Status', 'required|trim');
+
+
+    //     if ($this->form_validation->run() == FALSE) {
+    //         $judul = [
+    //             'title' => 'Management User',
+    //             'sub_title' => 'Surat Masuk'
+    //         ];
+
+    //         $data['slider'] = $this->db->get_where('slider', ['id' => $id])->row_array();
+    //         $this->load->view('backend/template/header', $judul);
+    //         $this->load->view('backend/slider/edit_slider', $data);
+    //         $this->load->view('backend/template/footer');
+    //     } else {
+    //         $judul =  $this->input->post("judul", TRUE);
+    //         $subjudul =  $this->input->post("subjudul", TRUE);
+    //         $status =  $this->input->post("status", TRUE);
+
+    //         $config['upload_path']          = './uploads/slider';
+    //         $config['allowed_types']        = 'png|jpg|jpeg';
+    //         $this->load->library('upload', $config);
+
+    //         if ($this->upload->do_upload('gambar')) {
+    //             $data = $this->db->get_where('slider', ['id' => $id])->row_array();
+    //             unlink("./uploads/slider/" . $data['gambar']);
+
+    //             $data = array('upload_data' => $this->upload->data());
+    //             $gambar = $data['upload_data']['file_name'];
+
+    //             $update = [
+    //                 'judul' => $judul,
+    //                 'subjudul' => $subjudul,
+    //                 'status' => $status,
+    //                 'gambar' => $gambar,
+
+    //             ];
+
+    //             $this->db->where('id', $id);
+    //             $this->db->update('slider', $update);
+
+    //             $this->session->set_flashdata('success', 'Berhasil Diupdate!');
+    //             redirect(base_url("admin/slider/index"));
+    //         } else {
+    //             $update = [
+    //                 'judul' => $judul,
+    //                 'subjudul' => $subjudul,
+    //                 'status' => $status,
+    //                 'gambar' => $gambar,
+
+    //             ];
+
+    //             $this->db->where('id', $id);
+    //             $this->db->update('slider', $update);
+
+    //             $this->session->set_flashdata('success', 'Berhasil Diupdate!');
+    //             redirect(base_url("admin/slider/index"));
+    //         }
+    //     }
+    // }
+
     public function edit_slider($id)
     {
-
         $this->form_validation->set_rules('judul', 'Judul', 'required|trim');
         $this->form_validation->set_rules('subjudul', 'Subjudul', 'required|trim');
         $this->form_validation->set_rules('status', 'Status', 'required|trim');
-
 
         if ($this->form_validation->run() == FALSE) {
             $judul = [
@@ -118,39 +181,27 @@ class Slider extends CI_Controller
                 $data = $this->db->get_where('slider', ['id' => $id])->row_array();
                 unlink("./uploads/slider/" . $data['gambar']);
 
-                $data = array('upload_data' => $this->upload->data());
-                $gambar = $data['upload_data']['file_name'];
-
-                $update = [
-                    'judul' => $judul,
-                    'subjudul' => $subjudul,
-                    'status' => $status,
-                    'gambar' => $gambar,
-
-                ];
-
-                $this->db->where('id', $id);
-                $this->db->update('slider', $update);
-
-                $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("admin/slider/index"));
+                $uploaded_data = $this->upload->data();
+                $gambar = $uploaded_data['file_name'];
             } else {
-                $update = [
-                    'judul' => $judul,
-                    'subjudul' => $subjudul,
-                    'status' => $status,
-                    'gambar' => $gambar,
-
-                ];
-
-                $this->db->where('id', $id);
-                $this->db->update('slider', $update);
-
-                $this->session->set_flashdata('success', 'Berhasil Diupdate!');
-                redirect(base_url("admin/slider/index"));
+                $gambar = $this->db->get_where('slider', ['id' => $id])->row_array()['gambar'];
             }
+
+            $update = [
+                'judul' => $judul,
+                'subjudul' => $subjudul,
+                'status' => $status,
+                'gambar' => $gambar,
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('slider', $update);
+
+            $this->session->set_flashdata('success', 'Berhasil Diupdate!');
+            redirect(base_url("admin/slider/index"));
         }
     }
+
 
     public function ubah_status()
     {

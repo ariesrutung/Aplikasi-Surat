@@ -39,6 +39,11 @@
     .team .member .member-info span {
         text-transform: uppercase;
     }
+
+    .team .member .member-info {
+        padding: 25px 15px;
+        background-color: #2b2b2b;
+    }
 </style>
 <section id="team" class="team section-bg">
     <div class="container aos-init aos-animate" data-aos="fade-up">
@@ -58,7 +63,7 @@
                             </div>
                         </div>
                         <div class="member-info">
-                            <h4>
+                            <h4 class="text-center text-white">
                                 <?php
                                     $namaArray = explode(' ', $pd['nama_lengkap']);
                                     $jumlahKata = count($namaArray);
@@ -69,7 +74,7 @@
                                     }
                                     ?>
                             </h4>
-                            <span><?= $pd['jabatan'] ?></span>
+                            <span class="text-center text-white"><?= $pd['jabatan'] ?></span>
                         </div>
                     </div>
                 </div>

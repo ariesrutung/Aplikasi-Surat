@@ -7,7 +7,6 @@ class Informasi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
         $this->load->model('Informasi_model');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
@@ -16,7 +15,7 @@ class Informasi extends CI_Controller
 
     public function berita()
     {
-        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'berita'])->result_array();
+        $data['active_berita'] = $this->Informasi_model->get_active_berita();
         $judul = [
             'title' => 'Berita',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
@@ -49,7 +48,8 @@ class Informasi extends CI_Controller
 
     public function pengumuman()
     {
-        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'pengumuman'])->result_array();
+        $data['active_pengumuman'] = $this->Informasi_model->get_active_pengumuman();
+
         $judul = [
             'title' => 'Pengumuman',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
@@ -82,7 +82,8 @@ class Informasi extends CI_Controller
 
     public function pelatihan()
     {
-        $data['informasi'] = $this->db->get_where('informasi', ['kategori' => 'pelatihan'])->result_array();
+        $data['active_pelatihan'] = $this->Informasi_model->get_active_pelatihan();
+
         $judul = [
             'title' => 'Pelatihan',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'

@@ -7,9 +7,8 @@ class Suratonline extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
         $this->load->model('pengajuan_track_model', 'pengajuan_track');
-        $this->load->model('M_Penduduk', 'penduduk');
+        $this->load->model('Penduduk_model', 'penduduk');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -83,28 +82,18 @@ class Suratonline extends CI_Controller
 
         $cc = $this->db->count_all('pengajuan_surat') + 1;
         $count = str_pad($cc, 3, STR_PAD_LEFT);
-        $id = $jenis_surat . "-";
-        $d = date('d');
-        $y = date('y');
-        $mnth = date("m");
-        $s = date('s');
-        $randomize = $d + $y + $mnth + $s;
-        $id = $id . $rid3 . $randomize . $count . $y;
+        $id = $jenis_surat . "-" . $rid3 . $count . date('ymdHis');
 
-        if ($_FILES['file']['size'] >= 5242880) {
-            $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
-            redirect(base_url("admin/suratonline"));
-        }
+        if ($_FILES['file']['error'] != UPLOAD_ERR_NO_FILE) {
+            if ($_FILES['file']['size'] >= 5242880) {
+                $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
+                redirect(base_url("admin/suratonline"));
+            }
 
-        if ($_FILES['file']['name'] == null) {
-            $file = '-';
-        } else {
-            $namafile = substr($_FILES['file']['name'], -7);
-            $file = $jenis_surat . uniqid() . $namafile;
-            $config['upload_path']          = './uploads/berkas';
-            $config['allowed_types']        = '*';
-            $config['max_size']             = 5120; // 5MB
-            $config['file_name']            = $file;
+            $config['upload_path']   = './uploads/berkas';
+            $config['allowed_types'] = '*';
+            $config['max_size']      = 5120; // 5MB
+            $config['file_name']     = $id; // Gunakan ID sebagai nama file
 
             $this->load->library('upload', $config);
 
@@ -112,18 +101,22 @@ class Suratonline extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $berkas = $data['upload_data']['file_name'];
             }
+        } else {
+            // Jika tidak ada file diunggah, set nilai $file ke '-'
+            $berkas = '-';
         }
 
         $data = [
             'id' => $id,
             'nik' => $nik,
             'jenis_surat' => $jenis_surat,
-            'file' => $file,
+            'file' => $berkas, // Menggunakan variabel $berkas yang sudah didefinisikan
             'tanggal' => date('Y-m-d'),
             'status' => $status[1]
         ];
 
         $this->pengajuan_track->insert_p_surat($data);
+
         $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Anda telah berhasil mengajukan permohonan pembuatan surat <b>' . $jenis_surat . '</b> dengan <b>ID</b> <b>' . $id . '</b></div>');
         redirect(base_url("admin/suratonline"));
     }

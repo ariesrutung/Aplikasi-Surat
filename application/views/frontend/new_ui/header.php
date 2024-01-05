@@ -48,26 +48,26 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li>
-                        <a href="<?= base_url('/'); ?>" <?php if ($this->uri->segment(2) == "home") {
+                        <a href="<?= base_url('/'); ?>" <?php if ($this->uri->segment(2) == "") {
                                                             echo 'class="active"';
                                                         } ?>>Beranda</a>
                     </li>
-                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "profil" || $this->uri->segment(2) == "struktur" || $this->uri->segment(2) == "pimpinan" || $this->uri->segment(2) == "perangkatdesa") {
+                    <li class="dropdown"><a href="#" <?php if ($this->uri->segment(2) == "profil" || $this->uri->segment(2) == "struktur"  || $this->uri->segment(2) == "sambutan" || $this->uri->segment(2) == "pimpinan" || $this->uri->segment(2) == "perangkatdesa") {
                                                             echo 'class="active"';
                                                         } ?>><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="<?= base_url('/'); ?>frontend/profil" <?php if ($this->uri->segment(2) == "profil") {
                                                                                     echo 'class="active"';
-                                                                                } ?>>Profil Lembaga</a></li>
+                                                                                } ?>>Profil Desa</a></li>
+                            <li><a href="<?= base_url('/'); ?>frontend/sambutan" <?php if ($this->uri->segment(2) == "sambutan") {
+                                                                                        echo 'class="active"';
+                                                                                    } ?>>Sambutan Kepala Desa</a></li>
                             <li><a href="<?= base_url('/'); ?>frontend/struktur" <?php if ($this->uri->segment(2) == "struktur") {
                                                                                         echo 'class="active"';
                                                                                     } ?>>Struktur Organisasi</a></li>
                             <li><a href="<?= base_url('/'); ?>frontend/perangkatdesa" <?php if ($this->uri->segment(2) == "perangkatdesa") {
                                                                                             echo 'class="active"';
                                                                                         } ?>>Perangkat Desa</a></li>
-                            <li><a href="<?= base_url('/'); ?>frontend/pimpinan" <?php if ($this->uri->segment(2) == "pimpinan") {
-                                                                                        echo 'class="active"';
-                                                                                    } ?>>Tata Kerja Perangkat Desa</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" <?php if ($this->uri->segment(3) == "berita"  || $this->uri->segment(3) == "detail_berita" || $this->uri->segment(3) == "pengumuman" || $this->uri->segment(3) == "detail_pengumuman" || $this->uri->segment(3) == "pelatihan" || $this->uri->segment(3) == "detail_pelatihan") {

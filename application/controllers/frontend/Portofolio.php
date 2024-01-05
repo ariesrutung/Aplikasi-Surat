@@ -7,7 +7,6 @@ class Portofolio extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
         $this->load->model('Portofolio_model');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
@@ -16,7 +15,6 @@ class Portofolio extends CI_Controller
 
     public function index()
     {
-        $data['profil'] = $this->galery->profil();
         $judul = [
             'title' => 'Portofolio Kegiatan',
             'sub_title' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
