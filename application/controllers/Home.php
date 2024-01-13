@@ -7,7 +7,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galeri_model', 'galeri');
+        $this->load->model('Galeri_model');
         $this->load->model('Informasi_model');
         $this->load->model('Slider_model');
         $this->load->model('Penduduk_model');
@@ -36,7 +36,7 @@ class Home extends CI_Controller
         $data['pekerjaan_data'] = $this->Penduduk_model->get_pekerjaan_data();
         $data['active_sliders'] = $this->Slider_model->get_active_sliders();
 
-        $data['profil'] = $this->galeri->getProfil();
+        $data['profil'] = $this->Galeri_model->getProfil();
         $this->load->view('frontend/new_ui/header', $judul);
         $this->load->view('frontend/new_ui/home', $data);
         $this->load->view('frontend/new_ui/footer', $data);
